@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "498849479334",
+    "firebase_url": "https://healthcenter-70246-default-rtdb.firebaseio.com",
+    "project_id": "healthcenter-70246",
+    "storage_bucket": "healthcenter-70246.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:498849479334:android:d6abcd2b2a4134b3721267",
+        "android_client_info": {
+          "package_name": "com.mypackage.it314_health_center"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "498849479334-rskneanhggno9n7kgq7ucq4sdluossa5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2hx16zSiW3hV9NhO29ApA9sSk-SjKe2M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "498849479334-rskneanhggno9n7kgq7ucq4sdluossa5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
