@@ -63,7 +63,6 @@
             android:layout_width="match_parent"
             android:id="@+id/mobile_signup_layout"
             android:orientation="vertical"
-            android:visibility="gone"
             android:layout_height="wrap_content"
             >
             <TextView
@@ -71,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginHorizontal="25dp"
-                android:fontFamily="@font/sarala"
+
                 android:text="Mobile"
                 android:textColor="@color/black"
                 android:textSize="22sp" />
@@ -94,6 +93,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
+            android:visibility="gone"
             android:id="@+id/email_signup_layout"
             android:layout_height="wrap_content"
             >
@@ -102,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginHorizontal="25dp"
-                android:fontFamily="@font/sarala"
+
                 android:text="email"
                 android:textColor="@color/black"
                 android:textSize="22sp" />
@@ -112,6 +112,8 @@
                 android:layout_marginHorizontal="20dp"
                 android:background="@drawable/edit_text_background"
                 android:elevation="4dp"
+                android:importantForAutofill="no"
+                android:id="@+id/email_input"
                 android:hint="Enter email"
                 android:inputType="textEmailAddress"
                 android:drawableEnd="@drawable/ic_email"
@@ -126,7 +128,7 @@
                 android:layout_gravity="start"
                 android:layout_marginTop="15dp"
                 android:layout_marginHorizontal="25dp"
-                android:fontFamily="@font/sarala"
+
                 android:text="passwrod"
                 android:textColor="@color/black"
                 android:textSize="22sp" />
@@ -138,7 +140,7 @@
                 android:elevation="4dp"
                 android:background="@drawable/edit_text_background"
                 android:hint="Enter password"
-                android:inputType="textEmailAddress"
+                android:inputType="textPassword"
                 android:paddingStart="15dp"
                 android:drawableEnd="@drawable/ic_eye_open"
                 android:paddingEnd="15dp"
@@ -153,7 +155,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginHorizontal="25dp"
                 android:drawableEnd="@drawable/ic_eye_open"
-                android:fontFamily="@font/sarala"
+
                 android:text="confirm password"
                 android:textColor="@color/black"
                 android:textSize="22sp" />
@@ -166,7 +168,7 @@
                 android:elevation="4dp"
                 android:hint="Enter password"
                 android:layout_marginBottom="10dp"
-                android:inputType="textEmailAddress"
+                android:inputType="textPassword"
                 android:drawableEnd="@drawable/ic_eye_open"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
@@ -174,7 +176,7 @@
                 android:textColorHint="@color/white"
                 />
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/email_login_button"
+                android:id="@+id/email_signup_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"

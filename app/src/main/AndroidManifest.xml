@@ -22,12 +22,6 @@
             android:name=".startups.Login"
             android:theme="@style/BlueStatusBar"
             android:exported="true">
-        </activity>
-        <activity
-            android:name=".startups.Signup"
-            android:exported="true"
-            android:theme="@style/BlueStatusBar" >
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,12 +29,31 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".startups.Signup"
+            android:exported="true"
+            android:theme="@style/BlueStatusBar" >
+        </activity>
+        <activity
+            android:name=".EmailNotVerified"
+            android:exported="false" />
+        <activity
+            android:name=".EmailVerificationAfterSignUp"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true" />
         <activity
             android:name=".startups.SplashScreen"
             android:exported="true"
             android:theme="@style/SplashTheme" />
+        <activity
+            android:name=".EmailVerificationAfterSignUp"
+            android:exported="true"
+            android:theme="@style/BlueStatusBar" />
+        <activity
+            android:name=".EmailNotVerified"
+            android:exported="true"
+            android:theme="@style/BlueStatusBar" />
     </application>
 
 </manifest>

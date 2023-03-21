@@ -14,12 +14,12 @@
         android:textColor="#ff0000"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.366"
 
-        />
+        app:layout_constraintVertical_bias="0.306" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -37,15 +37,15 @@
         />
 
     <Button
+        android:id="@+id/verification_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#00df30"
+        android:text="@string/OK"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.66"
-        android:background="#00df30"
-        android:text="@string/OK"
-        android:id="@+id/verification_button"
-        />
+        app:layout_constraintVertical_bias="0.696" />
 </androidx.constraintlayout.widget.ConstraintLayout>
