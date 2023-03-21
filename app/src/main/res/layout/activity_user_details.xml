@@ -25,7 +25,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="30dp"
-                    android:fontFamily="@font/sarala"
                     android:text="Complete your profile"
                     android:textColor="@color/black"
                     android:textSize="22sp" />
@@ -34,7 +33,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_marginHorizontal="25dp"
-                    android:fontFamily="@font/sarala"
                     android:text="Name"
                     android:textColor="@color/black"
                     android:textSize="22sp" />
@@ -64,7 +62,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_marginHorizontal="25dp"
-                    android:fontFamily="@font/sarala"
                     android:text="Date of birth"
                     android:textColor="@color/black"
                     android:textSize="22sp" />
@@ -180,7 +177,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_marginHorizontal="25dp"
-                    android:fontFamily="@font/sarala"
                     android:text="Address line 1"
                     android:textColor="@color/black"
                     android:textSize="22sp" />
@@ -210,8 +206,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_marginHorizontal="25dp"
-                    android:fontFamily="@font/sarala"
-                    android:text="Address line 2 (optional)"
                     android:textColor="@color/black"
                     android:textSize="22sp" />
                 <EditText
@@ -383,7 +377,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/sarala"
                     android:text="Enter relative details"
                     android:textColor="@color/black"
                     android:textSize="22sp" />

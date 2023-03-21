@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginHorizontal="25dp"
-                android:fontFamily="@font/sarala"
+
                 android:text="Mobile"
                 android:textColor="@color/black"
                 android:textSize="22sp" />
@@ -102,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginHorizontal="25dp"
-                android:fontFamily="@font/sarala"
+
                 android:text="email"
                 android:textColor="@color/black"
                 android:textSize="22sp" />
@@ -128,7 +128,7 @@
                 android:layout_gravity="start"
                 android:layout_marginTop="15dp"
                 android:layout_marginHorizontal="25dp"
-                android:fontFamily="@font/sarala"
+
                 android:text="passwrod"
                 android:textColor="@color/black"
                 android:textSize="22sp" />
@@ -155,7 +155,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginHorizontal="25dp"
                 android:drawableEnd="@drawable/ic_eye_open"
-                android:fontFamily="@font/sarala"
+
                 android:text="confirm password"
                 android:textColor="@color/black"
                 android:textSize="22sp" />
