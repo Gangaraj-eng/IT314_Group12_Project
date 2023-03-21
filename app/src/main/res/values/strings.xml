@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">IT314_Health_Center</string>
+    <string name="title_activity_home">ActivityHome</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="OK">OK!</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="emailverify">Verify Your E-mail</string>
+    <string name="notverified">E-mail not verified</string>
+    <string name="verification_message">Verify the email and Log in with your credentials. If you can't find the email in your mailbox, kindly check in spam folder</string>
 </resources>
