@@ -59,6 +59,7 @@ class user_details : AppCompatActivity() {
 
         next_btn.setOnClickListener {
             // verify details first
+
             part2.visibility= View.VISIBLE
             part1.visibility=View.GONE
         }
@@ -69,7 +70,7 @@ class user_details : AppCompatActivity() {
         }
 
         confirm_btn.setOnClickListener {
-            // save into database
+            // verify details and save
         }
         set_up()
     }

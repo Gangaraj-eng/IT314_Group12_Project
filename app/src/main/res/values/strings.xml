@@ -11,6 +11,10 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="OK">OK!</string>
+    <string name="emailverify">Verify Your E-mail</string>
+    <string name="notverified">E-mail not verified</string>
+    <string name="verification_message">Verify the email and Log in with your credentials. If you can\'t find the email in your mailbox, kindly check in spam folder</string>
 
     <string-array name="user_types">
         <item>Patient</item>

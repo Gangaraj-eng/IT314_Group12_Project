@@ -41,6 +41,14 @@
             android:name=".startups.SplashScreen"
             android:exported="true"
             android:theme="@style/SplashTheme" />
+        <activity
+            android:name=".EmailVerificationAfterSignUp"
+            android:exported="true"
+            android:theme="@style/BlueStatusBar" />
+        <activity
+            android:name=".EmailNotVerified"
+            android:exported="true"
+            android:theme="@style/BlueStatusBar" />
     </application>
 
 </manifest>
