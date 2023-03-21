@@ -18,7 +18,7 @@
                     android:color="@color/blue"/>
             </shape>
         </item>
-        <item android:drawable="@drawable/baseline_arrow_drop_down_24"
+        <item android:drawable="@drawable/drop_down_blue"
             android:gravity="right" />
     </layer-list></item>
 </selector>

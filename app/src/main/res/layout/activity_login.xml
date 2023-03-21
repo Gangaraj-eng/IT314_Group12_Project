@@ -11,24 +11,49 @@
         android:layout_marginHorizontal="30dp"
         android:orientation="vertical"
         >
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_app_icon_blue"
-            />
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="60dp"
+    android:layout_gravity="center_horizontal"
+    android:src="@drawable/ic_app_icon_blue"
+    />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="sign up to continue"
+            android:text="Log in to continue"
             android:textColor="@color/blue"
             android:textSize="24dp"
             android:textStyle="bold"
             android:layout_margin="10dp"
             android:layout_gravity="center_horizontal"
             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="user type"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:boxStrokeColor="@color/blue"
+            app:endIconTint="@color/blue"
+            android:layout_gravity="center"
+            android:id="@+id/user_type_dropdown"
+            android:layout_margin="10dp"
+           >
+            <AutoCompleteTextView
+                android:id="@+id/user_type_selector"
+                android:layout_width="wrap_content"
+                android:text="Patient"
+                android:editable="false"
+                android:layout_height="wrap_content"/>
 
+        </com.google.android.material.textfield.TextInputLayout>
         <RadioGroup
             android:id="@+id/radio_grp"
             android:layout_width="wrap_content"
@@ -36,7 +61,6 @@
             android:checkedButton="@id/radio_mobile_login"
             android:layout_gravity="center"
             android:orientation="horizontal"
-            android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             >
             <RadioButton
@@ -47,7 +71,7 @@
                 android:layoutDirection="rtl"
                 android:layout_marginHorizontal="10dp"
                 android:buttonTint="@color/blue"
-                android:text="mobile signup"
+                android:text="mobile login"
                 android:textSize="14sp" />
             <RadioButton
                 android:id="@+id/radio_email_login"
@@ -56,14 +80,13 @@
                 android:layout_marginHorizontal="10dp"
                 android:buttonTint="@color/blue"
                 android:layoutDirection="rtl"
-                android:text=" email signup  " />
+                android:text=" email login  " />
 
         </RadioGroup>
         <LinearLayout
             android:layout_width="match_parent"
-            android:id="@+id/mobile_signup_layout"
+            android:id="@+id/mobile_login_layout"
             android:orientation="vertical"
-            android:visibility="gone"
             android:layout_height="wrap_content"
             >
             <TextView
@@ -88,13 +111,14 @@
                 android:paddingEnd="15dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
-                />
+            />
 
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
-            android:id="@+id/email_signup_layout"
+            android:visibility="gone"
+            android:id="@+id/email_login_layout"
             android:layout_height="wrap_content"
             >
             <TextView
@@ -120,11 +144,11 @@
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
                 />
-            <TextView
+<TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:layout_marginTop="15dp"
+    android:layout_marginTop="15dp"
                 android:layout_marginHorizontal="25dp"
                 android:fontFamily="@font/sarala"
                 android:text="passwrod"
@@ -133,39 +157,10 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:id="@+id/password"
-                android:layout_marginHorizontal="20dp"
-                android:elevation="4dp"
-                android:background="@drawable/edit_text_background"
-                android:hint="Enter password"
-                android:inputType="textEmailAddress"
-                android:paddingStart="15dp"
-                android:drawableEnd="@drawable/ic_eye_open"
-                android:paddingEnd="15dp"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginTop="15dp"
-                android:layout_marginHorizontal="25dp"
-                android:drawableEnd="@drawable/ic_eye_open"
-                android:fontFamily="@font/sarala"
-                android:text="confirm password"
-                android:textColor="@color/black"
-                android:textSize="22sp" />
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:id="@+id/confirmPassword"
                 android:layout_marginHorizontal="20dp"
                 android:background="@drawable/edit_text_background"
                 android:elevation="4dp"
                 android:hint="Enter password"
-                android:layout_marginBottom="10dp"
                 android:inputType="textEmailAddress"
                 android:drawableEnd="@drawable/ic_eye_open"
                 android:paddingStart="15dp"
@@ -181,7 +176,7 @@
                 android:layout_gravity="center"
                 android:layout_marginVertical="10dp"
                 android:backgroundTint="@color/blue"
-                android:text="signup"
+                android:text="login"
                 android:textAllCaps="false"
                 app:cornerRadius="10dp"
                 app:iconPadding="10dp" />

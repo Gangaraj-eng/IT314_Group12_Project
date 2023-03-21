@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="28dp"
-            android:src="@drawable/doctor_appointment_icon_flat_style_vector_eps_154808882__1__transformed_1" />
+            android:src="@drawable/icon_book_appointment" />
 
         <TextView
             android:layout_width="190dp"
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="34dp"
-            android:src="@drawable/_239761_200_1" />
+            android:src="@drawable/icon_online_consultation" />
 
         <TextView
             android:layout_width="120dp"
@@ -92,7 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="40dp"
-            android:src="@drawable/doctor_appointment_icon_flat_style_vector_eps_154808882__1__transformed_1__1_" />
+            android:src="@drawable/icon_upload" />
 
         <TextView
             android:layout_width="180dp"
@@ -126,7 +126,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="23dp"
             android:layout_marginLeft="7dp"
-            android:src="@drawable/_082751_200_1" />
+            android:src="@drawable/icon_download_reports" />
 
         <TextView
             android:layout_width="120dp"
@@ -159,7 +159,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="25dp"
-            android:src="@drawable/download__1__1" />
+            android:src="@drawable/icon_prescriptions" />
 
         <TextView
             android:layout_width="120dp"
@@ -192,7 +192,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="15dp"
-            android:src="@drawable/group" />
+            android:src="@drawable/icon_order_medicines" />
 
         <TextView
             android:layout_width="120dp"

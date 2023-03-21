@@ -12,14 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/Theme.IT314_Health_Center.AppBarOverlay">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="#4799FA"
-            app:popupTheme="@style/Theme.IT314_Health_Center.PopupOverlay" />
-
+    <include layout="@layout/patienthomepage_custom_toolbar" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/content_activity_home" />
