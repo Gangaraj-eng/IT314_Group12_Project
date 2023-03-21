@@ -1,6 +1,9 @@
 package com.mypackage.it314_health_center.startups
 
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -37,6 +40,8 @@ class Login : AppCompatActivity() {
     private var mAuth: FirebaseAuth? = null
     private lateinit var verifyOtpBtn: MaterialButton
     private lateinit var otpText: TextView
+    private lateinit var dialog: Dialog
+    private lateinit var signupText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +58,8 @@ class Login : AppCompatActivity() {
         edtOtp = findViewById(R.id.edtOtp)
         verifyOtpBtn = findViewById(R.id.verifyOtpBtn)
         otpText = findViewById(R.id.otpText)
+        signupText = findViewById(R.id.signupText)
+        dialog = Dialog(this)
 
         val user_Types=resources.getStringArray(R.array.user_types)
 
@@ -84,6 +91,7 @@ class Login : AppCompatActivity() {
         getOtpBtn.setOnClickListener {
             // login with mobile
 
+
             val phone = "+91" + edtMobile.text.toString()
 
             if(isValidMobile(phone)){
@@ -94,7 +102,7 @@ class Login : AppCompatActivity() {
                 sendVerificationCode(phone)
             }
             else{
-                edtMobile.error = "Please enter valid mobile number"
+                show_error("Please enter a valid phone number")
                 edtMobile.requestFocus()
             }
         }
@@ -113,6 +121,13 @@ class Login : AppCompatActivity() {
                 }
 
         })
+
+        signupText.setOnClickListener {
+            // go to signup page
+            val intent = Intent(this, Signup::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     // check if email is valid
@@ -131,7 +146,7 @@ class Login : AppCompatActivity() {
             ?.addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-                    val intent = Intent(this, Signup::class.java)
+                    val intent = Intent(this, ActivityHome::class.java)
                     finish()
                     startActivity(intent)
 
@@ -140,6 +155,16 @@ class Login : AppCompatActivity() {
                     Toast.makeText(this,"User does not exist", Toast.LENGTH_LONG).show()
                 }
             }
+    }
+
+    private fun show_error(msg:String)
+    {
+        dialog.findViewById<LinearLayout>(R.id.loading).visibility=View.GONE
+        dialog.findViewById<LinearLayout>(R.id.error_view).visibility=View.VISIBLE
+        dialog.findViewById<TextView>(R.id.error_message).text=msg
+        dialog.findViewById<MaterialButton>(R.id.close_button).setOnClickListener {
+            dialog.dismiss()
+        }
     }
 
     private fun sendVerificationCode(number: String) {
@@ -227,7 +252,7 @@ class Login : AppCompatActivity() {
                     // if the code is correct and the task is successful
                     // we are sending our user to new activity.
                     Log.d("TAG", "signInWithCredential:success")
-                    val i = Intent(this, Signup::class.java)
+                    val i = Intent(this, ActivityHome::class.java)
                     startActivity(i)
                     finish()
                 } else {

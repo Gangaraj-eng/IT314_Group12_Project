@@ -5,74 +5,80 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".startups.Login">
+
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="30dp"
         android:orientation="vertical"
-        >
+        tools:layout_editor_absoluteX="30dp">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_app_icon_blue"
-            />
+            android:layout_marginTop="60dp"
+            android:src="@drawable/ic_app_icon_blue" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
             android:text="Log in to continue"
             android:textColor="@color/blue"
             android:textSize="24dp"
-            android:textStyle="bold"
-            android:layout_margin="10dp"
-            android:layout_gravity="center_horizontal"
-            />
+            android:textStyle="bold" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="user type"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
+            android:text="user type"
             android:textColor="@color/black"
             android:textSize="18sp" />
+
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/user_type_dropdown"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:boxStrokeColor="@color/blue"
-            app:endIconTint="@color/blue"
             android:layout_gravity="center"
-            android:id="@+id/user_type_dropdown"
             android:layout_margin="10dp"
-            >
+            app:boxStrokeColor="@color/blue"
+            app:endIconTint="@color/blue">
+
             <AutoCompleteTextView
                 android:id="@+id/user_type_selector"
                 android:layout_width="wrap_content"
-                android:text="Patient"
+                android:layout_height="wrap_content"
                 android:editable="false"
-                android:layout_height="wrap_content"/>
+                android:text="Patient" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
         <RadioGroup
             android:id="@+id/radio_grp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checkedButton="@id/radio_mobile_login"
             android:layout_gravity="center"
-            android:orientation="horizontal"
             android:layout_marginBottom="20dp"
-            >
+            android:checkedButton="@id/radio_mobile_login"
+            android:orientation="horizontal">
+
             <RadioButton
                 android:id="@+id/radio_mobile_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/blue"
-                android:layoutDirection="rtl"
                 android:layout_marginHorizontal="10dp"
                 android:buttonTint="@color/blue"
+                android:layoutDirection="rtl"
                 android:text="mobile login"
+                android:textColor="@color/blue"
                 android:textSize="14sp" />
+
             <RadioButton
                 android:id="@+id/radio_email_login"
                 android:layout_width="wrap_content"
@@ -83,12 +89,13 @@
                 android:text=" email login  " />
 
         </RadioGroup>
+
         <LinearLayout
-            android:layout_width="match_parent"
             android:id="@+id/mobile_login_layout"
-            android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            >
+            android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -97,21 +104,21 @@
                 android:text="Mobile"
                 android:textColor="@color/black"
                 android:textSize="22sp" />
+
             <EditText
                 android:id="@+id/edtMobile"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginHorizontal="20dp"
                 android:background="@drawable/edit_text_background"
+                android:drawableEnd="@drawable/ic_call"
                 android:elevation="4dp"
                 android:hint="Enter mobile number"
                 android:inputType="number"
-                android:drawableEnd="@drawable/ic_call"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
                 android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                />
+                android:textColorHint="@color/white" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/getOtpBtn"
@@ -131,11 +138,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginHorizontal="25dp"
-                android:fontFamily="@font/sarala"
                 android:text="OTP"
                 android:textColor="@color/black"
                 android:textSize="22sp"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <EditText
                 android:id="@+id/edtOtp"
@@ -150,7 +156,7 @@
                 android:paddingEnd="15dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
 
             <com.google.android.material.button.MaterialButton
@@ -162,18 +168,19 @@
                 android:backgroundTint="@color/blue"
                 android:text="Verify OTP"
                 android:textAllCaps="false"
+                android:visibility="gone"
                 app:cornerRadius="10dp"
-                app:iconPadding="10dp"
-                android:visibility="gone"/>
+                app:iconPadding="10dp" />
 
         </LinearLayout>
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:visibility="gone"
             android:id="@+id/email_login_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            >
+            android:orientation="vertical"
+            android:visibility="gone">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -183,51 +190,53 @@
                 android:text="email"
                 android:textColor="@color/black"
                 android:textSize="22sp" />
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginHorizontal="20dp"
                 android:background="@drawable/edit_text_background"
+                android:drawableEnd="@drawable/ic_email"
                 android:elevation="4dp"
                 android:hint="Enter email"
                 android:inputType="textEmailAddress"
-                android:drawableEnd="@drawable/ic_email"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
                 android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                />
+                android:textColorHint="@color/white" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:layout_marginTop="15dp"
                 android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="15dp"
 
                 android:text="passwrod"
                 android:textColor="@color/black"
                 android:textSize="22sp" />
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginHorizontal="20dp"
                 android:background="@drawable/edit_text_background"
+                android:drawableEnd="@drawable/ic_eye_open"
                 android:elevation="4dp"
                 android:hint="Enter password"
                 android:inputType="textEmailAddress"
-                android:drawableEnd="@drawable/ic_eye_open"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
                 android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                />
+                android:textColorHint="@color/white" />
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/email_login_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
                 android:layout_gravity="center"
                 android:layout_marginVertical="10dp"
+                android:layout_marginTop="15dp"
                 android:backgroundTint="@color/blue"
                 android:text="login"
                 android:textAllCaps="false"
@@ -235,4 +244,33 @@
                 app:iconPadding="10dp" />
         </LinearLayout>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/noaccText"
+        android:layout_width="227dp"
+        android:layout_height="40dp"
+        android:layout_gravity="start"
+        android:layout_marginHorizontal="45dp"
+        android:layout_marginBottom="70dp"
+        android:text="Don't have an account?"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/signupText"
+        />
+
+    <TextView
+        android:id="@+id/signupText"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_gravity="start"
+        android:text="SIGN UP"
+        android:textColor="@color/blue"
+        android:layout_marginBottom="70dp"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:paddingLeft="7dp"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintStart_toEndOf="@+id/noaccText" />
 </androidx.constraintlayout.widget.ConstraintLayout>

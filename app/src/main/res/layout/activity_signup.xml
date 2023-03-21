@@ -70,11 +70,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginHorizontal="25dp"
-
                 android:text="Mobile"
                 android:textColor="@color/black"
                 android:textSize="22sp" />
             <EditText
+                android:id="@+id/edtMobile"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginHorizontal="20dp"
@@ -88,6 +88,58 @@
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
                 />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/getOtpBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/blue"
+                android:text="Get OTP"
+                android:textAllCaps="false"
+                app:cornerRadius="10dp"
+                app:iconPadding="10dp" />
+
+            <TextView
+                android:id="@+id/otpText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginHorizontal="25dp"
+                android:text="OTP"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                android:visibility="gone"/>
+
+            <EditText
+                android:id="@+id/edtOtp"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/edit_text_background"
+                android:elevation="4dp"
+                android:hint="Enter OTP"
+                android:inputType="number"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:visibility="gone"/>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/verifyOtpBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/blue"
+                android:text="Verify OTP"
+                android:textAllCaps="false"
+                app:cornerRadius="10dp"
+                app:iconPadding="10dp"
+                android:visibility="gone"/>
 
         </LinearLayout>
         <LinearLayout

@@ -8,23 +8,22 @@ import android.graphics.drawable.ColorDrawable
 import android.icu.text.LocaleDisplayNames.DialectHandling
 import android.os.Bundle
 import android.text.InputType
+import android.text.TextUtils
 import android.util.Log
+import android.util.Patterns
 import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.RadioGroup
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-import com.google.firebase.auth.FirebaseAuthUserCollisionException
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException
+import com.google.firebase.FirebaseException
+import com.google.firebase.auth.*
+import com.mypackage.it314_health_center.ActivityHome
 import com.mypackage.it314_health_center.EmailVerificationAfterSignUp
 import com.mypackage.it314_health_center.R
+import java.util.concurrent.TimeUnit
 
 
 class Signup : AppCompatActivity() {
@@ -37,6 +36,13 @@ class Signup : AppCompatActivity() {
      private lateinit var confirmPassword:EditText
      private lateinit var signup:MaterialButton
      private lateinit var dialog: Dialog
+    private lateinit var getOtpBtn:MaterialButton
+    private lateinit var edtMobile: EditText
+    private lateinit var edtOtp: EditText
+    private lateinit var btnVerify: Button
+    private lateinit var verificationId: String
+    private lateinit var verifyOtpBtn: MaterialButton
+    private lateinit var otpText: TextView
      private var mAuth=FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,6 +56,14 @@ class Signup : AppCompatActivity() {
         confirmPassword=findViewById(R.id.confirmPassword)
         signup=findViewById(R.id.email_signup_button)
         emailText=findViewById(R.id.email_input)
+        verificationId = "not defined"
+
+        getOtpBtn=findViewById(R.id.getOtpBtn)
+        edtMobile = findViewById(R.id.edtMobile)
+        edtOtp = findViewById(R.id.edtOtp)
+        verifyOtpBtn = findViewById(R.id.verifyOtpBtn)
+        otpText = findViewById(R.id.otpText)
+
         dialog= Dialog(this)
         radioGroup.setOnCheckedChangeListener { group, checkedId ->
             Log.d("123",checkedId.toString())
@@ -111,6 +125,40 @@ class Signup : AppCompatActivity() {
 
                     }
         }
+
+        getOtpBtn.setOnClickListener {
+            // login with mobile
+
+            val phone = "+91" + edtMobile.text.toString()
+
+            if(isValidMobile(phone)){
+                // send otp to mobile
+                otpText.visibility = View.VISIBLE
+                edtOtp.visibility = View.VISIBLE
+                verifyOtpBtn.visibility = View.VISIBLE
+                sendVerificationCode(phone)
+            }
+            else{
+                show_error("Please enter a valid phone number")
+                edtMobile.requestFocus()
+            }
+        }
+
+        verifyOtpBtn.setOnClickListener(View.OnClickListener {
+
+            // validating if the OTP text field is empty or not.
+
+            if (TextUtils.isEmpty(edtOtp.text.toString())) {
+                // if the OTP text field is empty display
+                // a message to user to enter OTP
+                show_error("Please enter OTP")
+            } else {
+                // if OTP field is not empty calling
+                // method to verify the OTP.
+                verifyCode(edtOtp.text.toString())
+            }
+
+        })
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -172,6 +220,114 @@ class Signup : AppCompatActivity() {
         dialog.findViewById<MaterialButton>(R.id.close_button).setOnClickListener {
             dialog.dismiss()
         }
+    }
+
+    // check if email is valid
+    private fun isValidMail(email: String): Boolean {
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+
+    // check if mobile is valid
+    private fun isValidMobile(phone: String): Boolean {
+        return Patterns.PHONE.matcher(phone).matches()
+    }
+
+
+    private fun sendVerificationCode(number: String) {
+        // this method is used for getting
+        // OTP on user phone number.
+        // initializing our callbacks for on
+        // verification callback method.
+
+        val mCallBack: PhoneAuthProvider.OnVerificationStateChangedCallbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+            // below method is used when
+            // OTP is sent from Firebase
+
+            // this method is called when user
+            // receive OTP from Firebase.
+            override fun onVerificationCompleted(phoneAuthCredential: PhoneAuthCredential) {
+                // below line is used for getting OTP code
+                // which is sent in phone auth credentials.
+                val code = phoneAuthCredential.smsCode
+
+                // checking if the code
+                // is null or not.
+                if (code != null) {
+                    // if the code is not null then
+                    // we are setting that code to
+                    // our OTP edittext field.
+                    edtOtp.setText(code)
+
+                    // after setting this code
+                    // to OTP edittext field we
+                    // are calling our verify code method.
+                    verifyCode(code)
+                }
+            }
+
+            // this method is called when firebase doesn't
+            // sends our OTP code due to any error or issue.
+            override fun onVerificationFailed(e: FirebaseException) {
+                // displaying error message with firebase exception.
+                show_error(e.message.toString())
+//                Log.d("TAG", "onVerificationFailed: ${e.message}")
+            }
+
+            override fun onCodeSent(s: String, forceResendingToken: PhoneAuthProvider.ForceResendingToken) {
+//                    super.onCodeSent(s, forceResendingToken)
+                // when we receive the OTP it
+                // contains a unique id which
+                // we are storing in our string
+                // which we have already created.
+                verificationId = s
+
+
+                // after setting this code
+                // to OTP edittext field we
+                // are calling our verify code method.
+
+                Toast.makeText(this@Signup, "OTP sent", Toast.LENGTH_LONG).show()
+            }
+        }
+
+        val options = PhoneAuthOptions.newBuilder(mAuth!!)
+            .setPhoneNumber(number) // Phone number to verify
+            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+            .setActivity(this) // Activity (for callback binding)
+            .setCallbacks(mCallBack) // OnVerificationStateChangedCallbacks
+            .build()
+        PhoneAuthProvider.verifyPhoneNumber(options)
+    }
+
+    private fun verifyCode(code: String) {
+        // below line is used for getting
+        // credentials from our verification id and code.
+        val credential = PhoneAuthProvider.getCredential(verificationId, code)
+
+        // after getting credential we are
+        // calling up in method.
+        signInWithCredential(credential)
+    }
+
+    private fun signInWithCredential(credential: PhoneAuthCredential) {
+        // inside this method we are checking if
+        // the code entered is correct or not.
+        mAuth.signInWithCredential(credential)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    // if the code is correct and the task is successful
+                    // we are sending our user to new activity.
+                    Log.d("TAG", "signInWithCredential:success")
+                    val i = Intent(this, Login::class.java)
+                    startActivity(i)
+                    finish()
+                } else {
+                    // if the code is not correct then we are
+                    // displaying an error message to the user.
+                    show_error(task.exception?.message.toString())
+//                    Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
+                }
+            }
     }
 
 }
