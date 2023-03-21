@@ -11,13 +11,13 @@
         android:layout_marginHorizontal="30dp"
         android:orientation="vertical"
         >
-<ImageView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="60dp"
-    android:layout_gravity="center_horizontal"
-    android:src="@drawable/ic_app_icon_blue"
-    />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_app_icon_blue"
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
             android:layout_gravity="center"
             android:id="@+id/user_type_dropdown"
             android:layout_margin="10dp"
-           >
+            >
             <AutoCompleteTextView
                 android:id="@+id/user_type_selector"
                 android:layout_width="wrap_content"
@@ -94,7 +94,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginHorizontal="25dp"
-                android:fontFamily="@font/sarala"
                 android:text="Mobile"
                 android:textColor="@color/black"
                 android:textSize="22sp" />
@@ -112,7 +111,7 @@
                 android:paddingEnd="15dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
-            />
+                />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/getOtpBtn"
@@ -180,7 +179,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginHorizontal="25dp"
-                android:fontFamily="@font/sarala"
+
                 android:text="email"
                 android:textColor="@color/black"
                 android:textSize="22sp" />
@@ -198,13 +197,13 @@
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
                 />
-<TextView
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-    android:layout_marginTop="15dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginHorizontal="25dp"
-                android:fontFamily="@font/sarala"
+
                 android:text="passwrod"
                 android:textColor="@color/black"
                 android:textSize="22sp" />
