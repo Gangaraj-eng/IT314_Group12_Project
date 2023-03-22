@@ -5,203 +5,205 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView2"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:layout_gravity="center"
-        android:layout_marginVertical="20dp"
-        app:cardBackgroundColor="#FFB82F"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/materialCardView4"
-        app:layout_constraintEnd_toStartOf="@+id/materialCardView"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5">
-
-        <ImageView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:layout_gravity="center"
-            android:layout_marginBottom="28dp"
-            android:src="@drawable/icon_book_appointment" />
+            android:layout_height="wrap_content">
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView2"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_gravity="center"
+                android:layout_marginVertical="20dp"
+                android:layout_marginHorizontal="10dp"
+                app:cardBackgroundColor="#FFB82F"
+                app:cardCornerRadius="20dp"
+              >
 
-        <TextView
-            android:layout_width="190dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginTop="12dp"
-            android:text="Book an appointment"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="20dp" />
-    </com.google.android.material.card.MaterialCardView>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="28dp"
+                    android:src="@drawable/icon_book_appointment" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:layout_gravity="center"
-        android:layout_marginVertical="20dp"
-        app:cardBackgroundColor="#CC6DB2"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/materialCardView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/materialCardView2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5">
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginTop="12dp"
+                    android:text="Book an appointment"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="20dp" />
+            </com.google.android.material.card.MaterialCardView>
 
-        <ImageView
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_gravity="center"
+                android:layout_marginVertical="20dp"
+                app:cardBackgroundColor="#CC6DB2"
+                app:cardCornerRadius="20dp"
+             >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="34dp"
+                    android:src="@drawable/icon_online_consultation" />
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginTop="12dp"
+                    android:text="Online Consultation"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="20dp" />
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="34dp"
-            android:src="@drawable/icon_online_consultation" />
-
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginTop="12dp"
-            android:text="Online Consultation"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="20dp" />
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView3"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
         android:layout_gravity="center"
-        android:layout_marginVertical="20dp"
-        app:cardBackgroundColor="#B6C236"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/materialCardView5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/materialCardView4"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardView"
-        app:layout_constraintVertical_bias="0.5">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="40dp"
-            android:src="@drawable/icon_upload" />
-
-        <TextView
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView3"
             android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginTop="12dp"
-            android:text="Update Medical History"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="20dp" />
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView4"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:layout_gravity="center"
-        android:layout_marginVertical="20dp"
-        app:cardBackgroundColor="#0F2DCA"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/materialCardView6"
-        app:layout_constraintEnd_toStartOf="@+id/materialCardView3"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardView2"
-        app:layout_constraintVertical_bias="0.5">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="180dp"
+            android:layout_marginHorizontal="10dp"
             android:layout_gravity="center"
-            android:layout_marginBottom="23dp"
-            android:layout_marginLeft="7dp"
-            android:src="@drawable/icon_download_reports" />
+            android:layout_marginVertical="20dp"
+            app:cardBackgroundColor="#B6C236"
+            app:cardCornerRadius="20dp"
+         >
 
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginTop="12dp"
-            android:text="Download Report"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="20dp" />
-    </com.google.android.material.card.MaterialCardView>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="40dp"
+                android:src="@drawable/icon_upload" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView6"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:layout_gravity="center"
-        android:layout_marginVertical="20dp"
-        app:cardBackgroundColor="#31A481"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/materialCardView5"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardView4"
-        app:layout_constraintVertical_bias="0.5">
+            <TextView
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginTop="12dp"
+                android:text="Update Medical History"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
+        </com.google.android.material.card.MaterialCardView>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView4"
+            android:layout_width="180dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_height="180dp"
             android:layout_gravity="center"
-            android:layout_marginBottom="25dp"
-            android:src="@drawable/icon_prescriptions" />
+            android:layout_marginVertical="20dp"
+            app:cardBackgroundColor="#0F2DCA"
+            app:cardCornerRadius="20dp"
+  >
 
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginTop="12dp"
-            android:text="My Prescriptions"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="20dp" />
-    </com.google.android.material.card.MaterialCardView>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="23dp"
+                android:layout_marginLeft="7dp"
+                android:src="@drawable/icon_download_reports" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView5"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:layout_gravity="center"
-        android:layout_marginVertical="20dp"
-        app:cardBackgroundColor="#D4DFDF"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/materialCardView6"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardView3"
-        app:layout_constraintVertical_bias="0.5">
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginTop="12dp"
+                android:text="Download Report"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
+        </com.google.android.material.card.MaterialCardView>
 
-        <ImageView
+    </LinearLayout>
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="15dp"
-            android:src="@drawable/icon_order_medicines" />
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView6"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_gravity="center"
+            android:layout_marginVertical="20dp"
+            app:cardBackgroundColor="#31A481"
+            app:cardCornerRadius="20dp"
+   >
 
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginTop="12dp"
-            android:text="Order Medicine"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="20dp" />
-    </com.google.android.material.card.MaterialCardView>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="25dp"
+                android:src="@drawable/icon_prescriptions" />
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginTop="12dp"
+                android:text="My Prescriptions"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView5"
+            android:layout_width="180dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center"
+            android:layout_marginVertical="15dp"
+            app:cardBackgroundColor="#D4DFDF"
+            app:cardCornerRadius="20dp"
+           >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/icon_order_medicines" />
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginTop="12dp"
+                android:text="Order Medicine"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+        </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </LinearLayout>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

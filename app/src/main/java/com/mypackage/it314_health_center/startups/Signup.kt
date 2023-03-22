@@ -5,7 +5,6 @@ import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.icu.text.LocaleDisplayNames.DialectHandling
 import android.os.Bundle
 import android.text.InputType
 import android.text.TextUtils
@@ -15,12 +14,15 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
 import android.widget.*
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
-import com.mypackage.it314_health_center.ActivityHome
 import com.mypackage.it314_health_center.EmailVerificationAfterSignUp
 import com.mypackage.it314_health_center.R
 import java.util.concurrent.TimeUnit
@@ -44,6 +46,7 @@ class Signup : AppCompatActivity() {
     private lateinit var verifyOtpBtn: MaterialButton
     private lateinit var otpText: TextView
      private var mAuth=FirebaseAuth.getInstance()
+    private lateinit var mdbRef:DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +59,7 @@ class Signup : AppCompatActivity() {
         confirmPassword=findViewById(R.id.confirmPassword)
         signup=findViewById(R.id.email_signup_button)
         emailText=findViewById(R.id.email_input)
+        mdbRef=FirebaseDatabase.getInstance().reference
         verificationId = "not defined"
 
         getOtpBtn=findViewById(R.id.getOtpBtn)
@@ -104,6 +108,7 @@ class Signup : AppCompatActivity() {
                                 val user=mAuth.currentUser
                                 if(user!=null)
                                 {
+                                    mAuth.signOut()
                                     user.sendEmailVerification().addOnSuccessListener {
                                         startActivity(Intent(this,EmailVerificationAfterSignUp::class.java))
                                     }

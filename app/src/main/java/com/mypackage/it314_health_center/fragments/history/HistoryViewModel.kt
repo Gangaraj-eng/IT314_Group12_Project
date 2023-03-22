@@ -1,10 +1,10 @@
-package com.mypackage.it314_health_center.fragments.slideshow
+package com.mypackage.it314_health_center.fragments.history
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class SlideshowViewModel : ViewModel() {
+class HistoryViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is slideshow Fragment"

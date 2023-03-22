@@ -38,6 +38,7 @@
             android:layout_gravity="center"
             android:text="verifying..."
             android:textSize="20dp"
+            android:id="@+id/txt__verify"
             android:textColor="@color/black"
             />
         </LinearLayout>
@@ -54,6 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Signup Failed"
+            android:id="@+id/failed_title"
             android:textSize="20dp"
             android:textColor="#ff0000"
             />

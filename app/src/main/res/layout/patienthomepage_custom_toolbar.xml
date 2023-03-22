@@ -6,8 +6,9 @@
     android:layout_height="60dp"
     android:background="#4799FA">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
+        android:id="@+id/my_toolbar"
         android:layout_height="wrap_content">
 
         <ImageView
@@ -31,20 +32,5 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_notifications" />
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="115dp"
-            android:layout_marginTop="11dp"
-            android:layout_marginEnd="109dp"
-            android:layout_marginBottom="10dp"
-            android:text="Health Care Center"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageView5"
-            app:layout_constraintStart_toEndOf="@+id/imageView4"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.Toolbar>
 </androidx.appcompat.widget.Toolbar>

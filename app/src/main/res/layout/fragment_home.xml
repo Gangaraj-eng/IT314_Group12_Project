@@ -9,7 +9,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView2"
         android:layout_width="180dp"
-        android:layout_height="180dp"
+        android:layout_height="200dp"
         android:layout_gravity="center"
         android:layout_marginVertical="20dp"
         app:cardBackgroundColor="#FFB82F"
@@ -24,25 +24,27 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_gravity="top|center_horizontal"
             android:layout_marginBottom="28dp"
             android:src="@drawable/icon_book_appointment" />
 
         <TextView
-            android:layout_width="190dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="10dp"
             android:text="Book an appointment"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="20dp" />
+            android:textSize="18dp" />
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView"
         android:layout_width="180dp"
-        android:layout_height="180dp"
+        android:layout_height="200dp"
         android:layout_gravity="center"
         android:layout_marginVertical="20dp"
         app:cardBackgroundColor="#CC6DB2"
@@ -57,7 +59,8 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="top|center_horizontal"
             android:layout_marginBottom="34dp"
             android:src="@drawable/icon_online_consultation" />
 
@@ -65,7 +68,8 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="10dp"
             android:text="Online Consultation"
             android:textAlignment="center"
             android:textColor="@color/white"
@@ -75,7 +79,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView3"
         android:layout_width="180dp"
-        android:layout_height="180dp"
+        android:layout_height="200dp"
         android:layout_gravity="center"
         android:layout_marginVertical="20dp"
         app:cardBackgroundColor="#B6C236"
@@ -90,7 +94,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="top|center_horizontal"
             android:layout_marginBottom="40dp"
             android:src="@drawable/icon_upload" />
 
@@ -98,7 +102,8 @@
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
             android:text="Update Medical History"
             android:textAlignment="center"
             android:textColor="@color/white"
@@ -108,7 +113,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView4"
         android:layout_width="180dp"
-        android:layout_height="180dp"
+        android:layout_height="200dp"
         android:layout_gravity="center"
         android:layout_marginVertical="20dp"
         app:cardBackgroundColor="#0F2DCA"
@@ -123,7 +128,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="top|center_horizontal"
             android:layout_marginBottom="23dp"
             android:layout_marginLeft="7dp"
             android:src="@drawable/icon_download_reports" />
@@ -132,8 +137,10 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
             android:text="Download Report"
+
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20dp" />
@@ -142,7 +149,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView6"
         android:layout_width="180dp"
-        android:layout_height="180dp"
+        android:layout_height="200dp"
         android:layout_gravity="center"
         android:layout_marginVertical="20dp"
         app:cardBackgroundColor="#31A481"
@@ -157,7 +164,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="top|center_horizontal"
             android:layout_marginBottom="25dp"
             android:src="@drawable/icon_prescriptions" />
 
@@ -165,7 +172,8 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
             android:text="My Prescriptions"
             android:textAlignment="center"
             android:textColor="@color/white"
@@ -175,7 +183,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView5"
         android:layout_width="180dp"
-        android:layout_height="180dp"
+        android:layout_height="200dp"
         android:layout_gravity="center"
         android:layout_marginVertical="20dp"
         app:cardBackgroundColor="#D4DFDF"
@@ -190,7 +198,8 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="top|center_horizontal"
             android:layout_marginBottom="15dp"
             android:src="@drawable/icon_order_medicines" />
 
@@ -198,7 +207,8 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
             android:text="Order Medicine"
             android:textAlignment="center"
             android:textColor="@color/black"
