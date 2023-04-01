@@ -3,7 +3,18 @@ source code is available in <a href="https://github.com/Gangaraj-eng/IT314_Group
 <p align="center" >Demo of the application</p>
 
 <br/>
-Login and Register : <a href="https://drive.google.com/file/d/1WV8KViQVWgg5KcVpRjgFSwnTP2fL3AKh/view?usp=share_link">Demo here</a>
+Login and Register : 
+<br/>
 
-[![Demo](https://user-images.githubusercontent.com/77287821/227013859-7ccdd1a2-e02f-4be8-822b-026033dfc87e.png)](https://drive.google.com/file/d/1WV8KViQVWgg5KcVpRjgFSwnTP2fL3AKh/view)
+<div align="center">
+  
+Moblie
+  
+https://user-images.githubusercontent.com/77287821/229268868-3db650bd-4a80-4971-9799-9f62667b9edd.mp4
 
+  <br/>
+Email 
+
+https://user-images.githubusercontent.com/77287821/229268867-a025dc52-61d6-4316-b9e2-4f74c5d0cbbb.mp4
+
+</div>
