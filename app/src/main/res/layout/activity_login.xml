@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="30dp"
             android:src="@drawable/ic_app_icon_blue" />
 
         <TextView
@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:text="user type"
             android:textColor="@color/black"
             android:textSize="18sp" />
@@ -64,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:checkedButton="@id/radio_mobile_login"
             android:orientation="horizontal">
 
@@ -114,6 +114,7 @@
                 android:drawableEnd="@drawable/ic_call"
                 android:elevation="4dp"
                 android:hint="Enter mobile number"
+                android:importantForAutofill="no"
                 android:inputType="number"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
@@ -132,46 +133,44 @@
                 app:cornerRadius="10dp"
                 app:iconPadding="10dp" />
 
-            <TextView
-                android:id="@+id/otpText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginHorizontal="25dp"
-                android:text="OTP"
-                android:textColor="@color/black"
-                android:textSize="22sp"
-                android:visibility="gone" />
-
-            <EditText
-                android:id="@+id/edtOtp"
+            <LinearLayout
+                android:id="@+id/otp_view"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginHorizontal="20dp"
-                android:background="@drawable/edit_text_background"
-                android:elevation="4dp"
-                android:hint="Enter OTP"
-                android:inputType="number"
-                android:paddingStart="15dp"
-                android:paddingEnd="15dp"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:visibility="gone" />
-
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/verifyOtpBtn"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="@color/blue"
-                android:text="Verify OTP"
-                android:textAllCaps="false"
-                android:visibility="gone"
-                app:cornerRadius="10dp"
-                app:iconPadding="10dp" />
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical"
+                android:visibility="gone">
 
+                <TextView
+                    android:id="@+id/otpText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginHorizontal="30dp"
+                    android:text="Enter otp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <com.poovam.pinedittextfield.SquarePinField
+                    android:id="@+id/otp_edit_text"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:elevation="10dp"
+                    android:inputType="numberDecimal"
+                    android:textSelectHandle="@drawable/text_handle"
+                    android:textSize="16sp"
+                    app:cornerRadius="5dp"
+                    app:distanceInBetween="9dp"
+                    app:fieldBgColor="@color/white"
+                    app:fieldColor="@color/black"
+                    app:highlightColor="@color/blue"
+                    app:highlightType="currentField"
+                    app:lineThickness="2dp"
+                    app:noOfFields="6" />
+
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -245,38 +244,39 @@
                 app:cornerRadius="10dp"
                 app:iconPadding="10dp" />
         </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/noaccText"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_gravity="start"
-            android:layout_marginHorizontal="5dp"
-            android:layout_marginBottom="70dp"
-            android:text="Don't have an account?"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/signupText"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:layout_gravity="start"
-            android:layout_marginBottom="70dp"
-            android:paddingLeft="7dp"
-            android:text="SIGN UP"
-            android:textColor="@color/blue"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/noaccText"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="start"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginBottom="70dp"
+                android:text="Don't have an account?"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/signupText"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_gravity="start"
+                android:layout_marginBottom="70dp"
+                android:paddingLeft="7dp"
+                android:text="SIGN UP"
+                android:textColor="@color/blue"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

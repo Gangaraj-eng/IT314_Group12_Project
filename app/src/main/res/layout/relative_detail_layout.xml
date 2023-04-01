@@ -34,11 +34,11 @@
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/remove_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:src="@drawable/ic_remove"
-        android:id="@+id/remove_btn"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

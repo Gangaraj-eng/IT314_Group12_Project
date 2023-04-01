@@ -4,5 +4,9 @@
     <item
         android:drawable="@drawable/start_screen_icon"
         android:gravity="center" />
+    <item
+        android:bottom="40dp"
+        android:drawable="@drawable/start_screen_text"
+        android:gravity="bottom" />
 
 </layer-list>

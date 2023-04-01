@@ -2,15 +2,18 @@ package com.mypackage.it314_health_center.startups
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.Handler
 import android.text.InputType
 import android.text.TextUtils
 import android.util.Patterns
 import android.view.MotionEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
@@ -26,26 +29,26 @@ import com.google.firebase.database.FirebaseDatabase
 import com.mypackage.it314_health_center.EmailNotVerified
 import com.mypackage.it314_health_center.MainActivity
 import com.mypackage.it314_health_center.R
+import com.poovam.pinedittextfield.PinField
+import com.poovam.pinedittextfield.SquarePinField
 import java.util.concurrent.TimeUnit
 
 
 class Login : AppCompatActivity() {
 
-    private lateinit var radiogroup:RadioGroup
-    private lateinit var emailLayout:LinearLayout
-    private lateinit var mobileLayout:LinearLayout
-    private lateinit var emailLoginButton:MaterialButton
-    private lateinit var getOtpBtn:MaterialButton
+    private lateinit var radiogroup: RadioGroup
+    private lateinit var emailLayout: LinearLayout
+    private lateinit var mobileLayout: LinearLayout
+    private lateinit var emailLoginButton: MaterialButton
+    private lateinit var getOtpBtn: MaterialButton
     private lateinit var edtMobile: EditText
-    private lateinit var edtOtp: EditText
-    private lateinit var btnVerify: Button
     private lateinit var verificationId: String
     private var mAuth: FirebaseAuth? = null
-    private lateinit var verifyOtpBtn: MaterialButton
-    private lateinit var otpText: TextView
+    private lateinit var otpView: LinearLayout
     private lateinit var dialog: Dialog
     private lateinit var mdbref: DatabaseReference
     private lateinit var signupText: TextView
+    private lateinit var otpPinView: SquarePinField
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,42 +56,55 @@ class Login : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         mAuth = FirebaseAuth.getInstance();
-        if(mAuth!!.currentUser!=null)
-        {
+        if (mAuth!!.currentUser != null) {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
-         mdbref= FirebaseDatabase.getInstance().reference
-        emailLayout=findViewById(R.id.email_login_layout)
-        mobileLayout=findViewById(R.id.mobile_login_layout)
-        emailLoginButton=findViewById(R.id.email_login_button)
-        getOtpBtn=findViewById(R.id.getOtpBtn)
-        radiogroup=findViewById(R.id.radio_grp)
+        mdbref = FirebaseDatabase.getInstance().reference
+        emailLayout = findViewById(R.id.email_login_layout)
+        mobileLayout = findViewById(R.id.mobile_login_layout)
+        emailLoginButton = findViewById(R.id.email_login_button)
+        getOtpBtn = findViewById(R.id.getOtpBtn)
+        radiogroup = findViewById(R.id.radio_grp)
         edtMobile = findViewById(R.id.edtMobile)
-        edtOtp = findViewById(R.id.edtOtp)
-        verifyOtpBtn = findViewById(R.id.verifyOtpBtn)
-        otpText = findViewById(R.id.otpText)
+        otpView = findViewById(R.id.otp_view)
         signupText = findViewById(R.id.signupText)
         dialog = Dialog(this)
+        otpPinView = findViewById(R.id.otp_edit_text)
 
-        val user_Types=resources.getStringArray(R.array.user_types)
+        otpPinView.onTextCompleteListener = object : PinField.OnTextCompleteListener {
+            override fun onTextComplete(enteredText: String): Boolean {
+                if (TextUtils.isEmpty(enteredText)) {
+                    // if the OTP text field is empty display
+                    // a message to user to enter OTP
+                    Toast.makeText(this@Login, "Please enter OTP", Toast.LENGTH_SHORT).show()
+                } else {
+                    // if OTP field is not empty calling
+                    // method to verify the OTP.
+                    verifyCode(enteredText)
+                }
+                return true
+            }
+        }
 
-        val array_adapter=ArrayAdapter<String>(this,
-            androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,user_Types)
+        val user_Types = resources.getStringArray(R.array.user_types)
 
-        val autoCompleteview=findViewById <AutoCompleteTextView>(R.id.user_type_selector)
+        val array_adapter = ArrayAdapter<String>(
+            this,
+            androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, user_Types
+        )
+
+        val autoCompleteview = findViewById<AutoCompleteTextView>(R.id.user_type_selector)
 
         autoCompleteview.setAdapter(array_adapter)
         autoCompleteview.setSelection(0)
         radiogroup.setOnCheckedChangeListener { group, checkedId ->
-            if(checkedId==R.id.radio_mobile_login)
-            {
-                emailLayout.visibility=View.GONE
-                mobileLayout.visibility=View.VISIBLE
-            }
-            else{
-                emailLayout.visibility=View.VISIBLE
-                mobileLayout.visibility= View.GONE
+            if (checkedId == R.id.radio_mobile_login) {
+                emailLayout.visibility = View.GONE
+                mobileLayout.visibility = View.VISIBLE
+            } else {
+                emailLayout.visibility = View.VISIBLE
+                mobileLayout.visibility = View.GONE
             }
         }
 
@@ -97,16 +113,15 @@ class Login : AppCompatActivity() {
             dialog.setContentView(R.layout.error_layout)
             dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             dialog.show()
-            val email=findViewById<EditText>(R.id.email_input).text.toString()
-            val password=findViewById<EditText>(R.id.password_input).text.toString()
-            if(!isValidMail(email))
-            {
+            val email = findViewById<EditText>(R.id.email_input).text.toString()
+            val password = findViewById<EditText>(R.id.password_input).text.toString()
+            if (!isValidMail(email)) {
                 show_error("Email entered is invalid.Please enter a valid email")
             }
-            login(email,password)
+            login(email, password)
         }
 
-        val password=findViewById<EditText>(R.id.password_input)
+        val password = findViewById<EditText>(R.id.password_input)
         password.setOnTouchListener(View.OnTouchListener { v, event ->
             val DRAWABLE_RIGHT = 2
             if (event.action == MotionEvent.ACTION_UP) {
@@ -140,44 +155,29 @@ class Login : AppCompatActivity() {
         })
 
         getOtpBtn.setOnClickListener {
-            // login with mobile
-
 
             val phone = "+91" + edtMobile.text.toString()
-
-            if(isValidMobile(phone)){
-                // send otp to mobile
-                otpText.visibility = View.VISIBLE
-                edtOtp.visibility = View.VISIBLE
-                verifyOtpBtn.visibility = View.VISIBLE
+            dialog.setContentView(R.layout.error_layout)
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.findViewById<TextView>(R.id.txt__verify).text = "Verifying device..."
+            dialog.show()
+            if (edtMobile.text.toString().isNotEmpty() && isValidMobile(phone)) {
+                edtMobile.clearFocus()
                 sendVerificationCode(phone)
-            }
-            else{
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+            } else {
                 show_error("Please enter a valid phone number")
                 edtMobile.requestFocus()
             }
         }
 
-        verifyOtpBtn.setOnClickListener(View.OnClickListener {
-            // validating if the OTP text field is empty or not.
-
-                if (TextUtils.isEmpty(edtOtp.text.toString())) {
-                    // if the OTP text field is empty display
-                    // a message to user to enter OTP
-                    Toast.makeText(this, "Please enter OTP", Toast.LENGTH_SHORT).show()
-                } else {
-                    // if OTP field is not empty calling
-                    // method to verify the OTP.
-                    verifyCode(edtOtp.text.toString())
-                }
-
-        })
 
         signupText.setOnClickListener {
             // go to signup page
             val intent = Intent(this, Signup::class.java)
             startActivity(intent)
-            
+
         }
     }
 
@@ -197,26 +197,22 @@ class Login : AppCompatActivity() {
             ?.addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
 
-                    val user= mAuth!!.currentUser
+                    val user = mAuth!!.currentUser
                     if (user != null) {
-                        if(user.isEmailVerified)
-                        {
+                        if (user.isEmailVerified) {
                             mdbref.child("users").child(user.uid)
                                 .child("user_details").get().addOnSuccessListener {
-                                    if(it.exists())
-                                    {
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                                    }
-                                    else{
+                                    if (it.exists()) {
+                                        val intent = Intent(this, MainActivity::class.java)
+                                        startActivity(intent)
+                                        finish()
+                                    } else {
                                         val intent = Intent(this, user_details_activity::class.java)
                                         startActivity(intent)
                                         finish()
                                     }
                                 }
-                        }
-                        else{
+                        } else {
                             mAuth!!.signOut()
                             val intent = Intent(this, EmailNotVerified::class.java)
                             startActivity(intent)
@@ -237,57 +233,68 @@ class Login : AppCompatActivity() {
         // initializing our callbacks for on
         // verification callback method.
 
-        val mCallBack: OnVerificationStateChangedCallbacks = object : OnVerificationStateChangedCallbacks() {
-            // below method is used when
-            // OTP is sent from Firebase
+        val mCallBack: OnVerificationStateChangedCallbacks =
+            object : OnVerificationStateChangedCallbacks() {
+                // below method is used when
+                // OTP is sent from Firebase
 
-            // this method is called when user
-            // receive OTP from Firebase.
-            override fun onVerificationCompleted(phoneAuthCredential: PhoneAuthCredential) {
-                // below line is used for getting OTP code
-                // which is sent in phone auth credentials.
-                val code = phoneAuthCredential.smsCode
+                // this method is called when user
+                // receive OTP from Firebase.
+                override fun onVerificationCompleted(phoneAuthCredential: PhoneAuthCredential) {
+                    // below line is used for getting OTP code
+                    // which is sent in phone auth credentials.
+                    val code = phoneAuthCredential.smsCode
 
-                // checking if the code
-                // is null or not.
-                if (code != null) {
-                    // if the code is not null then
-                    // we are setting that code to
-                    // our OTP edittext field.
-                    edtOtp.setText(code)
+                    // checking if the code
+                    // is null or not.
+                    if (code != null) {
+                        // if the code is not null then
+                        // we are setting that code to
+                        // our OTP edittext field.
+                        otpPinView.setText(code)
+
+                        // after setting this code
+                        // to OTP edittext field we
+                        // are calling our verify code method.
+                        verifyCode(code)
+                    }
+                    Toast.makeText(this@Login, "verification done", Toast.LENGTH_SHORT).show()
+                }
+
+                // this method is called when firebase doesn't
+                // sends our OTP code due to any error or issue.
+                override fun onVerificationFailed(e: FirebaseException) {
+                    dialog.setContentView(R.layout.error_layout)
+                    dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    dialog.show()
+                    show_error("Invalid mobile number entered. Please enter a vailid mobile number")
+                }
+
+                override fun onCodeSent(s: String, forceResendingToken: ForceResendingToken) {
+//                    super.onCodeSent(s, forceResendingToken)
+                    // when we receive the OTP it
+                    // contains a unique id which
+                    // we are storing in our string
+                    // which we have already created.
+                    verificationId = s
+
 
                     // after setting this code
                     // to OTP edittext field we
                     // are calling our verify code method.
-                    verifyCode(code)
+                    dialog.dismiss()
+                    otpView.visibility = View.VISIBLE
+                    getOtpBtn.text = "Resend OTP"
+
+                    Toast.makeText(this@Login, "OTP sent", Toast.LENGTH_LONG).show()
+                    Handler().postDelayed({
+                        otpPinView.isFocusableInTouchMode = true
+                        otpPinView.requestFocus()
+                        (getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager)
+                            .showSoftInput(otpPinView, InputMethodManager.SHOW_IMPLICIT)
+                    }, 1000)
                 }
             }
-
-            // this method is called when firebase doesn't
-            // sends our OTP code due to any error or issue.
-            override fun onVerificationFailed(e: FirebaseException) {
-                dialog.setContentView(R.layout.error_layout)
-                dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                dialog.show()
-                show_error("Invalid mobile number entered. Please enter a vailid mobile number")
-            }
-
-            override fun onCodeSent(s: String, forceResendingToken: ForceResendingToken) {
-//                    super.onCodeSent(s, forceResendingToken)
-                // when we receive the OTP it
-                // contains a unique id which
-                // we are storing in our string
-                // which we have already created.
-                verificationId = s
-
-
-                // after setting this code
-                // to OTP edittext field we
-                // are calling our verify code method.
-
-                Toast.makeText(this@Login, "OTP sent", Toast.LENGTH_LONG).show()
-            }
-        }
 
         val options = PhoneAuthOptions.newBuilder(mAuth!!)
             .setPhoneNumber(number) // Phone number to verify
@@ -317,19 +324,16 @@ class Login : AppCompatActivity() {
         mAuth!!.signInWithCredential(credential)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                   val user=mAuth!!.currentUser
-                    if(user!=null)
-                    {
+                    val user = mAuth!!.currentUser
+                    if (user != null) {
                         mdbref.child("users").child(user.uid)
                             .child("user_details").get()
                             .addOnSuccessListener {
-                                if(it.exists())
-                                {
-                                    val i = Intent(this, Signup::class.java)
+                                if (it.exists()) {
+                                    val i = Intent(this, MainActivity::class.java)
                                     startActivity(i)
                                     finish()
-                                }
-                                else{
+                                } else {
                                     val i = Intent(this, user_details_activity::class.java)
                                     startActivity(i)
                                     finish()
@@ -338,17 +342,17 @@ class Login : AppCompatActivity() {
                     }
 
                 } else {
+                    otpPinView.setText("")
                     show_error("You have entered wrong OTP. Please enter correct otp sent to your device or click on resend otp")
                 }
             }
     }
 
-    private fun show_error(msg:String)
-    {
-        dialog.findViewById<LinearLayout>(R.id.loading).visibility=View.GONE
-        dialog.findViewById<LinearLayout>(R.id.error_view).visibility=View.VISIBLE
-        dialog.findViewById<TextView>(R.id.failed_title).text="Login failed"
-        dialog.findViewById<TextView>(R.id.error_message).text=msg
+    private fun show_error(msg: String) {
+        dialog.findViewById<LinearLayout>(R.id.loading).visibility = View.GONE
+        dialog.findViewById<LinearLayout>(R.id.error_view).visibility = View.VISIBLE
+        dialog.findViewById<TextView>(R.id.failed_title).text = "Login failed"
+        dialog.findViewById<TextView>(R.id.error_message).text = msg
         dialog.findViewById<MaterialButton>(R.id.close_button).setOnClickListener {
             dialog.dismiss()
         }

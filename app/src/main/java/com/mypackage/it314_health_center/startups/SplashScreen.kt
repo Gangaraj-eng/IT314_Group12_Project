@@ -15,25 +15,23 @@ class SplashScreen : AppCompatActivity() {
         // launch main activity after 2 seconds
         Handler().postDelayed({
             val mAuth = FirebaseAuth.getInstance();
-            if(mAuth!!.currentUser!=null)
-            {
+            if (mAuth!!.currentUser != null) {
                 mAuth.currentUser?.let {
                     FirebaseDatabase.getInstance().reference
                         .child("users").child(it.uid)
                         .child("relative_details").get()
                         .addOnSuccessListener {
-                            if(it.exists()) {
+                            if (it.exists()) {
                                 startActivity(Intent(this, MainActivity::class.java))
                                 finish()
-                            } else{
+                            } else {
                                 startActivity(Intent(this, user_details_activity::class.java))
                                 finish()
                             }
                         }
                 }
 
-            }
-            else {
+            } else {
 
                 val intent = Intent(this, Login::class.java)
                 startActivity(intent)
