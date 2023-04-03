@@ -5,50 +5,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".startups.Login">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="30dp"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_app_icon_blue"
-            />
+            android:layout_marginTop="60dp"
+            android:src="@drawable/ic_app_icon_blue" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
             android:text="sign up to continue"
             android:textColor="@color/blue"
             android:textSize="24dp"
-            android:textStyle="bold"
-            android:layout_margin="10dp"
-            android:layout_gravity="center_horizontal"
-            />
+            android:textStyle="bold" />
 
         <RadioGroup
             android:id="@+id/radio_grp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checkedButton="@id/radio_mobile_login"
             android:layout_gravity="center"
-            android:orientation="horizontal"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            >
+            android:checkedButton="@id/radio_mobile_login"
+            android:orientation="horizontal">
+
             <RadioButton
                 android:id="@+id/radio_mobile_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/blue"
-                android:layoutDirection="rtl"
                 android:layout_marginHorizontal="10dp"
                 android:buttonTint="@color/blue"
+                android:layoutDirection="rtl"
                 android:text="mobile signup"
+                android:textColor="@color/blue"
                 android:textSize="14sp" />
+
             <RadioButton
                 android:id="@+id/radio_email_login"
                 android:layout_width="wrap_content"
@@ -59,44 +60,98 @@
                 android:text=" email signup  " />
 
         </RadioGroup>
+
         <LinearLayout
-            android:layout_width="match_parent"
             android:id="@+id/mobile_signup_layout"
-            android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            >
+            android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginHorizontal="25dp"
-
                 android:text="Mobile"
                 android:textColor="@color/black"
                 android:textSize="22sp" />
+
             <EditText
+                android:id="@+id/edtMobile"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginHorizontal="20dp"
                 android:background="@drawable/edit_text_background"
+                android:drawableEnd="@drawable/ic_call"
                 android:elevation="4dp"
                 android:hint="Enter mobile number"
+                android:importantForAutofill="no"
                 android:inputType="number"
-                android:drawableEnd="@drawable/ic_call"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
                 android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                />
+                android:textColorHint="@color/white" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/getOtpBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/blue"
+                android:text="Get OTP"
+                android:textAllCaps="false"
+                app:cornerRadius="10dp"
+                app:iconPadding="10dp" />
+
+            <LinearLayout
+                android:id="@+id/otp_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/otpText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginHorizontal="30dp"
+                    android:text="Enter otp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <com.poovam.pinedittextfield.SquarePinField
+                    android:id="@+id/otp_edit_text"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:elevation="10dp"
+                    android:inputType="numberDecimal"
+                    android:textSelectHandle="@drawable/text_handle"
+                    android:textSize="16sp"
+                    app:cornerRadius="5dp"
+                    app:distanceInBetween="9dp"
+                    app:fieldBgColor="@color/white"
+                    app:fieldColor="@color/black"
+                    app:highlightColor="@color/blue"
+                    app:highlightType="currentField"
+                    app:lineThickness="2dp"
+                    app:noOfFields="6" />
+
+            </LinearLayout>
 
         </LinearLayout>
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:visibility="gone"
             android:id="@+id/email_signup_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            >
+            android:orientation="vertical"
+            android:visibility="gone">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -106,82 +161,84 @@
                 android:text="email"
                 android:textColor="@color/black"
                 android:textSize="22sp" />
+
             <EditText
+                android:id="@+id/email_input"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginHorizontal="20dp"
                 android:background="@drawable/edit_text_background"
-                android:elevation="4dp"
-                android:importantForAutofill="no"
-                android:id="@+id/email_input"
-                android:hint="Enter email"
-                android:inputType="textEmailAddress"
                 android:drawableEnd="@drawable/ic_email"
+                android:elevation="4dp"
+                android:hint="Enter email"
+                android:importantForAutofill="no"
+                android:inputType="textEmailAddress"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
                 android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                />
+                android:textColorHint="@color/white" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:layout_marginTop="15dp"
                 android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="15dp"
 
                 android:text="passwrod"
                 android:textColor="@color/black"
                 android:textSize="22sp" />
+
             <EditText
+                android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:id="@+id/password"
                 android:layout_marginHorizontal="20dp"
-                android:elevation="4dp"
                 android:background="@drawable/edit_text_background"
+                android:drawableEnd="@drawable/ic_eye_open"
+                android:elevation="4dp"
                 android:hint="Enter password"
                 android:inputType="textPassword"
                 android:paddingStart="15dp"
-                android:drawableEnd="@drawable/ic_eye_open"
                 android:paddingEnd="15dp"
                 android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                />
+                android:textColorHint="@color/white" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:layout_marginTop="15dp"
                 android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="15dp"
                 android:drawableEnd="@drawable/ic_eye_open"
 
                 android:text="confirm password"
                 android:textColor="@color/black"
                 android:textSize="22sp" />
+
             <EditText
+                android:id="@+id/confirmPassword"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:id="@+id/confirmPassword"
                 android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/edit_text_background"
+                android:drawableEnd="@drawable/ic_eye_open"
                 android:elevation="4dp"
                 android:hint="Enter password"
-                android:layout_marginBottom="10dp"
                 android:inputType="textPassword"
-                android:drawableEnd="@drawable/ic_eye_open"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
                 android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                />
+                android:textColorHint="@color/white" />
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/email_signup_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
                 android:layout_gravity="center"
                 android:layout_marginVertical="10dp"
+                android:layout_marginTop="15dp"
                 android:backgroundTint="@color/blue"
                 android:text="signup"
                 android:textAllCaps="false"

@@ -5,9 +5,13 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="@string/menu_home" />
+        <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_profile"
-            android:title="My Profile" />
+            android:title="Profile" />
         <item
             android:id="@+id/nav_history"
             android:icon="@drawable/ic_history"
@@ -15,10 +19,10 @@
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_settings"
-            android:title="Setting" />
+            android:title="Settings" />
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_logout"
-            android:title="Log out" />
+            android:title="Logout" />
     </group>
 </menu>

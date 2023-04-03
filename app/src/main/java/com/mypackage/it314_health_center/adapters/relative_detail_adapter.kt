@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
 import com.mypackage.it314_health_center.R
@@ -22,6 +23,7 @@ class relative_detail_adapter(
         val relativeName: EditText = itemview.findViewById<EditText>(R.id.relative_name)
         val relativecount: TextView = itemview.findViewById<TextView>(R.id.item_position)
         val relativeContact: EditText = itemview.findViewById<EditText>(R.id.relative_contact)
+        val remove_bnt: AppCompatImageButton = itemview.findViewById(R.id.remove_btn)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RelativeViewHolder {
@@ -49,5 +51,8 @@ class relative_detail_adapter(
         holder.relativeContact.addTextChangedListener {
             relative_list[position].relativeContact = it.toString()
         }
+
+        holder.remove_bnt.visibility = View.GONE
+
     }
 }
