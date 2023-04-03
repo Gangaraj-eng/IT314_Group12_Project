@@ -26,6 +26,7 @@ import com.google.firebase.auth.PhoneAuthProvider.ForceResendingToken
 import com.google.firebase.auth.PhoneAuthProvider.OnVerificationStateChangedCallbacks
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.mypackage.it314_health_center.Doctor_Homepage
 import com.mypackage.it314_health_center.EmailNotVerified
 import com.mypackage.it314_health_center.MainActivity
 import com.mypackage.it314_health_center.R
@@ -49,7 +50,7 @@ class Login : AppCompatActivity() {
     private lateinit var mdbref: DatabaseReference
     private lateinit var signupText: TextView
     private lateinit var otpPinView: SquarePinField
-
+    private lateinit var user_type_view:AutoCompleteTextView
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,10 +95,10 @@ class Login : AppCompatActivity() {
             androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, user_Types
         )
 
-        val autoCompleteview = findViewById<AutoCompleteTextView>(R.id.user_type_selector)
+        user_type_view = findViewById<AutoCompleteTextView>(R.id.user_type_selector)
 
-        autoCompleteview.setAdapter(array_adapter)
-        autoCompleteview.setSelection(0)
+        user_type_view.setAdapter(array_adapter)
+        user_type_view.setSelection(0)
         radiogroup.setOnCheckedChangeListener { group, checkedId ->
             if (checkedId == R.id.radio_mobile_login) {
                 emailLayout.visibility = View.GONE
@@ -198,28 +199,45 @@ class Login : AppCompatActivity() {
                 if (task.isSuccessful) {
 
                     val user = mAuth!!.currentUser
-                    if (user != null) {
-                        if (user.isEmailVerified) {
-                            mdbref.child("users").child(user.uid)
-                                .child("user_details").get().addOnSuccessListener {
-                                    if (it.exists()) {
-                                        val intent = Intent(this, MainActivity::class.java)
-                                        startActivity(intent)
-                                        finish()
-                                    } else {
-                                        val intent = Intent(this, user_details_activity::class.java)
-                                        startActivity(intent)
-                                        finish()
+                    if(user_type_view.text.toString()=="Patient") {
+                        if (user != null) {
+                            if (user.isEmailVerified) {
+                                mdbref.child("users").child(user.uid)
+                                    .child("user_details").get().addOnSuccessListener {
+                                        if (it.exists()) {
+                                            val intent = Intent(this, MainActivity::class.java)
+                                            startActivity(intent)
+                                            finish()
+                                        } else {
+                                            val intent =
+                                                Intent(this, user_details_activity::class.java)
+                                            startActivity(intent)
+                                            finish()
+                                        }
                                     }
-                                }
-                        } else {
-                            mAuth!!.signOut()
-                            val intent = Intent(this, EmailNotVerified::class.java)
-                            startActivity(intent)
-                            finish()
+                            } else {
+                                mAuth!!.signOut()
+                                val intent = Intent(this, EmailNotVerified::class.java)
+                                startActivity(intent)
+                                finish()
+                            }
                         }
                     }
-
+                    else if(user_type_view.text.toString()=="Doctor")
+                    {
+                        mdbref.child("doctors").child(user!!.uid).get()
+                            .addOnSuccessListener {
+                                if(it.exists())
+                                {
+                                    startActivity(Intent(this@Login,Doctor_Homepage::class.java))
+                                    finish()
+                                }
+                                else{
+                                    show_error("Invalid credentials entered. Please select the user type correctly and enter" +
+                                            "valid details")
+                                }
+                            }
+                    }
                 } else {
                     // If log in fails, display a message to the user.
                     show_error("Invalid credentials entered. Please enter valid credentials")
