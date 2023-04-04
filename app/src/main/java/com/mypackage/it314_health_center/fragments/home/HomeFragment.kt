@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.card.MaterialCardView
+import com.mypackage.it314_health_center.BookAppointment
 import com.mypackage.it314_health_center.R
 import com.mypackage.it314_health_center.databinding.FragmentHomeBinding
 import com.mypackage.it314_health_center.patient_side.my_prescriptions
@@ -21,6 +22,7 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
     private lateinit var myprescriptionview:MaterialCardView
+    private lateinit var bookAppointmentView:MaterialCardView
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,9 +34,13 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
         myprescriptionview=root.findViewById(R.id.my_prescription_view)
+        bookAppointmentView=root.findViewById(R.id.book_appointment_view)
         myprescriptionview.setOnClickListener {
             startActivity(Intent(context,my_prescriptions::class.java))
 //            (context as Activity).finish()
+        }
+        bookAppointmentView.setOnClickListener {
+            startActivity(Intent(context, BookAppointment::class.java))
         }
         return root
     }
