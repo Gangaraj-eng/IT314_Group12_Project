@@ -256,6 +256,7 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="150dp"
                     android:layout_height="170dp"
+                    android:id="@+id/my_prescription_view"
                     android:layout_gravity="center"
                     android:layout_marginVertical="10dp"
                     app:cardBackgroundColor="#31A481"

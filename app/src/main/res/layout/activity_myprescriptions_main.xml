@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EBF5FB"
-    tools:context=".MainActivity">
+    tools:context=".patient_side.my_prescriptions">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
@@ -36,9 +36,10 @@
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
+        android:id="@+id/prescirption_list"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/lin1"
-        tools:listitem="@layout/activity_myprescriptions_content"
+        tools:listitem="@layout/prescriptions_content"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

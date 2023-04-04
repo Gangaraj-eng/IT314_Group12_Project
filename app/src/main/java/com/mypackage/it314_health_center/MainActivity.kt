@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity() {
             finish()
             return@setOnMenuItemClickListener true
         }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
