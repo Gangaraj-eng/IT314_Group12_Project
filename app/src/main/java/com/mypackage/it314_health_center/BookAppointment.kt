@@ -69,20 +69,40 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
         mDatabase?.reference?.child("appointments")?.child("upcoming")?.child(patientId)?.get()?.addOnSuccessListener {
             if(it.exists())
             {
-                val time = it.child("time").value.toString()
-                val date = it.child("date").value.toString()
-                val appointmentId = it.child("appointmentId").value.toString()
+                var aptcurr:basicAppointment?=null
+
+                for(apt in it.children)
+                {
+                    aptcurr=apt.getValue(basicAppointment::class.java)
+                }
+
+                val time = aptcurr?.time.toString()
+                val date = aptcurr?.date.toString()
+                val problemDescription = aptcurr?.problemDescription.toString()
+                val type = aptcurr?.type.toString()
+                val appointmentId = it.key
+
                 val currentTime = Calendar.getInstance()
                 val scheduledTime = Calendar.getInstance()
                 val scheduledDate1 = date.split("/") // scheduled date
                 val scheduledTime1 = time.split(":") // scheduled time
                 scheduledTime.set(scheduledDate1?.get(2)?.toInt()!!,scheduledDate1?.get(1)?.toInt()!!,scheduledDate1?.get(0)?.toInt()!!,scheduledTime1?.get(0)?.toInt()!!,scheduledTime1?.get(1)?.toInt()!!)
+
                 val difference = currentTime.timeInMillis - scheduledTime.timeInMillis
                 val differenceInMinutes = difference/60000
                 if(differenceInMinutes>30)
                 {
-                    mDatabase?.reference?.child("appointments")?.child("upcoming")?.child(patientId)?.child(appointmentId)?.removeValue()
-                    mDatabase?.reference?.child("appointments")?.child("past")?.child(patientId)?.child(appointmentId)?.setValue(it)
+                    if (appointmentId != null) {
+                        mDatabase?.reference?.child("appointments")?.child("upcoming")?.child(patientId)?.child(appointmentId)?.removeValue()
+                    }
+                    if (appointmentId != null) {
+                        mDatabase?.reference?.child("appointments")?.child("past")?.child(patientId)?.child(appointmentId)?.setValue(aptcurr)
+                    }
+                }
+                else{
+                    Toast.makeText(this,"You have already booked an appointment",Toast.LENGTH_SHORT).show()
+                    ifBooked.visibility = View.VISIBLE
+                    showDetails.text = "Date: $date \n Time: $time \n\n Problem Description: $problemDescription\n\n Type: $type"
                 }
             }
         }
@@ -91,11 +111,21 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
         mDatabase?.reference?.child("appointments")?.child("upcoming")?.child(patientId)?.get()?.addOnSuccessListener {
             if(it.exists())
             {
+                var aptcurr:basicAppointment?=null
+
+                for(apt in it.children)
+                {
+                    aptcurr=apt.getValue(basicAppointment::class.java)
+                }
+
+                val time = aptcurr?.time.toString()
+                val date = aptcurr?.date.toString()
+                val problemDescription = aptcurr?.problemDescription.toString()
+                val type = aptcurr?.type.toString()
+//                val appointmentId = it.key
+
                 Toast.makeText(this,"You have already booked an appointment",Toast.LENGTH_SHORT).show()
-                val date = it.child("date").value.toString()
-                val time = it.child("time").value.toString()
-                val problemDescription = it.child("problemDescription").value.toString()
-                val type = it.child("type").value.toString()
+
 
                 ifBooked.visibility = View.VISIBLE
                 showDetails.text = "Date: $date\nTime: $time\n\nProblem Description: $problemDescription\n\nType: $type"
