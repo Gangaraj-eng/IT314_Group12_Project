@@ -7,11 +7,11 @@ public class DynamicKey3 {
     /**
      * Manipulate Agora dynamic key for media connection.
      *
-     * @param appID   App ID assigned by Agora when register
+     * @param appID          App ID assigned by Agora when register
      * @param appCertificate App Certificate assigned by Agora
-     * @param channelName name of channel to join
-     * @param unixTs      unix timestamp by seconds
-     * @param randomInt   random uint32 salt for generating dynamic key
+     * @param channelName    name of channel to join
+     * @param unixTs         unix timestamp by seconds
+     * @param randomInt      random uint32 salt for generating dynamic key
      * @return String representation of dynamic key to join Agora media server
      * @throws Exception if any error occurs
      */

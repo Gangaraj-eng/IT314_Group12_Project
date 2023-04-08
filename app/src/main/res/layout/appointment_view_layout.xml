@@ -1,63 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    app:cardCornerRadius="20dp">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="time:"
-            android:textSize="22dp"
-            android:textColor="@color/black"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="10:10"
-            android:textSize="22dp"
-            android:textColor="@color/black"
-            />
+        android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="time:"
+                android:textColor="@color/black"
+                android:textSize="22dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10:10"
+                android:textColor="@color/black"
+                android:textSize="22dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date:"
+                android:textColor="@color/black"
+                android:textSize="22dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="25-4-2023"
+                android:textColor="@color/black"
+                android:textSize="22dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Problem Disc.:Allergic rhinitis"
+            android:textColor="@color/black"
+            android:textSize="22dp" />
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Date:"
-            android:textSize="22dp"
-            android:textColor="@color/black"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="25-4-2023"
-            android:textSize="22dp"
-            android:textColor="@color/black"
-            />
-
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Problem Disc.:Allergic rhinitis"
-        android:textSize="22dp"
-        android:textColor="@color/black"/>
-</LinearLayout>
 </androidx.cardview.widget.CardView>

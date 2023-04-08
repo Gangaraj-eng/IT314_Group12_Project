@@ -5,22 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EBF5FB"
-    tools:context=".MainActivity">
+    tools:context=".PatientHomePage">
+
     <LinearLayout
+        android:id="@+id/lin1"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:id="@+id/lin1"
         android:background="#4799FA"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
+
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#4799FA"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="12dp"
-            android:src="@drawable/arrow_1"
-            />
+            android:layout_marginTop="20dp"
+            android:background="#4799FA"
+            android:src="@drawable/arrow_1" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -29,17 +29,37 @@
             android:layout_marginLeft="95dp"
             android:text="Reports"
             android:textColor="@color/white"
-            android:textSize="30dp"
+            android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lin2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/reports_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lin1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Your Reports"
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/reports_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/lin1"
-        tools:listitem="@layout/activity_downloadreport_content"
-        />
+        app:layout_constraintTop_toBottomOf="@id/lin2"
+        tools:listitem="@layout/activity_downloadreport_content" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

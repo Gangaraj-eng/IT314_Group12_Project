@@ -7,26 +7,8 @@ import java.io.IOException;
 import java.util.TreeMap;
 
 
-
 public class AccessToken {
-    public enum Privileges {
-        kJoinChannel(1),
-        kPublishAudioStream(2),
-        kPublishVideoStream(3),
-        kPublishDataStream(4),
-
-        // For RTM only
-        kRtmLogin(1000);
-
-        public short intValue;
-
-        Privileges(int value) {
-            intValue = (short) value;
-        }
-    }
-
     private static final String VER = "006";
-
     public String appId;
     public String appCertificate;
     public String channelName;
@@ -37,7 +19,6 @@ public class AccessToken {
     public int crcUid;
     public PrivilegeMessage message;
     public int expireTimestamp;
-
     public AccessToken(String appId, String appCertificate, String channelName, String uid) {
         this.appId = appId;
         this.appCertificate = appCertificate;
@@ -48,36 +29,12 @@ public class AccessToken {
         this.message = new PrivilegeMessage();
     }
 
-    public String build() throws Exception {
-        if (! Utils.isUUID(appId)) {
-            return "";
-        }
-
-        if (!Utils.isUUID(appCertificate)) {
-            return "";
-        }
-
-        messageRawContent = Utils.pack(message);
-        signature = generateSignature(appCertificate,
-        		appId, channelName, uid, messageRawContent);
-        crcChannelName = crc32(channelName);
-        crcUid = crc32(uid);
-
-        PackContent packContent = new PackContent(signature, crcChannelName, crcUid, messageRawContent);
-        byte[] content = Utils.pack(packContent);
-        return getVersion() + this.appId + Utils.base64Encode(content);
-    }
-
-    public void addPrivilege(Privileges privilege, int expireTimestamp) {
-        message.messages.put(privilege.intValue, expireTimestamp);
-    }
-
     public static String getVersion() {
         return VER;
     }
 
     public static byte[] generateSignature(String appCertificate,
-    		String appID, String channelName, String uid, byte[] message) throws Exception {
+                                           String appID, String channelName, String uid, byte[] message) throws Exception {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         try {
@@ -89,6 +46,30 @@ public class AccessToken {
             e.printStackTrace();
         }
         return Utils.hmacSign(appCertificate, baos.toByteArray());
+    }
+
+    public String build() throws Exception {
+        if (!Utils.isUUID(appId)) {
+            return "";
+        }
+
+        if (!Utils.isUUID(appCertificate)) {
+            return "";
+        }
+
+        messageRawContent = Utils.pack(message);
+        signature = generateSignature(appCertificate,
+                appId, channelName, uid, messageRawContent);
+        crcChannelName = crc32(channelName);
+        crcUid = crc32(uid);
+
+        PackContent packContent = new PackContent(signature, crcChannelName, crcUid, messageRawContent);
+        byte[] content = Utils.pack(packContent);
+        return getVersion() + this.appId + Utils.base64Encode(content);
+    }
+
+    public void addPrivilege(Privileges privilege, int expireTimestamp) {
+        message.messages.put(privilege.intValue, expireTimestamp);
     }
 
     public boolean fromString(String token) {
@@ -111,6 +92,22 @@ public class AccessToken {
         }
 
         return true;
+    }
+
+    public enum Privileges {
+        kJoinChannel(1),
+        kPublishAudioStream(2),
+        kPublishVideoStream(3),
+        kPublishDataStream(4),
+
+        // For RTM only
+        kRtmLogin(1000);
+
+        public short intValue;
+
+        Privileges(int value) {
+            intValue = (short) value;
+        }
     }
 
     public class PrivilegeMessage implements PackableEx {
@@ -144,7 +141,7 @@ public class AccessToken {
         public byte[] rawMessage;
 
         public PackContent() {
-        	// Nothing done
+            // Nothing done
         }
 
         public PackContent(byte[] signature, int crcChannelName, int crcUid, byte[] rawMessage) {

@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.mypackage.it314_health_center.databinding.ActivityMainBinding
 import com.mypackage.it314_health_center.startups.Login
 
-class MainActivity : AppCompatActivity() {
+class PatientHomePage : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding

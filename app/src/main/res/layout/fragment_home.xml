@@ -5,149 +5,151 @@
     android:layout_height="match_parent"
     android:background="#F1F1F1"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="20dp"
-        app:cardCornerRadius="25dp"
-        >
+        app:cardCornerRadius="25dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
-        <Space
-            android:layout_width="1dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" >
-        </Space>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Doctor consultation"
-        android:textSize="20sp"
-        android:layout_marginTop="5dp"
-        android:textColor="@color/black"
-        />
+            android:orientation="vertical">
+
             <Space
                 android:layout_width="1dp"
                 android:layout_height="0dp"
-                android:layout_weight="1" >
-            </Space>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" >
-            </Space>
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="150dp"
-                android:id="@+id/book_appointment_view"
-                android:layout_height="170dp"
-                android:layout_gravity="center"
-                android:layout_marginVertical="10dp"
-                app:cardBackgroundColor="#FFB82F"
-                app:cardCornerRadius="20dp">
+                android:layout_weight="1"></Space>
 
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="18dp"
-                    android:src="@drawable/icon_book_appointment" />
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center_horizontal"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="Book an appointment"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-            </com.google.android.material.card.MaterialCardView>
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" >
-            </Space>
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="150dp"
-                android:layout_height="170dp"
-                android:layout_gravity="center"
-                android:layout_marginVertical="10dp"
-                app:cardBackgroundColor="#CC6DB2"
-                app:cardCornerRadius="20dp"
-              >
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="34dp"
-                    android:src="@drawable/icon_online_consultation" />
-
-                <TextView
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center_horizontal"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="Online Consultation"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-            </com.google.android.material.card.MaterialCardView>
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" >
-            </Space>
-        </LinearLayout>
-            <Space
-                android:layout_width="1dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" >
-            </Space>
-            <com.google.android.material.divider.MaterialDivider
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                />
-            <Space
-                android:layout_width="1dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" >
-            </Space>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Documents and reports"
-                android:textSize="20sp"
                 android:layout_marginTop="5dp"
+                android:text="Doctor consultation"
                 android:textColor="@color/black"
-                />
+                android:textSize="20sp" />
+
             <Space
                 android:layout_width="1dp"
                 android:layout_height="0dp"
-                android:layout_weight="1" >
-            </Space>
+                android:layout_weight="1"></Space>
+
             <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"></Space>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/book_appointment_view"
+                    android:layout_width="150dp"
+                    android:layout_height="170dp"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="10dp"
+                    app:cardBackgroundColor="#FFB82F"
+                    app:cardCornerRadius="20dp">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="18dp"
+                        android:src="@drawable/icon_book_appointment" />
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center_horizontal"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="Book an appointment"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"></Space>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/online_consultation_view"
+                    android:layout_width="150dp"
+                    android:layout_height="170dp"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="10dp"
+                    app:cardBackgroundColor="#CC6DB2"
+                    app:cardCornerRadius="20dp">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="34dp"
+                        android:src="@drawable/icon_online_consultation" />
+
+                    <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center_horizontal"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="Online Consultation"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"></Space>
+            </LinearLayout>
+
             <Space
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" >
-            </Space>
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"></Space>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp" />
+
+            <Space
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"></Space>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:text="Documents and reports"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <Space
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"></Space>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"></Space>
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="150dp"
@@ -155,8 +157,7 @@
                     android:layout_gravity="center"
                     android:layout_marginVertical="10dp"
                     app:cardBackgroundColor="#B6C236"
-                    app:cardCornerRadius="20dp"
-                    >
+                    app:cardCornerRadius="20dp">
 
                     <ImageView
                         android:layout_width="100dp"
@@ -178,10 +179,10 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <Space
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" >
-            </Space>
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"></Space>
+
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="150dp"
                     android:layout_height="170dp"
@@ -210,59 +211,59 @@
                         android:textColor="@color/white"
                         android:textSize="18sp" />
                 </com.google.android.material.card.MaterialCardView>
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" >
-            </Space>
-        </LinearLayout>
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"></Space>
+            </LinearLayout>
+
             <Space
                 android:layout_width="1dp"
                 android:layout_height="0dp"
-                android:layout_weight="1" >
-            </Space>
+                android:layout_weight="1"></Space>
+
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                />
+                android:layout_marginHorizontal="20dp" />
+
             <Space
                 android:layout_width="1dp"
                 android:layout_height="0dp"
-                android:layout_weight="1" >
-            </Space>
+                android:layout_weight="1"></Space>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Medicines "
-                android:textSize="20sp"
                 android:layout_marginTop="5dp"
+                android:text="Medicines "
                 android:textColor="@color/black"
-                />
+                android:textSize="20sp" />
+
             <Space
                 android:layout_width="1dp"
                 android:layout_height="0dp"
-                android:layout_weight="1" >
-            </Space>
+                android:layout_weight="1"></Space>
+
             <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" >
-            </Space>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"></Space>
+
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/my_prescription_view"
                     android:layout_width="150dp"
                     android:layout_height="170dp"
-                    android:id="@+id/my_prescription_view"
                     android:layout_gravity="center"
                     android:layout_marginVertical="10dp"
                     app:cardBackgroundColor="#31A481"
-                    app:cardCornerRadius="20dp"
-                    >
+                    app:cardCornerRadius="20dp">
 
                     <ImageView
                         android:layout_width="100dp"
@@ -282,11 +283,12 @@
                         android:textColor="@color/white"
                         android:textSize="18sp" />
                 </com.google.android.material.card.MaterialCardView>
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" >
-            </Space>
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"></Space>
+
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/materialCardView5"
                     android:layout_width="150dp"
@@ -294,8 +296,7 @@
                     android:layout_gravity="center"
                     android:layout_marginVertical="10dp"
                     app:cardBackgroundColor="#D4DFDF"
-                    app:cardCornerRadius="20dp"
-                    >
+                    app:cardCornerRadius="20dp">
 
                     <ImageView
                         android:layout_width="100dp"
@@ -316,17 +317,17 @@
                         android:textColor="@color/black"
                         android:textSize="18sp" />
                 </com.google.android.material.card.MaterialCardView>
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" >
-            </Space>
-        </LinearLayout>
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"></Space>
+            </LinearLayout>
+
             <Space
                 android:layout_width="1dp"
                 android:layout_height="0dp"
-                android:layout_weight="1" >
-            </Space>
+                android:layout_weight="1"></Space>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

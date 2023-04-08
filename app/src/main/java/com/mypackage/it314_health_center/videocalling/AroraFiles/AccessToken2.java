@@ -7,6 +7,115 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
 public class AccessToken2 {
+    public static final short SERVICE_TYPE_RTC = 1;
+    public static final short SERVICE_TYPE_RTM = 2;
+    public static final short SERVICE_TYPE_FPA = 4;
+    public static final short SERVICE_TYPE_CHAT = 5;
+    public static final short SERVICE_TYPE_EDUCATION = 7;
+    private static final String VERSION = "007";
+    public String appCert = "";
+    public String appId = "";
+    public int expire;
+    public int issueTs;
+    public int salt;
+    public Map<Short, Service> services = new TreeMap<>();
+    public AccessToken2() {
+    }
+    public AccessToken2(String appId, String appCert, int expire) {
+        this.appCert = appCert;
+        this.appId = appId;
+        this.expire = expire;
+        this.issueTs = Utils.getTimestamp();
+        this.salt = Utils.randomInt();
+    }
+
+    public static String getUidStr(int uid) {
+        if (uid == 0) {
+            return "";
+        }
+        return String.valueOf(uid & 0xFFFFFFFFL);
+    }
+
+    public static String getVersion() {
+        return VERSION;
+    }
+
+    public void addService(Service service) {
+        this.services.put(service.getServiceType(), service);
+    }
+
+    public String build() throws Exception {
+        if (!Utils.isUUID(this.appId) || !Utils.isUUID(this.appCert)) {
+            return "";
+        }
+
+        ByteBuf buf = new ByteBuf().put(this.appId).put(this.issueTs).put(this.expire).put(this.salt).put((short) this.services.size());
+        byte[] signing = getSign();
+
+        this.services.forEach((k, v) -> {
+            v.pack(buf);
+        });
+
+        Mac mac = Mac.getInstance("HmacSHA256");
+        mac.init(new SecretKeySpec(signing, "HmacSHA256"));
+        byte[] signature = mac.doFinal(buf.asBytes());
+
+        ByteBuf bufferContent = new ByteBuf();
+        bufferContent.put(signature);
+        bufferContent.buffer.put(buf.asBytes());
+
+        return getVersion() + Utils.base64Encode(Utils.compress(bufferContent.asBytes()));
+    }
+
+    public Service getService(short serviceType) {
+        if (serviceType == SERVICE_TYPE_RTC) {
+            return new ServiceRtc();
+        }
+        if (serviceType == SERVICE_TYPE_RTM) {
+            return new ServiceRtm();
+        }
+        if (serviceType == SERVICE_TYPE_FPA) {
+            return new ServiceFpa();
+        }
+        if (serviceType == SERVICE_TYPE_CHAT) {
+            return new ServiceChat();
+        }
+        if (serviceType == SERVICE_TYPE_EDUCATION) {
+            return new ServiceEducation();
+        }
+        throw new IllegalArgumentException(String.format("unknown service type: `%d`", serviceType));
+    }
+
+    public byte[] getSign() throws Exception {
+        Mac mac = Mac.getInstance("HmacSHA256");
+        mac.init(new SecretKeySpec(new ByteBuf().put(this.issueTs).asBytes(), "HmacSHA256"));
+        byte[] signing = mac.doFinal(this.appCert.getBytes());
+        mac.init(new SecretKeySpec(new ByteBuf().put(this.salt).asBytes(), "HmacSHA256"));
+        return mac.doFinal(signing);
+    }
+
+    public boolean parse(String token) {
+        if (!getVersion().equals(token.substring(0, Utils.VERSION_LENGTH))) {
+            return false;
+        }
+        byte[] data = Utils.decompress(Utils.base64Decode(token.substring(Utils.VERSION_LENGTH)));
+        ByteBuf buff = new ByteBuf(data);
+        String signature = buff.readString();
+        this.appId = buff.readString();
+        this.issueTs = buff.readInt();
+        this.expire = buff.readInt();
+        this.salt = buff.readInt();
+        short servicesNum = buff.readShort();
+
+        for (int i = 0; i < servicesNum; i++) {
+            short serviceType = buff.readShort();
+            Service service = getService(serviceType);
+            service.unpack(buff);
+            this.services.put(serviceType, service);
+        }
+        return true;
+    }
+
     public enum PrivilegeRtc {
         PRIVILEGE_JOIN_CHANNEL(1),
         PRIVILEGE_PUBLISH_AUDIO_STREAM(2),
@@ -66,118 +175,6 @@ public class AccessToken2 {
         PrivilegeEducation(int value) {
             intValue = (short) value;
         }
-    }
-
-    private static final String VERSION = "007";
-    public static final short SERVICE_TYPE_RTC = 1;
-    public static final short SERVICE_TYPE_RTM = 2;
-    public static final short SERVICE_TYPE_FPA = 4;
-    public static final short SERVICE_TYPE_CHAT = 5;
-    public static final short SERVICE_TYPE_EDUCATION = 7;
-
-    public String appCert = "";
-    public String appId = "";
-    public int expire;
-    public int issueTs;
-    public int salt;
-    public Map<Short, Service> services = new TreeMap<>();
-
-    public AccessToken2() {
-    }
-
-    public AccessToken2(String appId, String appCert, int expire) {
-        this.appCert = appCert;
-        this.appId = appId;
-        this.expire = expire;
-        this.issueTs = Utils.getTimestamp();
-        this.salt = Utils.randomInt();
-    }
-
-    public void addService(Service service) {
-        this.services.put(service.getServiceType(), service);
-    }
-
-    public String build() throws Exception {
-        if (!Utils.isUUID(this.appId) || !Utils.isUUID(this.appCert)) {
-            return "";
-        }
-
-        ByteBuf buf = new ByteBuf().put(this.appId).put(this.issueTs).put(this.expire).put(this.salt).put((short) this.services.size());
-        byte[] signing = getSign();
-
-        this.services.forEach((k, v) -> {
-            v.pack(buf);
-        });
-
-        Mac mac = Mac.getInstance("HmacSHA256");
-        mac.init(new SecretKeySpec(signing, "HmacSHA256"));
-        byte[] signature = mac.doFinal(buf.asBytes());
-
-        ByteBuf bufferContent = new ByteBuf();
-        bufferContent.put(signature);
-        bufferContent.buffer.put(buf.asBytes());
-
-        return getVersion() + Utils.base64Encode(Utils.compress(bufferContent.asBytes()));
-    }
-
-    public Service getService(short serviceType) {
-        if (serviceType == SERVICE_TYPE_RTC) {
-            return new ServiceRtc();
-        }
-        if (serviceType == SERVICE_TYPE_RTM) {
-            return new ServiceRtm();
-        }
-        if (serviceType == SERVICE_TYPE_FPA) {
-            return new ServiceFpa();
-        }
-        if (serviceType == SERVICE_TYPE_CHAT) {
-            return new ServiceChat();
-        }
-        if (serviceType == SERVICE_TYPE_EDUCATION) {
-            return new ServiceEducation();
-        }
-        throw new IllegalArgumentException(String.format("unknown service type: `%d`", serviceType));
-    }
-
-    public byte[] getSign() throws Exception {
-        Mac mac = Mac.getInstance("HmacSHA256");
-        mac.init(new SecretKeySpec(new ByteBuf().put(this.issueTs).asBytes(), "HmacSHA256"));
-        byte[] signing = mac.doFinal(this.appCert.getBytes());
-        mac.init(new SecretKeySpec(new ByteBuf().put(this.salt).asBytes(), "HmacSHA256"));
-        return mac.doFinal(signing);
-    }
-
-    public static String getUidStr(int uid) {
-        if (uid == 0) {
-            return "";
-        }
-        return String.valueOf(uid & 0xFFFFFFFFL);
-    }
-
-    public static String getVersion() {
-        return VERSION;
-    }
-
-    public boolean parse(String token) {
-        if (!getVersion().equals(token.substring(0, Utils.VERSION_LENGTH))) {
-            return false;
-        }
-        byte[] data = Utils.decompress(Utils.base64Decode(token.substring(Utils.VERSION_LENGTH)));
-        ByteBuf buff = new ByteBuf(data);
-        String signature = buff.readString();
-        this.appId = buff.readString();
-        this.issueTs = buff.readInt();
-        this.expire = buff.readInt();
-        this.salt = buff.readInt();
-        short servicesNum = buff.readShort();
-
-        for (int i = 0; i < servicesNum; i++) {
-            short serviceType = buff.readShort();
-            Service service = getService(serviceType);
-            service.unpack(buff);
-            this.services.put(serviceType, service);
-        }
-        return true;
     }
 
     public static class Service {

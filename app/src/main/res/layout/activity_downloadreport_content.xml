@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -10,16 +9,15 @@
         android:id="@+id/materialCardView2"
         android:layout_width="380dp"
         android:layout_height="150dp"
-        app:cardElevation="10dp"
         android:layout_gravity="center"
+        android:layout_marginVertical="15dp"
         android:layout_marginStart="15dp"
         android:background="@drawable/roundstyle"
         app:cardCornerRadius="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginVertical="15dp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:cardElevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        >
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/imageView"
@@ -38,7 +36,7 @@
             android:paddingLeft="10dp"
             android:paddingTop="10dp"
             android:text="11 March / 12March"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <TextView
@@ -50,7 +48,7 @@
             android:paddingLeft="10dp"
             android:paddingTop="10dp"
             android:text="Date of test / Issue "
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <TextView
@@ -62,7 +60,7 @@
             android:paddingLeft="30dp"
             android:paddingTop="10dp"
             android:text="test name "
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <TextView
@@ -73,7 +71,7 @@
             android:paddingLeft="30dp"
             android:paddingTop="10dp"
             android:text="Issued by Dr.Sah"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <ImageView

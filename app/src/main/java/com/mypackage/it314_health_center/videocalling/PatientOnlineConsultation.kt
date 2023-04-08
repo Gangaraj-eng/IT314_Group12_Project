@@ -3,22 +3,28 @@ package com.mypackage.it314_health_center.videocalling
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.Log
 import android.view.SurfaceView
 import android.view.View
-import android.widget.FrameLayout
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.android.material.button.MaterialButton
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import com.mypackage.it314_health_center.*
-import com.mypackage.it314_health_center.videocalling.AroraFiles.RtcTokenBuilder2
+import com.mypackage.it314_health_center.R
 import io.agora.rtc2.*
 import io.agora.rtc2.video.VideoCanvas
+import java.text.SimpleDateFormat
 
 // Fill the App ID of your project generated on Agora Console.
 private const val appId = "07de1a5578dd41adbd69d4ee74558a2e"
-private const val appCertificate="527a1a65cfc34f18bb622b961117fa98"
+private const val appCertificate = "527a1a65cfc34f18bb622b961117fa98"
+
 // An integer that identifies the local user.
 private const val uid = 0
 private var isJoined = false
@@ -33,17 +39,17 @@ private var localSurfaceView: SurfaceView? = null
 @SuppressLint("StaticFieldLeak")
 private var remoteSurfaceView: SurfaceView? = null
 
-class OnlineConsultation : AppCompatActivity() {
+class PatientOnlineConsultation : AppCompatActivity() {
 
-    private lateinit var token:String
-    private lateinit var channelName:String
-    private  val  PERMISSION_REQ_ID: Int = 22
-    private  val  REQUESTED_PERMISSIONS: Array<String> = arrayOf(
+    private lateinit var token: String
+    private lateinit var channelName: String
+    private val PERMISSION_REQ_ID: Int = 22
+    private val REQUESTED_PERMISSIONS: Array<String> = arrayOf(
         android.Manifest.permission.RECORD_AUDIO,
         android.Manifest.permission.CAMERA
     )
 
-    private fun checkSelfPermission(): kotlin.Boolean{
+    private fun checkSelfPermission(): kotlin.Boolean {
         if (ContextCompat.checkSelfPermission(
                 this,
                 REQUESTED_PERMISSIONS.get(0)
@@ -52,7 +58,7 @@ class OnlineConsultation : AppCompatActivity() {
                 this,
                 REQUESTED_PERMISSIONS.get(1)
             ) != PackageManager.PERMISSION_GRANTED
-        ){
+        ) {
             return false
         }
         return true
@@ -71,6 +77,7 @@ class OnlineConsultation : AppCompatActivity() {
             showMessage(e.toString())
         }
     }
+
     private fun setupRemoteVideo(uid: Int) {
         val container = findViewById<FrameLayout>(R.id.remote_video_view_container)
         remoteSurfaceView = SurfaceView(baseContext)
@@ -102,19 +109,20 @@ class OnlineConsultation : AppCompatActivity() {
         )
     }
 
-    fun generate_token()
-    {
-        val tokenbuilder=
-            RtcTokenBuilder2()
-        // time it is valid for
-        val timestamp=(System.currentTimeMillis()/1000+30*60).toInt()
-        val uid=0
-        channelName="RandomChannel"
-        token=tokenbuilder.buildTokenWithUid(appId, appCertificate,channelName
-        ,uid,
-            RtcTokenBuilder2.Role.ROLE_PUBLISHER,timestamp,timestamp)
-        Log.d("123",token)
+    private lateinit var mdbRef: DatabaseReference
+    private lateinit var mAuth: FirebaseAuth
+    fun generate_token() {
+        val uid = mAuth.currentUser!!.uid
+        mdbRef.child("meeting_rooms").child(uid)
+            .child("ChannelName").get().addOnSuccessListener {
+                channelName = it.value.toString()
+            }
+        mdbRef.child("meeting_rooms").child(uid)
+            .child("token").get().addOnSuccessListener {
+                token = it.value.toString()
+            }
     }
+
     fun joinChannel(view: View?) {
         if (checkSelfPermission()) {
             val options = ChannelMediaOptions()
@@ -171,15 +179,95 @@ class OnlineConsultation : AppCompatActivity() {
             runOnUiThread { remoteSurfaceView!!.visibility = View.GONE }
         }
     }
-
+    private lateinit var noappointments_view: TextView
+    private lateinit var appointment_view: CardView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_online_consultation)
         if (!checkSelfPermission()) {
             ActivityCompat.requestPermissions(this, REQUESTED_PERMISSIONS, PERMISSION_REQ_ID);
         }
+        noappointments_view = findViewById(R.id.no_appointments)
+        appointment_view = findViewById(R.id.current_appointment_view)
+        val start_btn = appointment_view.findViewById<MaterialButton>(R.id.start_apt_button)
+        mdbRef = FirebaseDatabase.getInstance().reference
+        mAuth = FirebaseAuth.getInstance()
+        start_btn.setOnClickListener {
+            appointment_view.visibility = View.GONE
+            findViewById<RelativeLayout>(R.id.video_calling_view).visibility = View.VISIBLE
+        }
+        findViewById<ImageButton>(R.id.back_btn).setOnClickListener {
+            finish()
+        }
         setupVideoSDKEngine();
-        generate_token()
+        mdbRef.child("appointments").child("upcoming")
+            .child(mAuth.currentUser!!.uid).get().addOnSuccessListener {
+                if (it.exists()) {
+                    for (aptx in it.children) {
+                        if (aptx.child("type").value == "Offline")
+                            return@addOnSuccessListener
+                        noappointments_view.visibility = View.GONE
+                        appointment_view.visibility = View.VISIBLE
+                        var apt = aptx.getValue(BasicAppiontment::class.java)
+                        if (apt != null) {
+                            appointment_view.findViewById<TextView>(R.id.time_view).text = apt.time
+                            appointment_view.findViewById<TextView>(R.id.date_view).text = apt.date
+                            val fmillis =
+                                (SimpleDateFormat("dd/MM/yyyy hh:mm").parse(apt.date + " " + apt.time)).time
+                            val cmillis = System.currentTimeMillis()
+                            Log.d("123", fmillis.toString())
+                            Log.d("123", cmillis.toString())
+                            Log.d("123", (fmillis - cmillis).toString())
+                            if (fmillis > cmillis) {
+                                val timer =
+                                    object : CountDownTimer(fmillis - cmillis, fmillis - cmillis) {
+                                        override fun onTick(millisUntilFinished: Long) {
+
+                                        }
+
+                                        override fun onFinish() {
+                                            start_btn.isEnabled = true
+                                        }
+                                    }
+                                timer.start()
+                            } else {
+                                start_btn.isEnabled = true
+                            }
+                        }
+
+                    }
+
+
+                } else {
+                    noappointments_view.visibility = View.VISIBLE
+                    appointment_view.visibility = View.GONE
+                }
+            }
+        mdbRef.child("meeting_rooms").child(mAuth.currentUser!!.uid)
+            .addChildEventListener(object : ChildEventListener {
+                override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                    generate_token()
+                }
+
+                override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+                    generate_token()
+                }
+
+                override fun onChildRemoved(snapshot: DataSnapshot) {
+                    generate_token()
+                }
+
+                override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+                    generate_token()
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    generate_token()
+                }
+
+            })
+
+
     }
 
     fun showMessage(message: String?) {

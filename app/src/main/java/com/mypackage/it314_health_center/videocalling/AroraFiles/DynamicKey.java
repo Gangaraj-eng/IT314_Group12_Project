@@ -9,11 +9,12 @@ import java.io.ByteArrayOutputStream;
 public class DynamicKey {
     /**
      * Generate Dynamic Key for media channel service
-     * @param appID App ID assigned by Agora
+     *
+     * @param appID          App ID assigned by Agora
      * @param appCertificate App Certificate assigned by Agora
-     * @param channelName name of channel to join, limited to 64 bytes and should be printable ASCII characters
-     * @param unixTs unix timestamp in seconds when generating the Dynamic Key
-     * @param randomInt salt for generating dynamic key
+     * @param channelName    name of channel to join, limited to 64 bytes and should be printable ASCII characters
+     * @param unixTs         unix timestamp in seconds when generating the Dynamic Key
+     * @param randomInt      salt for generating dynamic key
      * @return String representation of dynamic key
      * @throws Exception
      */

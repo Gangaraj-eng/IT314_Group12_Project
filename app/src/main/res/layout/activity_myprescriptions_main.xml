@@ -6,40 +6,61 @@
     android:layout_height="match_parent"
     android:background="#EBF5FB"
     tools:context=".patient_side.my_prescriptions">
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
         android:id="@+id/lin1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:background="#4799FA"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
+
         <ImageButton
+            android:id="@+id/back_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#4799FA"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="12dp"
-            android:src="@drawable/arrow_1"
-            />
+            android:layout_marginTop="20dp"
+            android:background="#4799FA"
+            android:src="@drawable/arrow_1" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Prescriptions"
             android:layout_gravity="center"
             android:layout_marginLeft="65dp"
-            android:textSize="30dp"
+            android:text="Prescriptions"
             android:textColor="@color/white"
+            android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:id="@+id/prescirption_list"
+
+    <LinearLayout
+        android:id="@+id/lin2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/lin1"
-        tools:listitem="@layout/prescriptions_content"
-        />
+        app:layout_constraintBottom_toTopOf="@id/prescirption_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lin1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Your prescriptions"
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/prescirption_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/lin2"
+        tools:listitem="@layout/prescriptions_content" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

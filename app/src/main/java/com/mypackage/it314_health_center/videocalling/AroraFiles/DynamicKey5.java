@@ -24,29 +24,13 @@ public class DynamicKey5 {
 
     public DynamicKey5Content content;
 
-    public boolean fromString(String key) {
-        if (! key.substring(0, 3).equals(version)) {
-            return false;
-        }
-
-        byte[] rawContent = new Base64().decode(key.substring(3));
-        if (rawContent.length == 0) {
-            return false;
-        }
-
-        content = new DynamicKey5Content();
-        ByteBuf buffer = new ByteBuf(rawContent);
-        content.unmarshall(buffer);
-        return true;
-    }
-
     public static String generateSignature(String appCertificate, short service, String appID, int unixTs, int salt, String channelName, long uid, int expiredTs, TreeMap<Short, String> extra) throws Exception {
         // decode hex to avoid case problem
         Hex hex = new Hex();
         byte[] rawAppID = hex.decode(appID.getBytes());
         byte[] rawAppCertificate = hex.decode(appCertificate.getBytes());
 
-        Message m = new Message(service, rawAppID, unixTs, salt, channelName, (int)(uid & 0xFFFFFFFFL), expiredTs, extra);
+        Message m = new Message(service, rawAppID, unixTs, salt, channelName, (int) (uid & 0xFFFFFFFFL), expiredTs, extra);
         byte[] toSign = pack(m);
         return new String(Hex.encodeHex(DynamicKeyUtil.encodeHMAC(rawAppCertificate, toSign), false));
     }
@@ -82,6 +66,22 @@ public class DynamicKey5 {
         TreeMap<Short, String> extra = new TreeMap<Short, String>();
         extra.put(ALLOW_UPLOAD_IN_CHANNEL, permission);
         return generateDynamicKey(appID, appCertificate, channel, ts, salt, uid, expiredTs, extra, IN_CHANNEL_PERMISSION);
+    }
+
+    public boolean fromString(String key) {
+        if (!key.substring(0, 3).equals(version)) {
+            return false;
+        }
+
+        byte[] rawContent = new Base64().decode(key.substring(3));
+        if (rawContent.length == 0) {
+            return false;
+        }
+
+        content = new DynamicKey5Content();
+        ByteBuf buffer = new ByteBuf(rawContent);
+        content.unmarshall(buffer);
+        return true;
     }
 
     static class Message implements Packable {

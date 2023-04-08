@@ -3,19 +3,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".BookAppointment">
+
+    <ImageButton
+        android:id="@+id/back_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/white"
+        android:src="@drawable/back_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ifNotBooked"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/ifNotBooked"
-        android:visibility="gone">
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/back_btn">
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnDateTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select time"
             android:backgroundTint="@color/blue"
+            android:text="Select time"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -83,7 +97,7 @@
                 android:layoutDirection="rtl"
                 android:text="Offline"
                 android:textColor="@color/blue"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
         </RadioGroup>
 
@@ -102,10 +116,11 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ifBooked"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/ifBooked"
-        android:visibility="visible">
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/back_btn">
 
         <TextView
             android:id="@+id/textView4"
@@ -133,8 +148,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.43"
-            />
+            app:layout_constraintVertical_bias="0.43" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

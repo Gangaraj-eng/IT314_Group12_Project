@@ -1,18 +1,6 @@
 package com.mypackage.it314_health_center.videocalling.AroraFiles;
 
 public class RtcTokenBuilder2 {
-    public enum Role {
-        ROLE_PUBLISHER(1),
-        ROLE_SUBSCRIBER(2),
-        ;
-
-        public int initValue;
-
-        Role(int initValue) {
-            this.initValue = initValue;
-        }
-    }
-
     /**
      * Build the RTC token with uid.
      *
@@ -198,6 +186,18 @@ public class RtcTokenBuilder2 {
         } catch (Exception e) {
             e.printStackTrace();
             return "";
+        }
+    }
+
+    public enum Role {
+        ROLE_PUBLISHER(1),
+        ROLE_SUBSCRIBER(2),
+        ;
+
+        public int initValue;
+
+        Role(int initValue) {
+            this.initValue = initValue;
         }
     }
 }
