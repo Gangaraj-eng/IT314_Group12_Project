@@ -430,7 +430,7 @@
                 </LinearLayout>
 
 
-                <include layout="@layout/content_profile" />
+                <include layout="@layout/activity_content_profile_page" />
             </LinearLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
