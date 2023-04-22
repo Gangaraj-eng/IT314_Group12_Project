@@ -29,13 +29,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/blue"
-            android:text="Select time"
+            android:text="Select date and time"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.516"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.111" />
+            app:layout_constraintVertical_bias="0.096" />
 
         <TextView
             android:id="@+id/showDateTime"
@@ -54,14 +54,47 @@
         <EditText
             android:id="@+id/problemDescription"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="70dp"
             android:layout_marginHorizontal="20dp"
-            android:hint="Problem Description"
+            android:hint="Problem Description (Optional)"
             android:inputType="textMultiLine"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/showDateTime"
-            app:layout_constraintVertical_bias="0.137"
-            tools:layout_editor_absoluteX="0dp" />
+            app:layout_constraintVertical_bias="0.088"
+            tools:layout_editor_absoluteX="20dp" />
+
+        <TextView
+            android:id="@+id/doctor_type_label"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="select doctor type"
+            app:layout_constraintBottom_toTopOf="@+id/doctor_type_dropdown"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/black"
+            android:textSize="18sp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/doctor_type_dropdown"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            app:boxStrokeColor="@color/blue"
+            app:endIconTint="@color/blue"
+            app:layout_constraintBottom_toTopOf="@+id/radio_grp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/problemDescription">
+
+            <AutoCompleteTextView
+                android:id="@+id/doctor_type_selector"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="General physician" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <RadioGroup
             android:id="@+id/radio_grp"
@@ -72,10 +105,10 @@
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/problemDescription"
-            app:layout_constraintVertical_bias="0.217">
+            app:layout_constraintVertical_bias="0.513">
 
             <RadioButton
                 android:id="@+id/radio_online"
@@ -109,10 +142,10 @@
             android:text="Book Appointment"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/radio_grp"
-            app:layout_constraintVertical_bias="0.274" />
+            app:layout_constraintVertical_bias="0.482" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout

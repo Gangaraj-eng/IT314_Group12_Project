@@ -21,6 +21,17 @@
         <item>Doctor</item>
         <item>Manager</item>
     </string-array>
+
+    <string-array name="doctor_types">
+        <item >General Physician</item>
+        <item>Orthopedic</item>
+        <item>Ophthalmologist</item>
+        <item>Dentist</item>
+        <item>Cardiologist</item>
+        <item>Neurologist</item>
+        <item>Psychiatrist</item>
+    </string-array>
+
     <string name="title_activity_main">MainActivity</string>
     <string name="app_title">Healthify</string>
     <string name="verifyingMessage">Verifying device…</string>
