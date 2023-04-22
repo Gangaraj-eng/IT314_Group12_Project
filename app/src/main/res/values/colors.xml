@@ -6,8 +6,22 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
+    <color name="green_1">#33cc33</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#FF4799FA</color>
     <color name="light_text">#41bbe8</color>
     <color name="gray">#F1F1F1</color>
+    <color name="background">#ffffff</color>
+    <color name="background2">#ffffff</color>
+    <color name="text_color">#000000</color>
+    <color name="w6">#D4DFDF</color>
+    <color name="w1">#FFB82F</color>
+    <color name="w2">#CC6DB2</color>
+    <color name="w3">#B6C236</color>
+    <color name="w4">#0F2DCA</color>
+    <color name="w5">#31A481</color>
+    <color name="appbar">#FF4799FA</color>
+    <color name="statusBar">@color/blue</color>
+
+
 </resources>

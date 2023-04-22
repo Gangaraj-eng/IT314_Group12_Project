@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- The Agora SDK requires Bluetooth permissions in case users are using Bluetooth devices. -->
@@ -22,6 +23,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IT314_Health_Center"
         tools:targetApi="31">
+        <activity
+            android:name=".patient_side.ActivitySettings"
+            android:exported="false" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+        <activity
+            android:name=".patient_side.PDFViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityUpdateMedicalHistory"
+            android:exported="false" />
         <activity
             android:name=".patient_side.Activtiy_ImageViewr"
             android:exported="false" />
@@ -44,23 +65,19 @@
             android:name=".PatientHomePage"
             android:exported="false"
             android:label="@string/title_activity_main"
-            android:theme="@style/BlueStatusBar" />
+            android:theme="@style/BlueStatusBar"/>
         <activity
             android:name=".startups.UserDetailsActivity"
             android:exported="true"
-            android:theme="@style/BlueStatusBar">
-
-        </activity>
+            android:theme="@style/BlueStatusBar" />
         <activity
             android:name=".startups.Login"
             android:exported="true"
-            android:theme="@style/BlueStatusBar">
-
-        </activity>
+            android:theme="@style/BlueStatusBar" />
         <activity
             android:name=".startups.Signup"
             android:exported="true"
-            android:theme="@style/BlueStatusBar"></activity>
+            android:theme="@style/BlueStatusBar" />
         <activity
             android:name=".EmailNotVerified"
             android:exported="false" />
@@ -77,8 +94,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
     </application>
 
 </manifest>

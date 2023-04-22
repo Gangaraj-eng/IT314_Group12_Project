@@ -9,13 +9,14 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.IT314_Health_Center.AppBarOverlay">
+        android:theme="@style/Theme.IT314_Health_Center.AppBarOverlay"
+        >
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/blue"
+            android:background="@color/appbar"
             app:popupTheme="@style/Theme.IT314_Health_Center.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>

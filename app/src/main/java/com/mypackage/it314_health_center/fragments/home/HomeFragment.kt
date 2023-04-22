@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.card.MaterialCardView
+import com.mypackage.it314_health_center.ActivityUpdateMedicalHistory
 import com.mypackage.it314_health_center.BookAppointment
 import com.mypackage.it314_health_center.R
 import com.mypackage.it314_health_center.databinding.FragmentHomeBinding
@@ -24,6 +25,7 @@ class HomeFragment : Fragment() {
     private lateinit var myprescriptionview: MaterialCardView
     private lateinit var bookAppointmentView: MaterialCardView
     private lateinit var online_consultation_view: MaterialCardView
+    private lateinit var updateMedicalHistoryView: MaterialCardView
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,6 +39,7 @@ class HomeFragment : Fragment() {
         myprescriptionview = root.findViewById(R.id.my_prescription_view)
         bookAppointmentView = root.findViewById(R.id.book_appointment_view)
         online_consultation_view = root.findViewById(R.id.online_consultation_view)
+        updateMedicalHistoryView=root.findViewById(R.id.update_medical_hist)
         myprescriptionview.setOnClickListener {
             startActivity(Intent(context, my_prescriptions::class.java))
 //            (context as Activity).finish()
@@ -46,6 +49,9 @@ class HomeFragment : Fragment() {
         }
         online_consultation_view.setOnClickListener {
             startActivity(Intent(context, PatientOnlineConsultation::class.java))
+        }
+        updateMedicalHistoryView.setOnClickListener {
+            startActivity(Intent(context,ActivityUpdateMedicalHistory::class.java))
         }
         return root
     }

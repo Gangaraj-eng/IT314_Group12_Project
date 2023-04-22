@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.mypackage.it314_health_center.Doctor_Homepage
@@ -14,6 +15,9 @@ import com.mypackage.it314_health_center.helpers.dbPaths
 class StartScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val currMode=getSharedPreferences(dbPaths.SharedPreference, MODE_PRIVATE).getInt(dbPaths.Current_Mode,
+            AppCompatDelegate.getDefaultNightMode())
+
         // StartScreen will be displayed here
 
         // Display start screen for 2 seconds and then redirect to HomeScreen or Login page
@@ -24,6 +28,7 @@ class StartScreen : AppCompatActivity() {
 
             // get the Firebase Database reference instance
             val mdbRef=FirebaseDatabase.getInstance().reference
+
 
             // check if user is logged in
             if(mAuth.currentUser!=null)
@@ -39,6 +44,13 @@ class StartScreen : AppCompatActivity() {
                                startActivity(intent)
 
                                finish() // close the current activity
+                               if(currMode==AppCompatDelegate.MODE_NIGHT_YES)
+                               {
+                                   AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                               }
+                               else{
+                                   AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                               }
                            }
                            else{
 
@@ -54,6 +66,13 @@ class StartScreen : AppCompatActivity() {
                                            startActivity(intent)
 
                                            finish() // close the current activity
+                                           if(currMode==AppCompatDelegate.MODE_NIGHT_YES)
+                                           {
+                                               AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                                           }
+                                           else{
+                                               AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                                           }
                                        }
                                        else{
 
@@ -63,6 +82,13 @@ class StartScreen : AppCompatActivity() {
                                            startActivity(intent)
 
                                            finish() // close the current activity
+                                           if(currMode==AppCompatDelegate.MODE_NIGHT_YES)
+                                           {
+                                               AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                                           }
+                                           else{
+                                               AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                                           }
                                        }
                                    }
                            }
@@ -75,9 +101,20 @@ class StartScreen : AppCompatActivity() {
                 startActivity(intent)
 
                 finish() // close the current activity
+                if(currMode==AppCompatDelegate.MODE_NIGHT_YES)
+                {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                }
+                else{
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                }
 
             }
         },2000) // 2000 ms=2 seconds
 
+    }
+
+    override fun recreate() {
+        finish()
     }
 }

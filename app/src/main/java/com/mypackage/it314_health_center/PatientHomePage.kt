@@ -13,6 +13,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.mypackage.it314_health_center.databinding.ActivityMainBinding
+import com.mypackage.it314_health_center.patient_side.ActivitySettings
 import com.mypackage.it314_health_center.startups.Login
 
 class PatientHomePage : AppCompatActivity() {
@@ -53,6 +54,11 @@ class PatientHomePage : AppCompatActivity() {
             return@setOnMenuItemClickListener true
         }
 
+        navView.menu.findItem(R.id.nav_settings).setOnMenuItemClickListener {
+            startActivity(Intent(this,ActivitySettings::class.java))
+            navController.navigate(R.id.nav_home)
+            return@setOnMenuItemClickListener true
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

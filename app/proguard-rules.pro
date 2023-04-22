@@ -12,6 +12,7 @@
 #   public *;
 #}
 -keep class io.agora.**{*;}
+-keep class com.shockwave.**
 
 # Uncomment this to preserve the line number information for
 # debugging stack traces.

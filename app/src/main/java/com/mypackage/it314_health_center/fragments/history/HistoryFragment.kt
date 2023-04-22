@@ -4,14 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.mypackage.it314_health_center.databinding.FragmentSlideshowBinding
+import com.mypackage.it314_health_center.databinding.AppointmentHistoryBinding
 
 class HistoryFragment : Fragment() {
 
-    private var _binding: FragmentSlideshowBinding? = null
+    private var _binding: AppointmentHistoryBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -25,14 +24,10 @@ class HistoryFragment : Fragment() {
         val slideshowViewModel =
             ViewModelProvider(this).get(HistoryViewModel::class.java)
 
-        _binding = FragmentSlideshowBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        _binding = AppointmentHistoryBinding.inflate(inflater, container, false)
 
-        val textView: TextView = binding.textSlideshow
-        slideshowViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+
+        return binding.root
     }
 
     override fun onDestroyView() {

@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.text.TextUtils
-import android.util.Patterns
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
@@ -33,6 +32,8 @@ import com.mypackage.it314_health_center.helpers.dbPaths
 import com.poovam.pinedittextfield.PinField
 import com.poovam.pinedittextfield.SquarePinField
 import java.util.concurrent.TimeUnit
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 
 
 class Login : AppCompatActivity() {
@@ -207,14 +208,27 @@ class Login : AppCompatActivity() {
 
     }
 
+    companion object{
+
     // check if email is valid
-    private fun isValidMail(email: String): Boolean {
-        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
+     fun isValidMail(email: String): Boolean {
+        val emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." +
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                "A-Z]{2,7}$"
+
+        val pat: Pattern = Pattern.compile(emailRegex)
+        return if (email == null) false else pat.matcher(email).matches()
     }
 
     // check if mobile is valid
-    private fun isValidMobile(phone: String): Boolean {
-        return Patterns.PHONE.matcher(phone).matches()
+     fun isValidMobile(phone: String): Boolean {
+        val p = Pattern.compile("^\\d{10}$")
+
+        val m: Matcher = p.matcher(phone)
+
+        return m.matches()
+    }
     }
 
     private fun login(email: String, password: String) {

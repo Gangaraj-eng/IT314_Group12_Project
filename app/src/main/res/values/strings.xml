@@ -17,7 +17,7 @@
     <string name="verification_message">Verify the email and Log in with your credentials. If you can\'t find the email in your mailbox, kindly check in spam folder</string>
 
     <string-array name="user_types">
-        <item >Patient</item>
+        <item>Patient</item>
         <item>Doctor</item>
         <item>Manager</item>
     </string-array>
