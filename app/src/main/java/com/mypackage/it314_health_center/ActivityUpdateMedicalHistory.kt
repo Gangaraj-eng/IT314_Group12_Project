@@ -164,6 +164,9 @@ class ActivityUpdateMedicalHistory : AppCompatActivity() {
                             .addOnSuccessListener {
                                 Log.d("123","Uploaded")
                             }
+                        uploadSuccessView.visibility=View.VISIBLE
+                        uploadButton.visibility=View.GONE
+                        progressBar.visibility=View.GONE
                     }
                 }.addOnProgressListener {
                     val progress: Double = (100.0 * it.bytesTransferred) / it.totalByteCount
@@ -181,6 +184,7 @@ class ActivityUpdateMedicalHistory : AppCompatActivity() {
                 fileType=dbPaths.REPORT_IMAGE
                 FileURI=fileuri
                 uploadButton.visibility=View.VISIBLE
+                uploadSuccessView.visibility=View.GONE
             }
         }
     private var pdfLauncher=
@@ -192,6 +196,7 @@ class ActivityUpdateMedicalHistory : AppCompatActivity() {
                 fileType=dbPaths.REPORT_PDF
                 FileURI=fileuri
                 uploadButton.visibility=View.VISIBLE
+                uploadSuccessView.visibility=View.GONE
             }
         }
 

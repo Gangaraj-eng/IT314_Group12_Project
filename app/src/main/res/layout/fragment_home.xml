@@ -188,6 +188,7 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="150dp"
                     android:layout_height="170dp"
+                    android:id="@+id/download_reports"
                     android:layout_gravity="center"
                     android:layout_marginVertical="10dp"
                     app:cardBackgroundColor="@color/w4"
@@ -292,7 +293,7 @@
                     android:layout_weight="1"></Space>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/materialCardView5"
+                    android:id="@+id/orderMedicines"
                     android:layout_width="150dp"
                     android:layout_height="170dp"
                     android:layout_gravity="center"

@@ -14,6 +14,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.app.ActivityOptionsCompat
@@ -21,6 +22,9 @@ import androidx.core.content.FileProvider
 import androidx.core.graphics.drawable.toBitmap
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.card.MaterialCardView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.core.Repo
 import com.google.firebase.storage.FirebaseStorage
 import com.mypackage.it314_health_center.R
@@ -56,6 +60,28 @@ class medical_history_reports_adapter(val context: Context,val report_list:Array
         cholder.rtime.text=report_list[position].uploadedOnTime
         cholder.reportName.text=report_list[position].reportName
         cholder.reportType.text=report_list[position].reportType
+        cholder.parent.setOnLongClickListener  {
+            Log.d("123","Clicked")
+                val  dialog=Dialog(context)
+            dialog.setContentView(R.layout.delete_history_dailong)
+            dialog.findViewById<Button>(R.id.cancel_btn).setOnClickListener {
+                dialog.dismiss()
+
+            }
+            dialog.findViewById<Button>(R.id.delete_btn)
+                .setOnClickListener {
+                    FirebaseDatabase.getInstance().reference.child(dbPaths.MedicalHistory)
+                        .child(FirebaseAuth.getInstance().uid.toString())
+                        .child(report_list[position].reportId).removeValue()
+                        .addOnSuccessListener {
+                            report_list.removeAt(position)
+                            this.notifyItemRemoved(position)
+                            dialog.dismiss()
+                        }
+                }
+            dialog.show()
+return@setOnLongClickListener true
+        }
         if(holder.itemViewType== TYPE_REPORT)
         {
             cholder.reportImage.setImageResource(R.drawable.pdf_image)
@@ -92,6 +118,7 @@ class medical_history_reports_adapter(val context: Context,val report_list:Array
         val reportType:TextView=itemview.findViewById(R.id.report_type)
         val rdate:TextView=itemview.findViewById(R.id.ru_data)
         val rtime:TextView=itemview.findViewById(R.id.ru_time)
+        val parent:MaterialCardView=itemview.findViewById(R.id.medical_report_parent)
     }
     override fun getItemViewType(position: Int): Int {
          if(report_list[position].reportType==dbPaths.REPORT_IMAGE)

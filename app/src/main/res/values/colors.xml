@@ -23,6 +23,7 @@
     <color name="w5">#31A481</color>
     <color name="appbar">#FF4799FA</color>
     <color name="statusBar">@color/blue</color>
+    <color name="text_view_2">#282e32</color>
 
 
 </resources>

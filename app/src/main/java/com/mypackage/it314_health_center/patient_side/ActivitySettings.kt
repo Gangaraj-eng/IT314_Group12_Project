@@ -1,8 +1,10 @@
 package com.mypackage.it314_health_center.patient_side
 
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
+import android.widget.Switch
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
 import com.mypackage.it314_health_center.R
@@ -12,7 +14,7 @@ class ActivitySettings : AppCompatActivity() {
     private lateinit var mode_change:SwitchCompat
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.settings)
+        setContentView(R.layout.activity_settings)
 
         val currMode=getSharedPreferences(dbPaths.SharedPreference, MODE_PRIVATE).getInt(dbPaths.Current_Mode,AppCompatDelegate.getDefaultNightMode())
 
@@ -43,6 +45,20 @@ class ActivitySettings : AppCompatActivity() {
                 getSharedPreferences(dbPaths.SharedPreference, MODE_PRIVATE).edit()
                     .putInt(dbPaths.Current_Mode,AppCompatDelegate.MODE_NIGHT_NO).apply()
             }
+        }
+
+        val notification_enable: SwitchCompat = findViewById(R.id.notifications_switch)
+
+        if (notification_enable.isChecked) {
+            val mPrefs = getSharedPreferences("settings", 0)
+            val prefsEditor: SharedPreferences.Editor = mPrefs.edit();
+            prefsEditor.putString(dbPaths.NOTIFICATION_ENABLED, "1");
+            prefsEditor.apply()
+        } else {
+            val mPrefs = getSharedPreferences("Settings", 0)
+            val prefsEditor: SharedPreferences.Editor = mPrefs.edit();
+            prefsEditor.putString(dbPaths.NOTIFICATION_ENABLED, "0");
+            prefsEditor.apply()
         }
     }
 

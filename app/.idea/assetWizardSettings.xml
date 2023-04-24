@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$PROJECT_DIR$/../../../../../../rajini%20bopparam/AppData/Local/Android/Sdk/icons/material/materialicons/file_upload/baseline_file_upload_24.xml" />
+                                      <entry key="url" value="file:/$PROJECT_DIR$/../../../../../../rajini%20bopparam/AppData/Local/Android/Sdk/icons/material/materialicons/brightness_medium/baseline_brightness_medium_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,8 +28,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="baseline_file_picker_24" />
-                            <entry key="sourceFile" value="C:\Users\rajini bopparam\sem_6\IT314_Software_engineering\Project\Android\app" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="download__2_" />
+                            <entry key="sourceFile" value="C:\Users\rajini bopparam\Downloads\download-_2_.svg" />
                           </map>
                         </option>
                       </PersistentState>

@@ -22,5 +22,6 @@
     <color name="w5">#0d6945</color>
     <color name="appbar">#555757</color>
     <color name="statusBar">#555757</color>
+    <color name="text_view_2">@color/white</color>
 
 </resources>

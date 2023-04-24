@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".videocalling.DoctorSideOnlineConference">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
         <ImageButton
             android:id="@+id/back_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="10dp"
             android:layout_marginTop="20dp"
             android:background="@color/white"
             android:src="@drawable/back_button" />
 
         <FrameLayout
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/local_video_view_container"
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -28,41 +31,90 @@
             android:layout_marginTop="6dp"
             android:layout_marginEnd="6dp"
             android:layout_marginBottom="6dp"
-            android:background="@android:color/darker_gray" />
+            android:background="@drawable/video_call_background_local" />
 
         <FrameLayout
             android:id="@+id/remote_video_view_container"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:layout_below="@+id/local_video_view_container"
+            app:layout_constraintTop_toBottomOf="@id/local_video_view_container"
+            android:layout_height="0dp"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="6dp"
             android:layout_marginTop="6dp"
             android:layout_marginEnd="6dp"
+            app:layout_constraintBottom_toTopOf="@id/buttons_view"
             android:layout_marginBottom="6dp"
-            android:background="@android:color/darker_gray" />
+            android:background="@drawable/video_call_background" />
 
-        <Button
-            android:id="@+id/JoinButton"
+        <LinearLayout
+            android:id="@+id/buttons_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/remote_video_view_container"
-            android:layout_alignStart="@id/remote_video_view_container"
-            android:layout_marginStart="59dp"
-            android:layout_marginTop="47dp"
-            android:onClick="joinChannel"
-            android:text="start" />
+            android:layout_centerInParent="true"
+            android:layout_margin="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="26dp">
 
-        <Button
-            android:id="@+id/LeaveButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/remote_video_view_container"
-            android:layout_alignEnd="@id/remote_video_view_container"
-            android:layout_marginTop="47dp"
-            android:layout_marginEnd="92dp"
-            android:onClick="leaveChannel"
-            android:text="Leave" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:orientation="vertical">
 
-    </RelativeLayout>
-</ScrollView>
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/JoinButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:onClick="joinChannel"
+                    android:layout_marginHorizontal="25dp"
+                    android:backgroundTint="@color/green_1"
+                    android:src="@drawable/baseline_join_meet"
+                    app:tint="@android:color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:text="Join meet"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:orientation="vertical">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/LeaveButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="25dp"
+                    android:enabled="false"
+                    android:onClick="leaveChannel"
+                    android:backgroundTint="#ff0000"
+                    android:src="@drawable/baseline_leave_call"
+                    android:tint="@android:color/white"
+                    app:tint="@android:color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:text="Leave meet"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -35,7 +35,7 @@ class StartScreen : AppCompatActivity() {
             {
                     val userId=mAuth.currentUser!!.uid
                     // check if user is doctor
-                   mdbRef.child(dbPaths.DOCTORS).child(userId).get()
+                   mdbRef.child(dbPaths.DoctorIds).child(userId).get()
                        .addOnSuccessListener {
                            if(it.exists())
                            {

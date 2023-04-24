@@ -10,4 +10,8 @@ object dbPaths {
     const val MedicalHistory="medical history"
     const val SharedPreference="IT314SharedPref"
     const val Current_Mode="appthememode"
+    const val LabReports="Lab reports"
+    const val NOTIFICATION_ENABLED="0"
+    const val DoctorIds="doctor id"
+    const val APPOINTMENTS="appointments"
 }

@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EBF5FB"
+    android:background="@color/background2"
     tools:context=".patient_side.my_prescriptions">
 
     <LinearLayout
         android:id="@+id/lin1"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#4799FA"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/appbar"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="20dp"
-            android:background="#4799FA"
+            android:background="@color/pinFieldLibraryTransparent"
             android:src="@drawable/arrow_1" />
 
         <TextView
@@ -51,6 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:textStyle="bold"
             android:text="Your prescriptions"
             android:textColor="@color/black"
             android:textSize="18dp" />

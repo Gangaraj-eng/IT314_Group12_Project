@@ -1,7 +1,9 @@
 package com.mypackage.it314_health_center.videocalling
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -10,9 +12,12 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.mypackage.it314_health_center.*
@@ -41,7 +46,7 @@ private var remoteSurfaceView: SurfaceView? = null
 
 class PatientOnlineConsultation : AppCompatActivity() {
 
-    private lateinit var token: String
+    private var token: String?=null
     private lateinit var channelName: String
     private val PERMISSION_REQ_ID: Int = 22
     private val REQUESTED_PERMISSIONS: Array<String> = arrayOf(
@@ -124,6 +129,11 @@ class PatientOnlineConsultation : AppCompatActivity() {
     }
 
     fun joinChannel(view: View?) {
+        if(token==null)
+        {
+            showMessage("Appointment not yet started")
+            return
+        }
         if (checkSelfPermission()) {
             val options = ChannelMediaOptions()
 
@@ -139,6 +149,8 @@ class PatientOnlineConsultation : AppCompatActivity() {
             // Join the channel with a temp token.
             // You need to specify the user ID yourself, and ensure that it is unique in the channel.
             agoraEngine!!.joinChannel(token, channelName, uid, options)
+            findViewById<FloatingActionButton>(R.id.JoinButton).isEnabled=false
+            findViewById<FloatingActionButton>(R.id.LeaveButton).isEnabled=true
         } else {
             Toast.makeText(applicationContext, "Permissions was not granted", Toast.LENGTH_SHORT)
                 .show()
@@ -156,6 +168,7 @@ class PatientOnlineConsultation : AppCompatActivity() {
             // Stop local video rendering.
             if (localSurfaceView != null) localSurfaceView!!.visibility = View.GONE
             isJoined = false
+            finish()
         }
     }
 
@@ -179,22 +192,35 @@ class PatientOnlineConsultation : AppCompatActivity() {
             runOnUiThread { remoteSurfaceView!!.visibility = View.GONE }
         }
     }
-    private lateinit var noappointments_view: TextView
+    private lateinit var noappointments_view: LinearLayout
+
     private lateinit var appointment_view: CardView
+    private lateinit var loading:ProgressBar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_online_consultation)
+
+        window.statusBarColor= Color.WHITE
+        WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars = true
         if (!checkSelfPermission()) {
             ActivityCompat.requestPermissions(this, REQUESTED_PERMISSIONS, PERMISSION_REQ_ID);
         }
         noappointments_view = findViewById(R.id.no_appointments)
         appointment_view = findViewById(R.id.current_appointment_view)
+        loading=findViewById(R.id.loading_icon)
+        findViewById<Button>(R.id.book_new_appointment).setOnClickListener {
+            startActivity(Intent(this,BookAppointment::class.java))
+            finish()
+        }
+
         val start_btn = appointment_view.findViewById<MaterialButton>(R.id.start_apt_button)
         mdbRef = FirebaseDatabase.getInstance().reference
         mAuth = FirebaseAuth.getInstance()
         start_btn.setOnClickListener {
             appointment_view.visibility = View.GONE
-            findViewById<RelativeLayout>(R.id.video_calling_view).visibility = View.VISIBLE
+            findViewById<ConstraintLayout>(R.id.video_calling_view).visibility = View.VISIBLE
+            findViewById<FrameLayout>(R.id.local_video_view_container).visibility=View.VISIBLE
+            findViewById<LinearLayout>(R.id.buttons_view).visibility = View.VISIBLE
         }
         findViewById<ImageButton>(R.id.back_btn).setOnClickListener {
             finish()
@@ -206,6 +232,7 @@ class PatientOnlineConsultation : AppCompatActivity() {
                     for (aptx in it.children) {
                         if (aptx.child("type").value == "Offline")
                             return@addOnSuccessListener
+                        loading.visibility=View.GONE
                         noappointments_view.visibility = View.GONE
                         appointment_view.visibility = View.VISIBLE
                         var apt = aptx.getValue(BasicAppiontment::class.java)
@@ -239,6 +266,7 @@ class PatientOnlineConsultation : AppCompatActivity() {
 
 
                 } else {
+                    loading.visibility=View.GONE
                     noappointments_view.visibility = View.VISIBLE
                     appointment_view.visibility = View.GONE
                 }
@@ -254,7 +282,8 @@ class PatientOnlineConsultation : AppCompatActivity() {
                 }
 
                 override fun onChildRemoved(snapshot: DataSnapshot) {
-                    generate_token()
+                   token=null
+                    leaveChannel(start_btn)
                 }
 
                 override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {

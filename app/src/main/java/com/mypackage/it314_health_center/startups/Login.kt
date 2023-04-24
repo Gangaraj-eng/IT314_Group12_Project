@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
@@ -296,7 +297,7 @@ class Login : AppCompatActivity() {
                     } else if (userTypeView.text.toString() == doctor) {
 
                         //check if really a doctors
-                        mdbRef.child(dbPaths.DOCTORS).child(user!!.uid).get()
+                        mdbRef.child(dbPaths.DoctorIds).child(user!!.uid).get()
                             .addOnSuccessListener {
                                 if (it.exists()) {
 

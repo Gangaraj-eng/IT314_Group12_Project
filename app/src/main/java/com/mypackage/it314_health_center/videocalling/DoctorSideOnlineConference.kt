@@ -2,16 +2,20 @@ package com.mypackage.it314_health_center.videocalling
 
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.SurfaceView
 import android.view.View
+import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -147,6 +151,8 @@ class DoctorSideOnlineConference : AppCompatActivity() {
             Toast.makeText(applicationContext, "Permissions was not granted", Toast.LENGTH_SHORT)
                 .show()
         }
+        findViewById<FloatingActionButton>(R.id.LeaveButton).isEnabled=true
+        findViewById<FloatingActionButton>(R.id.JoinButton).isEnabled=false
     }
 
     private lateinit var mdbref: DatabaseReference
@@ -164,6 +170,9 @@ class DoctorSideOnlineConference : AppCompatActivity() {
             if (localSurfaceView != null) localSurfaceView!!.visibility = View.GONE
             isJoined = false
         }
+        mdbref.child("meeting_rooms").child(patient_ID).removeValue()
+        findViewById<FloatingActionButton>(R.id.LeaveButton).isEnabled=false
+        findViewById<FloatingActionButton>(R.id.JoinButton).isEnabled=true
     }
 
     private val mRtcEventHandler: IRtcEngineEventHandler = object : IRtcEngineEventHandler() {
@@ -178,6 +187,7 @@ class DoctorSideOnlineConference : AppCompatActivity() {
         override fun onJoinChannelSuccess(channel: String, uid: Int, elapsed: Int) {
             isJoined = true
             showMessage("Joined Channel $channel")
+
         }
 
         override fun onUserOffline(uid: Int, reason: Int) {
@@ -189,6 +199,10 @@ class DoctorSideOnlineConference : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_doctor_side_online_conference)
+
+        window.statusBarColor= Color.WHITE
+        WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars = true
+
         patient_ID = intent.getStringExtra("patient_id") as String
         if (!checkSelfPermission()) {
             ActivityCompat.requestPermissions(this, REQUESTED_PERMISSIONS, PERMISSION_REQ_ID);
@@ -230,5 +244,11 @@ class DoctorSideOnlineConference : AppCompatActivity() {
         }.start()
     }
 
+    override fun finish() {
+        super.finish()
+        mdbref.child("meeting_rooms").child(patient_ID)
+            .removeValue().addOnCompleteListener {
+            }
+    }
 
 }

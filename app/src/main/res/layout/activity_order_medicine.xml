@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-  >
+    >
 
     <LinearLayout
         android:id="@+id/lin1"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:background="#4799FA"
+        android:background="@color/white"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
@@ -18,8 +18,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
+            app:tint="@color/black"
             android:layout_marginTop="15dp"
-            android:background="#4799FA"
+            android:background="@color/white"
             android:src="@drawable/arrow_1" />
 
         <TextView
@@ -28,8 +29,9 @@
             android:layout_gravity="center"
             android:layout_marginLeft="65dp"
             android:text="Order Medicine"
-            android:textColor="@color/white"
-            android:textSize="22sp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -103,112 +105,102 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView4535"
-            android:layout_width="120dp"
-            android:layout_height="180dp"
-            android:layout_marginTop="420dp"
-            android:layout_marginLeft="-400dp"
-            app:cardBackgroundColor="#FF6A6A"
-            app:cardCornerRadius="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/materialCardView4"
-            app:layout_constraintEnd_toStartOf="@+id/materialCardView"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="28dp"
-                android:src="@drawable/download_1" />
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/capture_picture"
+                android:layout_width="120dp"
+                android:layout_height="180dp"
+                android:layout_marginTop="420dp"
+                android:layout_marginLeft="-400dp"
+                app:cardBackgroundColor="#FF6A6A"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/materialCardView4"
+                app:layout_constraintEnd_toStartOf="@+id/materialCardView"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5">
 
-            <TextView
-                android:layout_width="190dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center_horizontal"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="7dp"
-                android:text="Take a Picture"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="16dp" />
-        </com.google.android.material.card.MaterialCardView>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="28dp"
+                    android:src="@drawable/download_1" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView7"
-            android:layout_width="120dp"
-            android:layout_height="180dp"
-            android:layout_marginTop="420dp"
-            android:layout_marginLeft="15dp"
-            app:cardBackgroundColor="#9ABDF2"
-            app:cardCornerRadius="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/materialCardView4"
-            app:layout_constraintEnd_toStartOf="@+id/materialCardView"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5">
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="7dp"
+                    android:text="Take a Picture"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="16dp" />
+            </com.google.android.material.card.MaterialCardView>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="-5dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="28dp"
-                android:src="@drawable/group_70" />
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/upload_image"
+                android:layout_width="120dp"
+                android:layout_height="180dp"
+                android:layout_marginTop="420dp"
+                android:layout_marginLeft="15dp"
+                app:cardBackgroundColor="#9ABDF2"
+                app:cardCornerRadius="10dp"
+                >
 
-            <TextView
-                android:layout_width="190dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center_horizontal"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="7dp"
-                android:text="Upload Image"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="16dp" />
-        </com.google.android.material.card.MaterialCardView>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="-5dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="28dp"
+                    android:src="@drawable/group_70" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView8"
-            android:layout_width="120dp"
-            android:layout_height="180dp"
-            android:layout_marginTop="420dp"
-            android:layout_marginLeft="15dp"
-            app:cardBackgroundColor="#6D7CCC"
-            app:cardCornerRadius="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/materialCardView4"
-            app:layout_constraintEnd_toStartOf="@+id/materialCardView"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5">
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="7dp"
+                    android:text="Upload Image"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="16dp" />
+            </com.google.android.material.card.MaterialCardView>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="5dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="28dp"
-                android:src="@drawable/group__1_" />
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/uploadpdf"
+                android:layout_width="120dp"
+                android:layout_height="180dp"
+                android:layout_marginTop="420dp"
+                android:layout_marginLeft="15dp"
+                app:cardBackgroundColor="#6D7CCC"
+                app:cardCornerRadius="10dp"
+                >
 
-            <TextView
-                android:layout_width="190dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center_horizontal"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="7dp"
-                android:text="Upload PDF"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="16dp" />
-        </com.google.android.material.card.MaterialCardView>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="28dp"
+                    android:src="@drawable/group__1_" />
 
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="7dp"
+                    android:text="Upload PDF"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="16dp" />
+            </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

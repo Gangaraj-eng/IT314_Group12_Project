@@ -4,22 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EBF5FB"
-    tools:context=".PatientHomePage">
+    android:background="#f4f4f4"
+    tools:context=".patient_side.ActivityDownloadReports">
 
     <LinearLayout
         android:id="@+id/lin1"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="#4799FA"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/appbar"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
+            android:id="@+id/back_btn"
             android:layout_marginTop="20dp"
-            android:background="#4799FA"
+            android:background="@color/pinFieldLibraryTransparent"
             android:src="@drawable/arrow_1" />
 
         <TextView
@@ -42,6 +43,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/reports_list"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/lin1">
@@ -50,6 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:textStyle="bold"
             android:text="Your Reports"
             android:textColor="@color/black"
             android:textSize="18dp" />
