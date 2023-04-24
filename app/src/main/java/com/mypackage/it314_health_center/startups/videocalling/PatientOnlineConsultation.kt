@@ -1,4 +1,4 @@
-package com.mypackage.it314_health_center.videocalling
+package com.mypackage.it314_health_center.startups.videocalling
 
 import android.annotation.SuppressLint
 import android.content.Intent

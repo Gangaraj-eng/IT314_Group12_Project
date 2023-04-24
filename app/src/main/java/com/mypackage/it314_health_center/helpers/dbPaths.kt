@@ -11,7 +11,7 @@ object dbPaths {
     const val SharedPreference="IT314SharedPref"
     const val Current_Mode="appthememode"
     const val LabReports="Lab reports"
-    const val NOTIFICATION_ENABLED="0"
+    const val NOTIFICATION_ENABLED="notification_enabled"
     const val DoctorIds="doctor id"
     const val APPOINTMENTS="appointments"
 }

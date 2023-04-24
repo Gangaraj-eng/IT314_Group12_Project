@@ -1,6 +1,6 @@
-package com.mypackage.it314_health_center.videocalling.AroraFiles;
+package com.mypackage.it314_health_center.startups.videocalling.AroraFiles;
 
-import static com.mypackage.it314_health_center.videocalling.AroraFiles.Utils.crc32;
+import static com.mypackage.it314_health_center.startups.videocalling.AroraFiles.Utils.crc32;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

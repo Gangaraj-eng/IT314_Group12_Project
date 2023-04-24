@@ -12,6 +12,7 @@ import com.mypackage.it314_health_center.helpers.dbPaths
 
 class ActivitySettings : AppCompatActivity() {
     private lateinit var mode_change:SwitchCompat
+    private lateinit var notification_enable:SwitchCompat
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
@@ -19,11 +20,12 @@ class ActivitySettings : AppCompatActivity() {
         val currMode=getSharedPreferences(dbPaths.SharedPreference, MODE_PRIVATE).getInt(dbPaths.Current_Mode,AppCompatDelegate.getDefaultNightMode())
 
         mode_change = findViewById(R.id.mode_switch)
+        notification_enable = findViewById(R.id.notifications_switch)
+
 
         findViewById<ImageButton>(R.id.back_btn).setOnClickListener {
             finish()
         }
-
 
         if(currMode==AppCompatDelegate.MODE_NIGHT_YES)
         {
@@ -47,8 +49,6 @@ class ActivitySettings : AppCompatActivity() {
             }
         }
 
-        val notification_enable: SwitchCompat = findViewById(R.id.notifications_switch)
-
         if (notification_enable.isChecked) {
             val mPrefs = getSharedPreferences("settings", 0)
             val prefsEditor: SharedPreferences.Editor = mPrefs.edit();
@@ -60,8 +60,26 @@ class ActivitySettings : AppCompatActivity() {
             prefsEditor.putString(dbPaths.NOTIFICATION_ENABLED, "0");
             prefsEditor.apply()
         }
-    }
 
+        val notification_currmode = getSharedPreferences(dbPaths.SharedPreference, MODE_PRIVATE).getString(dbPaths.NOTIFICATION_ENABLED, "1")
+        notification_enable.isChecked = notification_currmode=="1"
+
+        notification_enable.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                getSharedPreferences(dbPaths.SharedPreference, MODE_PRIVATE).edit()
+                    .putString(dbPaths.NOTIFICATION_ENABLED, "1").apply()
+
+                notification_enable.isChecked = true
+
+            } else {
+                getSharedPreferences(dbPaths.SharedPreference, MODE_PRIVATE).edit()
+                    .putString(dbPaths.NOTIFICATION_ENABLED, "0").apply()
+
+                notification_enable.isChecked = false
+            }
+        }
+
+    }
     override fun recreate() {
         finish()
         overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out)

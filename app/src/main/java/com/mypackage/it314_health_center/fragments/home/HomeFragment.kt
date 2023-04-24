@@ -19,7 +19,7 @@ import com.mypackage.it314_health_center.helpers.dbPaths
 import com.mypackage.it314_health_center.models.Doctor
 import com.mypackage.it314_health_center.patient_side.ActivityDownloadReports
 import com.mypackage.it314_health_center.patient_side.my_prescriptions
-import com.mypackage.it314_health_center.videocalling.PatientOnlineConsultation
+import com.mypackage.it314_health_center.startups.videocalling.PatientOnlineConsultation
 
 class HomeFragment : Fragment() {
 

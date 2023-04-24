@@ -1,4 +1,4 @@
-package com.mypackage.it314_health_center.videocalling
+package com.mypackage.it314_health_center.startups.videocalling
 
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.SurfaceView
 import android.view.View
-import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.Toast
@@ -20,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.mypackage.it314_health_center.*
-import com.mypackage.it314_health_center.videocalling.AroraFiles.RtcTokenBuilder2
+import com.mypackage.it314_health_center.startups.videocalling.AroraFiles.RtcTokenBuilder2
 import io.agora.rtc2.*
 import io.agora.rtc2.video.VideoCanvas
 

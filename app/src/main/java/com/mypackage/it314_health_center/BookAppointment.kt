@@ -17,6 +17,7 @@ import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.ProgressBar
 import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.TimePicker
@@ -26,6 +27,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.mypackage.it314_health_center.helpers.dbPaths
+import com.mypackage.it314_health_center.startups.videocalling.PatientOnlineConsultation
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.UUID
@@ -36,11 +38,13 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
 
     private lateinit var mAuth: FirebaseAuth
     private var mDatabase: FirebaseDatabase? = null
-    private lateinit var btnDateTime: Button
+    private lateinit var edtDate: TextView
+    private lateinit var edtTime: TextView
     private lateinit var showDateTime: TextView
     private lateinit var problemDescription: EditText
     private lateinit var radioGroup: RadioGroup
-    private lateinit var type: String
+    private lateinit var progressBar: ProgressBar
+    private var type: String = ""
     private lateinit var btnBookAppointment: Button
     private var patientId: String = ""// getting the patient id
     private var patientName = ""// getting the patient name
@@ -48,6 +52,7 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
     private lateinit var ifNotBooked: ConstraintLayout
     private lateinit var showDetails: TextView
     private lateinit var doctorTypeView: AutoCompleteTextView
+    private lateinit var joinButton : Button
 
 
     var day = 0
@@ -65,12 +70,15 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_book_appointment)
+        setContentView(R.layout.activity_book_appointment1)
 
         mAuth = FirebaseAuth.getInstance()
         mDatabase = FirebaseDatabase.getInstance()
-        btnDateTime = findViewById(R.id.btnDateTime)
-        showDateTime = findViewById(R.id.showDateTime)
+        edtDate = findViewById(R.id.edtDate)
+//        edtDate.isEnabled = false
+        edtTime = findViewById(R.id.edtTime)
+//        edtTime.isEnabled = false
+//        showDateTime = findViewById(R.id.showDateTime)
         radioGroup = findViewById(R.id.radio_grp)
         problemDescription = findViewById(R.id.problemDescription)
         btnBookAppointment = findViewById(R.id.btnBookAppointment)
@@ -78,6 +86,10 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
         ifNotBooked = findViewById(R.id.ifNotBooked)
         showDetails = findViewById(R.id.showDetails)
         doctorTypeView = findViewById(R.id.doctor_type_selector)
+        doctorTypeView.isEnabled = false
+        joinButton = findViewById(R.id.joinButton)
+        progressBar = findViewById(R.id.progressBar)
+
         Log.d("TAG", mAuth.currentUser.toString())
 
         patientId = mAuth.currentUser!!.uid
@@ -85,6 +97,11 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
             ?.child("userName")?.get()?.addOnSuccessListener {
             patientName = it.value.toString()
         }
+
+        ifNotBooked.visibility = View.GONE
+        ifBooked.visibility = View.GONE
+        progressBar.visibility = View.VISIBLE
+
 
         //creating doctors with different types:
 //        for(i in 0..6){
@@ -136,24 +153,39 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
                             }
                             recreate()
                         } else {
-                            Toast.makeText(
-                                this,
-                                "You have already booked an appointment",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                            ifBooked.visibility = View.VISIBLE
-                            if (problemDescription.isEmpty())
-                                showDetails.text = "Date: $date \n Time: $time \n\n Type: $type \n Doctor type: $doctorType"
+//                            Toast.makeText(
+//                                this,
+//                                "You have already booked an appointment",
+//                                Toast.LENGTH_SHORT
+//                            ).show()
+
+                            if(type=="online"){
+                                joinButton.visibility = View.VISIBLE
+                                joinButton.setOnClickListener {
+                                    val intent = Intent(this, PatientOnlineConsultation::class.java)
+                                    startActivity(intent)
+                                }
+                            }
+                            else{
+                                joinButton.visibility = View.GONE
+                            }
+
+
+                            if(problemDescription.isEmpty())
+                                showDetails.text =  "Date: $date \nTime: $time \n\nAppointment mode: $type \n\nDoctor type: $doctorType"
                             else
-                                showDetails.text =
-                                    "Date: $date \n Time: $time \n\n Problem Description: $problemDescription\n\n Type: $type \n Doctor type: $doctorType"
+                                showDetails.text =  "Date: $date\nTime: $time\n\nProblem Description: $problemDescription\n\nAppointment mode: $type \n\nDoctor type: $doctorType"
+
+                            progressBar.visibility = View.GONE
+                            ifNotBooked.visibility = View.GONE
+                            ifBooked.visibility = View.VISIBLE
                         }
                     }
                 }
             }
-        findViewById<ImageButton>(R.id.back_btn).setOnClickListener {
-            finish()
-        }
+//        findViewById<ImageButton>(R.id.back_btn).setOnClickListener {
+//            finish()
+//        }
 
         // to check whether the user has booked an appointment previously and is still pending
         mDatabase?.reference?.child("appointments")?.child("upcoming")?.child(patientId)?.get()
@@ -172,28 +204,40 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
                     val doctorType = aptcurr?.doctorType.toString()
 //                val appointmentId = it.key
 
-                    Toast.makeText(
-                        this,
-                        "You have already booked an appointment",
-                        Toast.LENGTH_SHORT
-                    ).show()
+//                    Toast.makeText(
+//                        this,
+//                        "You have already booked an appointment",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
 
 
-                    ifBooked.visibility = View.VISIBLE
+
                     if(problemDescription.isEmpty())
-                        showDetails.text =  "Date: $date \n Time: $time \n\n Type: $type \n Doctor type: $doctorType"
+                        showDetails.text =  "Date: $date \nTime: $time \n\nAppointment mode: $type \n\nDoctor type: $doctorType"
                     else
-                        showDetails.text =  "Date: $date \n Time: $time \n\n Problem Description: $problemDescription\n\n Type: $type \n Doctor type: $doctorType"
+                        showDetails.text =  "Date: $date\nTime: $time\n\nProblem Description: $problemDescription\n\nAppointment mode: $type \n\nDoctor type: $doctorType"
+
+                    progressBar.visibility = View.GONE
+                    ifNotBooked.visibility = View.GONE
+                    ifBooked.visibility = View.VISIBLE
 
                 } else {
+                    progressBar.visibility = View.GONE
+                    ifBooked.visibility = View.GONE
                     ifNotBooked.visibility = View.VISIBLE
                 }
             }
 
         // to set date and time
-        btnDateTime.setOnClickListener {
+
+        edtDate.setOnClickListener {
             getDateTimeCalendar()
             DatePickerDialog(this, this, year, month, day).show()
+        }
+
+        edtTime.setOnClickListener {
+            getDateTimeCalendar()
+            TimePickerDialog(this, this, hour, minute, true).show()
         }
 
         // reading the problem description
@@ -221,12 +265,42 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
 
         // to book the appointment
         btnBookAppointment.setOnClickListener {
-            val time = "$savedHour:$savedMinute"
+
+            val time = String.format("%02d:%02d", savedHour, savedMinute)
             val problemDescription = problemDescription.text.toString()
             val date = "$savedDay/$savedMonth/$savedYear"
             val type = type
             val doctorType = doctorTypeView.text.toString()
             val appointmentId = UUID.randomUUID().toString()
+
+            if(edtDate.text.toString().isEmpty()){
+                Toast.makeText(this, "Please select a valid date", Toast.LENGTH_SHORT).show()
+                edtDate.error = "Please select a valid date"
+                return@setOnClickListener
+            }
+
+            if(edtTime.text.toString().isEmpty()){
+                Toast.makeText(this, "Please select a valid time", Toast.LENGTH_SHORT).show()
+                edtTime.error = "Please select a valid time"
+                return@setOnClickListener
+            }
+
+            val fmillis = (SimpleDateFormat("dd/MM/yyyy hh:mm").parse(date + " " + time)).time
+            val cmillis = System.currentTimeMillis()
+            val difference = fmillis - cmillis
+
+            if(difference<0){
+                Toast.makeText(this, "Please select a valid date and time", Toast.LENGTH_SHORT).show()
+                showDateTime.error = "Please select a valid date and time"
+                return@setOnClickListener
+            }
+
+            if(type==""){
+                Toast.makeText(this, "Please select the appointment mode", Toast.LENGTH_SHORT).show()
+                val textView6 = findViewById<TextView>(R.id.textView6)
+                textView6.error =  "Please select the appointment mode"
+                return@setOnClickListener
+            }
 
             //adding the doctor's appointment database
             // here we have to take the first id from the doctor type's list
@@ -259,7 +333,6 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
                             // check if notification is enabled or not
                             val mPrefs = getSharedPreferences("settings", 0)
                             val str = mPrefs.getString(dbPaths.NOTIFICATION_ENABLED, "1")
-
                             if (str == "1") {
                                 //to send notification to the user
 
@@ -277,7 +350,7 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
                                 )
 
                                 val futureInMillis =
-                                    (SimpleDateFormat("dd/MM/yyyy hh:mm").parse(date + " " + time)).time - 600000
+                                    (SimpleDateFormat("dd/MM/yyyy hh:mm").parse(date + " " + time)).time
 
                                 val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
                                 alarmManager.set(
@@ -286,8 +359,8 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
                                     pendingIntent
                                 )
 
-                                Toast.makeText(this, "Notification Scheduled", Toast.LENGTH_LONG)
-                                    .show()
+//                                Toast.makeText(this, "Notification Scheduled", Toast.LENGTH_LONG)
+//                                    .show()
                             }
                         }
 //                        Log.d("123",doctorId)
@@ -296,37 +369,6 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
                         Toast.makeText(this, "No doctor available", Toast.LENGTH_SHORT).show()
                     }
                 }
-//             print doctorId in logcat
-//            Log.d("doctorId", doctorId)
-//            val appointment = BasicAppiontment(patientName, date, time, problemDescription, type, doctorType, doctorId)
-//            appointment.timeStamp = timeStamp
-//            appointment.patientID = mAuth.currentUser!!.uid
-//            bookAppointment(appointment, appointmentId)
-//
-//
-//            FirebaseDatabase.getInstance().reference.child("doctor_appointments").child(doctorId)
-//                .child("upcoming").child(appointmentId).setValue(appointment)
-
-////             to send notification to the user
-//
-////             Create a NotificationChannel
-//            createNotificationChannel()
-//
-//            // Schedule the Notification
-//            val notificationIntent = Intent(this, MyBroadcastReceiver::class.java)
-//            val pendingIntent = PendingIntent.getBroadcast(
-//                this,
-//                0,
-//                notificationIntent,
-//                PendingIntent.FLAG_IMMUTABLE
-//            )
-//
-//            val futureInMillis = (SimpleDateFormat("dd/MM/yyyy hh:mm").parse(date + " " + time)).time - 600000
-//
-//            val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
-//            alarmManager.set(AlarmManager.RTC_WAKEUP, futureInMillis, pendingIntent)
-//
-//            Toast.makeText(this, "Notification Scheduled", Toast.LENGTH_LONG).show()
 
             val intent = Intent(this, PatientHomePage::class.java)
             startActivity(intent)
@@ -387,15 +429,31 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
         savedMonth = month + 1
         savedYear = year
 
-        getDateTimeCalendar()
-        TimePickerDialog(this, this, hour, minute, true).show()
+        val showDate = "$savedDay/$savedMonth/$savedYear"
+//        edtDate.isEnabled = true
+        edtDate.text = showDate
+//        edtDate.isEnabled = false
+
+//        getDateTimeCalendar()
+//        TimePickerDialog(this, this, hour, minute, true).show()
     }
 
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
+
         savedHour = hourOfDay
         savedMinute = minute
 
-        showDateTime.text = "$savedDay/$savedMonth/$savedYear,  $savedHour:$savedMinute"
+
+//        if(hourOfDay.toString().length == 1)
+//            savedHour = "0$hourOfDay"
+//        if(minute.toString().length == 1)
+//            savedMinute = "0$minute"
+
+        val showtime = (String.format("%02d:%02d", savedHour, savedMinute));
+//        edtTime. isEnabled = true
+        edtTime.text = showtime
+//        edtTime. isEnabled = false
+//        showDateTime.text = "$savedDay/$savedMonth/$savedYear,  $showtime"
 
     }
 

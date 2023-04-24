@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
 import com.mypackage.it314_health_center.R
 import com.mypackage.it314_health_center.BasicAppiontment
-import com.mypackage.it314_health_center.videocalling.DoctorSideOnlineConference
+import com.mypackage.it314_health_center.startups.videocalling.DoctorSideOnlineConference
 import java.text.SimpleDateFormat
 
 
