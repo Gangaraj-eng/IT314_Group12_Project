@@ -39,4 +39,7 @@
     <string name="resend_otp">Resend OTP</string>
     <string name="creatingProfile">Creating your profile...</string>
     <string name="passwordHint">Enter password</string>
+    <string name="hi_we_are_here_to_help_you">Hi,We are here to help you</string>
+    <string name="help_center">Help-center</string>
+    <string name="frequently_asked_questions">Frequently asked questions</string>
 </resources>

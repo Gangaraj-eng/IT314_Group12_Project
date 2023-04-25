@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#e2e7e1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/lin3"
+
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#4799FA">
+
+        <ImageButton
+            android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="20dp"
+            android:background="#4799FA"
+            android:src="@drawable/arrow_1" />
+
+        <TextView
+            android:layout_width="164dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="30dp"
+            android:text="@string/help_center"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold"/>
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="384dp"
+        android:layout_height="176dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="15dp"
+        android:background="@drawable/img_1"
+        tools:layout_editor_absoluteX="13dp"
+        tools:layout_editor_absoluteY="82dp" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="410dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="250dp"
+        android:paddingStart="15dp"
+        android:text="@string/frequently_asked_questions"
+        android:textColor="#4799FA"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="282dp"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="179dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/lin3"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="90dp"
+        android:text="@string/hi_we_are_here_to_help_you"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_below="@id/textView6"
+        android:layout_height="wrap_content">
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView2"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="363dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:text="Q) How to book appointment ?"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="365dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="45dp"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:text="Ans) Open book appointment , select date and time and doctor type and describe your problem and click on book appointment"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="363dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="135dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="Q) How to join video conferencing ?"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="365dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="175dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="Ans) Open your book appointment where date and time of appointment is mentioned. click on your appointment before 5 min of staring of meeting "
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="363dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="265dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="Q) How to get my prescription ?"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="365dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="305dp"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:text="Ans)click on my prescription option of activity menu.select your last appointment and click on my prescription.  "
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="363dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:text="Q) How to book appointment ?"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="365dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="45dp"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:text="Ans) Open book appointment , select date and time and doctor type and describe your problem and click on book appointment"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+            <TextView
+                android:layout_width="363dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:text="Q) How to book appointment ?"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="365dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="45dp"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:text="Ans) Open book appointment , select date and time and doctor type and describe your problem and click on book appointment"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </ScrollView>
+
+</RelativeLayout>
