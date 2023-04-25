@@ -1,9 +1,7 @@
 package com.mypackage.it314_health_center.adapters
 
 import android.app.DownloadManager
-import android.content.ActivityNotFoundException
 import android.content.Context
-import android.content.Intent
 import android.net.Uri
 import android.os.Environment
 import android.view.LayoutInflater
@@ -11,18 +9,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.storage.FirebaseStorage
 import com.mypackage.it314_health_center.R
 import com.mypackage.it314_health_center.models.LabReport
-import java.io.File
 
 
 class LabReportAdapter(
     val context: Context?,
     val report_list: ArrayList<LabReport>
-) : RecyclerView.Adapter<LabReportAdapter.ReportViewHolder>()  {
+) : RecyclerView.Adapter<LabReportAdapter.ReportViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -34,25 +29,29 @@ class LabReportAdapter(
     }
 
     class ReportViewHolder(itemview: View) : RecyclerView.ViewHolder(itemview) {
-        val testName:TextView=itemview.findViewById(R.id.test_name)
-        val issuedBy:TextView=itemview.findViewById(R.id.issued_by_name)
-        val tdate:TextView=itemview.findViewById(R.id.tdate)
-        val download:ImageView=itemview.findViewById(R.id.download_button)
+        val testName: TextView = itemview.findViewById(R.id.test_name)
+        val issuedBy: TextView = itemview.findViewById(R.id.issued_by_name)
+        val tdate: TextView = itemview.findViewById(R.id.tdate)
+        val download: ImageView = itemview.findViewById(R.id.download_button)
     }
+
     override fun getItemCount(): Int {
-            return report_list.size
+        return report_list.size
     }
-    private var download_id=0L
+
+    private var download_id = 0L
     override fun onBindViewHolder(holder: ReportViewHolder, position: Int) {
-        holder.testName.text=report_list[position].test_name
-        holder.issuedBy.text=report_list[position].issued_by
-        holder.tdate.text= "${report_list[position].testDate}/${report_list[position].issuedDate}"
+        holder.testName.text = report_list[position].test_name
+        holder.issuedBy.text = report_list[position].issued_by
+        holder.tdate.text = "${report_list[position].testDate}/${report_list[position].issuedDate}"
         holder.download.setOnClickListener {
-            val url=report_list[position].ReportURL
-            val fileName=report_list[position].test_name+report_list[position].issuedDate
+            val url = report_list[position].ReportURL
+            val fileName = report_list[position].test_name + report_list[position].issuedDate
             if (context != null) {
-                downloadPdf(context,fileName,".pdf",
-                    Environment.DIRECTORY_DOWNLOADS,url)
+                downloadPdf(
+                    context, fileName, ".pdf",
+                    Environment.DIRECTORY_DOWNLOADS, url
+                )
             }
         }
     }
@@ -73,7 +72,7 @@ class LabReportAdapter(
             destinationDirectory,
             fileName + fileExtensions
         )
-       download_id= downloadManager.enqueue(request)
+        download_id = downloadManager.enqueue(request)
     }
 
 

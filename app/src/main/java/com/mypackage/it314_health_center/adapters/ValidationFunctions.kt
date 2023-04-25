@@ -5,13 +5,11 @@ import java.util.*
 
 object ValidationFunctions {
 
-    fun isValidEmail(email:String):Boolean
-    {
+    fun isValidEmail(email: String): Boolean {
         return true
     }
 
-    fun isValidMobile(mobile:String):Boolean
-    {
+    fun isValidMobile(mobile: String): Boolean {
         return false
     }
 
@@ -21,7 +19,7 @@ object ValidationFunctions {
         return simpleDateFormat.format(date)
     }
 
-        fun convertDateInMillisToString(time: Long): String {
+    fun convertDateInMillisToString(time: Long): String {
         val simpleDateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
         val date = Date(time)
         return simpleDateFormat.format(date)

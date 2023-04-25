@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Doctor_Homepage">
+
     <LinearLayout
         android:id="@+id/lin1"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/appbar"
-        android:orientation="horizontal"
-       >
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -23,59 +23,58 @@
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="22sp" />
+
         <ImageButton
+            android:id="@+id/logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:id="@+id/logout"
-            android:src="@drawable/ic_logout"
             android:background="@color/pinFieldLibraryTransparent"
+            android:src="@drawable/ic_logout"
             app:tint="@color/white" />
     </LinearLayout>
-
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Your Appointments"
-        android:textSize="22dp"
-        android:textColor="@color/blue"
-        android:textStyle="bold"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="5dp"
-        />
+        android:text="Your Appointments"
+        android:textColor="@color/blue"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
     <LinearLayout
+        android:id="@+id/empty_appointmnet_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/empty_appointmnet_view"
-        >
+        android:orientation="vertical">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No Appointments scheduled"
-            android:textSize="18dp"
             android:layout_gravity="center"
+            android:text="No Appointments scheduled"
             android:textColor="@color/black"
-            />
+            android:textSize="18dp" />
     </LinearLayout>
+
     <LinearLayout
+        android:id="@+id/appointments_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/appointments_list"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/apts_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/apts_list"
             android:layout_gravity="center"
-            tools:itemCount="5"
             android:background="@color/gray"
-            tools:listitem="@layout/doctor_side_online_appointment"
-            />
+            tools:itemCount="5"
+            tools:listitem="@layout/doctor_side_online_appointment" />
     </LinearLayout>
 
 </LinearLayout>

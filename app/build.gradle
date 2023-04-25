@@ -1,12 +1,11 @@
 plugins {
     id 'com.google.gms.google-services'
-    id 'com.android.application' version '8.0.0'
+    id 'com.android.application' version '7.4.2'
     id 'org.jetbrains.kotlin.android' version '1.8.20-RC'// google services plugin
 }
 
 android {
     compileSdk 33
-
     defaultConfig {
         applicationId "com.mypackage.it314_health_center"
         minSdk 22
@@ -41,10 +40,7 @@ android {
         viewBinding true
     }
 }
-
 dependencies {
-
-
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
@@ -59,11 +55,8 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.9.0'
 
     testImplementation 'junit:junit:4.13.2'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
-
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-
     // firebase dependencies
     implementation platform('com.google.firebase:firebase-bom:31.2.3')
 //    a=a
@@ -87,8 +80,5 @@ dependencies {
     implementation 'com.github.MikeOrtiz:TouchImageView:1.4.1'
 
     apply plugin: 'com.google.gms.google-services'
-
-
-
 
 }

@@ -3,6 +3,7 @@ package com.mypackage.it314_health_center
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
@@ -55,7 +56,7 @@ class PatientHomePage : AppCompatActivity() {
         }
 
         navView.menu.findItem(R.id.nav_settings).setOnMenuItemClickListener {
-            startActivity(Intent(this,ActivitySettings::class.java))
+            startActivity(Intent(this, ActivitySettings::class.java))
             navController.navigate(R.id.nav_home)
             return@setOnMenuItemClickListener true
         }
@@ -65,6 +66,15 @@ class PatientHomePage : AppCompatActivity() {
         menuInflater.inflate(R.menu.main, menu)
         return true
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId==R.id.notifications)
+        {
+                startActivity(Intent(this,NotificationsActivity::class.java))
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)

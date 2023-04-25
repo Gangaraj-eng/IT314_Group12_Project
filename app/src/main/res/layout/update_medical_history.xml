@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+
         <LinearLayout
             android:id="@+id/lin1"
             android:layout_width="match_parent"
@@ -46,65 +46,68 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginTop="20dp"
-            >
+            android:orientation="vertical">
+
             <TextView
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
 
-                android:textAlignment="center"
                 android:text="Upload documents related to your previous medical treatmetns"
-                />
+                android:textAlignment="center" />
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/choose_file"
                 android:layout_width="wrap_content"
-                android:layout_margin="10dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="choose file"
-                app:cornerRadius="10dp"
+                android:layout_margin="10dp"
                 android:backgroundTint="@color/green_1"
-                android:textColor="@color/white"
                 android:drawableLeft="@drawable/baseline_file_picker_24"
-                />
+                android:text="choose file"
+                android:textColor="@color/white"
+                app:cornerRadius="10dp" />
+
             <ImageView
                 android:id="@+id/uploaded_image"
                 android:layout_width="100dp"
                 android:layout_height="120dp"
-                android:visibility="gone"
                 android:layout_gravity="center"
                 android:background="@drawable/roundstyle"
-                android:src="@drawable/img_loading" />
+                android:src="@drawable/img_loading"
+                android:visibility="gone" />
+
             <Button
                 android:id="@+id/btn_upload_file"
                 style="?android:attr/buttonBarButtonStyle"
-                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
                 android:text="Upload"
+                android:visibility="gone"
                 app:icon="@drawable/ic_baseline_cloud_upload_24" />
+
             <com.google.android.material.progressindicator.LinearProgressIndicator
                 android:id="@+id/uploaded_progessbar"
                 android:layout_width="200dp"
-                android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:progress="0"
+                android:visibility="gone"
                 app:indicatorColor="@color/green_1" />
+
             <LinearLayout
                 android:id="@+id/uploaded"
-                android:visibility="gone"
                 android:layout_width="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_gravity="center"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
                 android:orientation="vertical"
-                >
+                android:visibility="gone">
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -119,29 +122,29 @@
                     android:textSize="20sp" />
             </LinearLayout>
         </LinearLayout>
+
         <com.google.android.material.divider.MaterialDivider
             android:layout_width="match_parent"
-            android:layout_margin="5dp"
             android:layout_height="2dp"
-            />
+            android:layout_margin="5dp" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Your medical history"
             android:textAlignment="center"
-            android:textColor="@color/black"
-            />
+            android:textColor="@color/black" />
+
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="match_parent">
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/report_listView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:listitem="@layout/medical_report_content"
                 tools:itemCount="2"
-              />
+                tools:listitem="@layout/medical_report_content" />
         </ScrollView>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

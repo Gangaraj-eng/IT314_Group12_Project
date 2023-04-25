@@ -1,21 +1,13 @@
 package com.mypackage.it314_health_center.adapters
 
 import android.content.Context
-import android.content.Intent
-import android.os.Build
-import android.os.CountDownTimer
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.button.MaterialButton
-import com.mypackage.it314_health_center.R
 import com.mypackage.it314_health_center.BasicAppiontment
-import com.mypackage.it314_health_center.startups.videocalling.DoctorSideOnlineConference
-import java.text.SimpleDateFormat
+import com.mypackage.it314_health_center.R
 
 
 class past_apt_adapter(
@@ -29,7 +21,7 @@ class past_apt_adapter(
         val dateView = itemView.findViewById<TextView>(R.id.date_view)
         val aptname = itemview.findViewById<TextView>(R.id.appointment_name)
         val description = itemView.findViewById<TextView>(R.id.problemDescription)
-        val type=itemview.findViewById<TextView>(R.id.type_view)
+        val type = itemview.findViewById<TextView>(R.id.type_view)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AptViewHolder {
@@ -49,7 +41,7 @@ class past_apt_adapter(
         holder.aptname.text = "Appointment " + count.toString()
         holder.dateView.text = apt_curr.date
         holder.timeView.text = apt_curr.time
-        holder.description.text=apt_curr.problemDescription
-        holder.type.text=apt_curr.type
+        holder.description.text = apt_curr.problemDescription
+        holder.type.text = apt_curr.type
     }
 }

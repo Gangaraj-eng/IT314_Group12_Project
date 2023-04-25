@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/lin1"
@@ -18,10 +16,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
-            app:tint="@color/black"
             android:layout_marginTop="15dp"
             android:background="@color/white"
-            android:src="@drawable/arrow_1" />
+            android:src="@drawable/arrow_1"
+            app:tint="@color/black" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -32,175 +30,194 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/lin1"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            >
+
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="100dp"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/istockphoto_1217404723_612x612"/>
+            android:layout_gravity="center"
+            android:src="@drawable/istockphoto_1217404723_612x612" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="105dp"
             android:layout_marginLeft="20dp"
+            android:layout_gravity="center"
             android:text="Same Day Delivery"
             android:textColor="#000000"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+             />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content">
+
         <ImageView
             android:layout_width="50dp"
+            android:layout_marginLeft="15dp"
             android:layout_height="50dp"
-            android:layout_marginTop="174dp"
-            android:layout_marginLeft="-215dp"
-            android:src="@drawable/images"/>
+            android:src="@drawable/images" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="180dp"
-            android:layout_marginLeft="20dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
             android:text="Safe and Secure home delivery"
-
             android:textColor="#000000"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            />
+
+        </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="270dp"
-            android:layout_marginLeft="-310dp"
             android:text="Upload Prescription"
-            android:textStyle="bold"
             android:textColor="#000000"
             android:textSize="25sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+         />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="310dp"
-            android:layout_marginLeft="-225dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="20dp"
+            android:id="@+id/sdfsfasdf"
             android:text="Your prescription will be securely shared only with the pharmacist,necessary for the completion of this order"
 
             android:textColor="#000000"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+             />
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="30dp"
+    android:orientation="horizontal"
+    >
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        />
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/capture_picture"
+            android:layout_width="120dp"
+            android:layout_height="180dp"
+            app:cardBackgroundColor="#FF6A6A"
+            app:cardCornerRadius="10dp"
+            >
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/capture_picture"
-                android:layout_width="120dp"
-                android:layout_height="180dp"
-                android:layout_marginTop="420dp"
-                android:layout_marginLeft="-400dp"
-                app:cardBackgroundColor="#FF6A6A"
-                app:cardCornerRadius="10dp"
-                app:layout_constraintBottom_toTopOf="@+id/materialCardView4"
-                app:layout_constraintEnd_toStartOf="@+id/materialCardView"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="28dp"
+                android:src="@drawable/download_1" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="28dp"
-                    android:src="@drawable/download_1" />
+            <TextView
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="7dp"
+                android:text="Take a Picture"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="16dp" />
+        </com.google.android.material.card.MaterialCardView>
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        />
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/upload_image"
+            android:layout_width="120dp"
+            android:layout_height="180dp"
 
-                <TextView
-                    android:layout_width="190dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center_horizontal"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="7dp"
-                    android:text="Take a Picture"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="16dp" />
-            </com.google.android.material.card.MaterialCardView>
+            app:cardBackgroundColor="#9ABDF2"
+            app:cardCornerRadius="10dp">
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/upload_image"
-                android:layout_width="120dp"
-                android:layout_height="180dp"
-                android:layout_marginTop="420dp"
-                android:layout_marginLeft="15dp"
-                app:cardBackgroundColor="#9ABDF2"
-                app:cardCornerRadius="10dp"
-                >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="-5dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="28dp"
+                android:src="@drawable/group_70" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="-5dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="28dp"
-                    android:src="@drawable/group_70" />
+            <TextView
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="7dp"
+                android:text="Upload Image"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="16dp" />
+        </com.google.android.material.card.MaterialCardView>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/uploadpdf"
+            android:layout_width="120dp"
+            android:layout_height="180dp"
+            app:cardBackgroundColor="#6D7CCC"
+            app:cardCornerRadius="10dp">
 
-                <TextView
-                    android:layout_width="190dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center_horizontal"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="7dp"
-                    android:text="Upload Image"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="16dp" />
-            </com.google.android.material.card.MaterialCardView>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="28dp"
+                android:src="@drawable/group__1_" />
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/uploadpdf"
-                android:layout_width="120dp"
-                android:layout_height="180dp"
-                android:layout_marginTop="420dp"
-                android:layout_marginLeft="15dp"
-                app:cardBackgroundColor="#6D7CCC"
-                app:cardCornerRadius="10dp"
-                >
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="28dp"
-                    android:src="@drawable/group__1_" />
-
-                <TextView
-                    android:layout_width="190dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center_horizontal"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="7dp"
-                    android:text="Upload PDF"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="16dp" />
-            </com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="7dp"
+                android:text="Upload PDF"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="16dp" />
+        </com.google.android.material.card.MaterialCardView>
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        />
+</LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

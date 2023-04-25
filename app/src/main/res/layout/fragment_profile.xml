@@ -1,27 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="5dp"
-    android:id="@+id/fragment_profile"
-    >
-    
+    android:layout_margin="5dp">
+
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:visibility="visible"
-        />
+        android:visibility="visible" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/details_part_1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
-        >
+        android:visibility="gone">
 
 
         <ScrollView
@@ -31,11 +27,11 @@
 
             <LinearLayout
                 android:id="@+id/linear_layout"
-                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -68,38 +64,38 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                         />
+                        app:layout_constraintTop_toTopOf="parent" />
                 </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Date of Birth"
-                    android:textColor="@color/black"
-                    android:textSize="22sp" />
+                    android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/editDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="10dp"
-                    android:paddingLeft="10dp"
-                    android:ems="10"
-                    android:textSize="25sp"
-                    android:textColor="@color/black"
-                    android:inputType="date" />
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Date of Birth"
+                        android:textColor="@color/black"
+                        android:textSize="22sp" />
+
+                    <EditText
+                        android:id="@+id/editDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="date"
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="25sp" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -120,17 +116,17 @@
                             android:layout_gravity="center"
                             android:text="Age"
                             android:textColor="@color/black"
-                            android:textSize="22sp"/>
+                            android:textSize="22sp" />
 
                         <EditText
                             android:id="@+id/editAge"
                             android:layout_width="70dp"
                             android:layout_height="50dp"
-                            android:layout_marginTop="10dp"
-                            android:textAlignment="center"
-                            android:background="@drawable/roundable"
                             android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/roundable"
                             android:paddingHorizontal="10dp"
+                            android:textAlignment="center"
                             android:textColor="@color/white"
                             android:textSize="22sp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -143,8 +139,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:orientation="vertical"
-                        android:layout_marginLeft="90dp">
+                        android:layout_marginLeft="90dp"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -159,15 +155,15 @@
                             android:layout_width="100dp"
                             android:layout_height="50dp"
                             android:layout_marginTop="10dp"
-                            android:textAlignment="center"
                             android:background="@drawable/edit_text_background"
                             android:paddingHorizontal="10dp"
+                            android:textAlignment="center"
                             android:textColor="@color/white"
                             android:textSize="22sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"/>
+                            app:layout_constraintTop_toTopOf="parent" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -192,15 +188,14 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="8dp"
                     android:background="@drawable/roundable"
-                    android:paddingLeft="20dp"
                     android:maxLines="1"
+                    android:paddingLeft="20dp"
                     android:textColor="@color/white"
                     android:textSize="22sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -221,30 +216,28 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="8dp"
                     android:background="@drawable/roundable"
-                    android:paddingLeft="20dp"
+                    android:inputType="textMultiLine"
                     android:maxLines="2"
+                    android:paddingLeft="20dp"
                     android:textColor="@color/white"
                     android:textSize="22sp"
-                    android:inputType="textMultiLine"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="20dp"
                     android:layout_marginHorizontal="10dp"
+                    android:layout_marginVertical="20dp"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
-                        android:orientation="horizontal"
-                        >
+                        android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -258,9 +251,9 @@
                             android:id="@+id/editCity"
                             android:layout_width="wrap_content"
                             android:layout_height="50dp"
+                            android:layout_marginLeft="10dp"
                             android:background="@drawable/roundable"
                             android:paddingHorizontal="10dp"
-                            android:layout_marginLeft="10dp"
                             android:textColor="@color/white"
                             android:textSize="22sp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -274,8 +267,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
                         android:layout_marginVertical="10dp"
-                        android:orientation="horizontal"
-                        >
+                        android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -335,9 +327,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
-                        android:orientation="horizontal"
                         android:layout_marginTop="10dp"
-                        >
+                        android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -375,11 +366,11 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:backgroundTint="@color/blue"
+                    android:paddingVertical="10dp"
                     android:text="UPDATE"
                     android:textAllCaps="false"
-                    android:paddingVertical="10dp"
-                    android:textSize="25sp"
                     android:textColor="@color/white"
+                    android:textSize="25sp"
                     app:cornerRadius="10dp"
                     app:iconPadding="10dp" />
 

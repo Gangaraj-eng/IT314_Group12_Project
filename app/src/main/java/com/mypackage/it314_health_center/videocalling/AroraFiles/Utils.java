@@ -1,8 +1,6 @@
-package com.mypackage.it314_health_center.startups.videocalling.AroraFiles;
+package com.mypackage.it314_health_center.videocalling.AroraFiles;
 
 //import org.apache.commons.codec.binary.Base64;
-
-import org.apache.commons.codec.binary.Base64;
 
 import java.io.ByteArrayOutputStream;
 import java.math.BigInteger;
@@ -14,9 +12,9 @@ import java.util.Date;
 import java.util.zip.CRC32;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
-
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
+import org.apache.commons.codec.binary.Base64;
 
 public class Utils {
     public static final long HMAC_SHA256_LENGTH = 32;

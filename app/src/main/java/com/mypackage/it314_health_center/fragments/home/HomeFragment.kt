@@ -2,6 +2,7 @@ package com.mypackage.it314_health_center.fragments.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +20,7 @@ import com.mypackage.it314_health_center.helpers.dbPaths
 import com.mypackage.it314_health_center.models.Doctor
 import com.mypackage.it314_health_center.patient_side.ActivityDownloadReports
 import com.mypackage.it314_health_center.patient_side.my_prescriptions
-import com.mypackage.it314_health_center.startups.videocalling.PatientOnlineConsultation
+import com.mypackage.it314_health_center.videocalling.PatientOnlineConsultation
 
 class HomeFragment : Fragment() {
 
@@ -32,8 +33,8 @@ class HomeFragment : Fragment() {
     private lateinit var bookAppointmentView: MaterialCardView
     private lateinit var online_consultation_view: MaterialCardView
     private lateinit var updateMedicalHistoryView: MaterialCardView
-    private lateinit var downLoadReports:MaterialCardView
-    private lateinit var orderMedicines:MaterialCardView
+    private lateinit var downLoadReports: MaterialCardView
+    private lateinit var orderMedicines: MaterialCardView
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,14 +43,18 @@ class HomeFragment : Fragment() {
         val homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = com.mypackage.it314_health_center.databinding.FragmentHomeBinding.inflate(
+            inflater,
+            container,
+            false
+        )
         val root: View = binding.root
         myprescriptionview = root.findViewById(R.id.my_prescription_view)
         bookAppointmentView = root.findViewById(R.id.book_appointment_view)
         online_consultation_view = root.findViewById(R.id.online_consultation_view)
-        downLoadReports=root.findViewById(R.id.download_reports)
-        updateMedicalHistoryView=root.findViewById(R.id.update_medical_hist)
-        orderMedicines=root.findViewById(R.id.orderMedicines)
+        downLoadReports = root.findViewById(R.id.download_reports)
+        updateMedicalHistoryView = root.findViewById(R.id.update_medical_hist)
+        orderMedicines = root.findViewById(R.id.orderMedicines)
 
         myprescriptionview.setOnClickListener {
             startActivity(Intent(context, my_prescriptions::class.java))
@@ -62,36 +67,73 @@ class HomeFragment : Fragment() {
             startActivity(Intent(context, PatientOnlineConsultation::class.java))
         }
         updateMedicalHistoryView.setOnClickListener {
-            startActivity(Intent(context,ActivityUpdateMedicalHistory::class.java))
+            startActivity(Intent(context, ActivityUpdateMedicalHistory::class.java))
         }
         downLoadReports.setOnClickListener {
-            startActivity(Intent(context,ActivityDownloadReports::class.java))
+            startActivity(Intent(context, ActivityDownloadReports::class.java))
         }
 
         orderMedicines.setOnClickListener {
-            startActivity(Intent(context,ActivityOrderMedicines::class.java))
+            startActivity(Intent(context, ActivityOrderMedicines::class.java))
         }
 //        addDoctors()
         return root
     }
 
     private fun addDoctors() {
-        val names= arrayOf("DR.Y.K Mishra","Dr. Sandeep","Dr. Rajeev","Dr.Ajay","Dr.Naresh","Dr.Vinod","Dr.Arun","Dr. Meharwal"
-        ,"Dr. Nanda Das","Dr. Sarin","Dr. Sandhya","Dr. J.B.Sharma","Dr. Prakash","Dr.Rajul")
-        val types= arrayOf("Cardiologist","Cardiologist","Dentist","Dentist",   "General Physician","General Physician","Neurologist","Neurologist",
-        "Ophthalmologist","Ophthalmologist","Orthopedic","Orthopedic",  "Psychiatrist","Psychiatrist")
-        for(x in 0..13)
-        {
+        val names = arrayOf(
+            "DR.Y.K Mishra",
+            "Dr. Sandeep",
+            "Dr. Rajeev",
+            "Dr.Ajay",
+            "Dr.Naresh",
+            "Dr.Vinod",
+            "Dr.Arun",
+            "Dr. Meharwal",
+            "Dr. Nanda Das",
+            "Dr. Sarin",
+            "Dr. Sandhya",
+            "Dr. J.B.Sharma",
+            "Dr. Prakash",
+            "Dr.Rajul"
+        )
+        val types = arrayOf(
+            "Cardiologist",
+            "Cardiologist",
+            "Dentist",
+            "Dentist",
+            "General Physician",
+            "General Physician",
+            "Neurologist",
+            "Neurologist",
+            "Ophthalmologist",
+            "Ophthalmologist",
+            "Orthopedic",
+            "Orthopedic",
+            "Psychiatrist",
+            "Psychiatrist"
+        )
+        for (x in 0..13) {
 
-            FirebaseAuth.getInstance().signInWithEmailAndPassword(types[x].lowercase()+x%2+1+ "@gmail.com","doctor")
+            FirebaseAuth.getInstance().createUserWithEmailAndPassword(
+                types[x].lowercase().replace(' ', '_') + x % 2 + 1 + "@gmail.com", "doctor"
+            )
                 .addOnSuccessListener {
-                    val cdoctor=Doctor(it.user!!.uid,names[x],types[x].lowercase()+x%2+1+ "@gmail.com",types[x])
+                    Log.d("123", it.user!!.email.toString())
+                    val cdoctor = Doctor(
+                        it.user!!.uid,
+                        names[x],
+                        types[x].lowercase() + x % 2 + 1 + "@gmail.com",
+                        types[x]
+                    )
                     FirebaseDatabase.getInstance().reference.child(dbPaths.DOCTORS)
                         .child(types[x]).child(it.user!!.uid).setValue(cdoctor)
                         .addOnSuccessListener {
                             FirebaseDatabase.getInstance().reference.child(dbPaths.DoctorIds)
                                 .child(cdoctor.id).setValue(types[x])
                         }
+                }.addOnFailureListener {
+                    Log.d("123", it.message.toString())
                 }
         }
     }

@@ -36,7 +36,7 @@ class HistoryFragment : Fragment() {
             ViewModelProvider(this).get(HistoryViewModel::class.java)
 
         _binding = AppointmentHistoryBinding.inflate(inflater, container, false)
-        recyclerView=binding.root.findViewById(R.id.appointment_history_list)
+        recyclerView = binding.root.findViewById(R.id.appointment_history_list)
 
 
         return binding.root
@@ -44,17 +44,16 @@ class HistoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView.layoutManager=LinearLayoutManager(context)
-        val apt_list=ArrayList<BasicAppiontment>()
-        val adapter=past_apt_adapter(context, apt_list )
-        recyclerView.adapter=adapter
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        val apt_list = ArrayList<BasicAppiontment>()
+        val adapter = past_apt_adapter(context, apt_list)
+        recyclerView.adapter = adapter
         FirebaseDatabase.getInstance().reference.child(dbPaths.APPOINTMENTS)
             .child("past").child(FirebaseAuth.getInstance().uid.toString())
-            .addChildEventListener(object :ChildEventListener{
+            .addChildEventListener(object : ChildEventListener {
                 override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                    val apt=snapshot.getValue(BasicAppiontment::class.java)
-                    if(apt!=null)
-                    {
+                    val apt = snapshot.getValue(BasicAppiontment::class.java)
+                    if (apt != null) {
                         apt_list.add(apt)
                         adapter.notifyItemInserted(apt_list.size)
                     }
@@ -63,17 +62,21 @@ class HistoryFragment : Fragment() {
                 override fun onChildRemoved(snapshot: DataSnapshot) {
 
                 }
+
                 override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
 
                 }
+
                 override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
 
                 }
+
                 override fun onCancelled(error: DatabaseError) {
 
                 }
             })
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

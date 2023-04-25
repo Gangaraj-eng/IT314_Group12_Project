@@ -16,11 +16,11 @@ class MyBroadcastReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
 
 
-
 //        val notificationIntent = Intent(context, BookAppointment::class.java)
 //        notificationIntent.flags = (Intent.FLAG_ACTIVITY_CLEAR_TOP  or Intent.FLAG_ACTIVITY_SINGLE_TOP)
 
-        val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationManager =
+            context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
 
         val notificationIntent = Intent(context, BookAppointment::class.java)

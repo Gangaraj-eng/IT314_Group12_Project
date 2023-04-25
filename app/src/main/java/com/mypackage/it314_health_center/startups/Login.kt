@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.text.TextUtils
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
@@ -54,7 +53,6 @@ class Login : AppCompatActivity() {
     private lateinit var signupText: TextView
     private lateinit var otpPinView: SquarePinField
     private lateinit var userTypeView: AutoCompleteTextView
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -210,27 +208,27 @@ class Login : AppCompatActivity() {
 
     }
 
-    companion object{
+    companion object {
 
-    // check if email is valid
-     fun isValidMail(email: String): Boolean {
-        val emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." +
-                "[a-zA-Z0-9_+&*-]+)*@" +
-                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
-                "A-Z]{2,7}$"
+        // check if email is valid
+        fun isValidMail(email: String): Boolean {
+            val emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." +
+                    "[a-zA-Z0-9_+&*-]+)*@" +
+                    "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                    "A-Z]{2,7}$"
 
-        val pat: Pattern = Pattern.compile(emailRegex)
-        return if (email == null) false else pat.matcher(email).matches()
-    }
+            val pat: Pattern = Pattern.compile(emailRegex)
+            return if (email == null) false else pat.matcher(email).matches()
+        }
 
-    // check if mobile is valid
-     fun isValidMobile(phone: String): Boolean {
-        val p = Pattern.compile("^\\d{10}$")
+        // check if mobile is valid
+        fun isValidMobile(phone: String): Boolean {
+            val p = Pattern.compile("^\\d{10}$")
 
-        val m: Matcher = p.matcher(phone)
+            val m: Matcher = p.matcher(phone)
 
-        return m.matches()
-    }
+            return m.matches()
+        }
     }
 
     private fun login(email: String, password: String) {
@@ -463,15 +461,15 @@ class Login : AppCompatActivity() {
 
     private fun showErrorMessage(msg: String) {
 
-            // shows the error message in dialog box
-            dialog.findViewById<LinearLayout>(R.id.loading).visibility = View.GONE
-            dialog.findViewById<LinearLayout>(R.id.error_view).visibility = View.VISIBLE
-            dialog.findViewById<TextView>(R.id.failed_title).text =
-                getString(R.string.LoginFailedMessage)
-            dialog.findViewById<TextView>(R.id.error_message).text = msg
-            dialog.findViewById<MaterialButton>(R.id.close_button).setOnClickListener {
-                dialog.dismiss()
-            }
+        // shows the error message in dialog box
+        dialog.findViewById<LinearLayout>(R.id.loading).visibility = View.GONE
+        dialog.findViewById<LinearLayout>(R.id.error_view).visibility = View.VISIBLE
+        dialog.findViewById<TextView>(R.id.failed_title).text =
+            getString(R.string.LoginFailedMessage)
+        dialog.findViewById<TextView>(R.id.error_message).text = msg
+        dialog.findViewById<MaterialButton>(R.id.close_button).setOnClickListener {
+            dialog.dismiss()
+        }
 
     }
 

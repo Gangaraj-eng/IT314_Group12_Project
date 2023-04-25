@@ -1,4 +1,4 @@
-package com.mypackage.it314_health_center.startups.videocalling
+package com.mypackage.it314_health_center.videocalling
 
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.mypackage.it314_health_center.*
-import com.mypackage.it314_health_center.startups.videocalling.AroraFiles.RtcTokenBuilder2
+import com.mypackage.it314_health_center.videocalling.AroraFiles.RtcTokenBuilder2
 import io.agora.rtc2.*
 import io.agora.rtc2.video.VideoCanvas
 
@@ -150,8 +150,8 @@ class DoctorSideOnlineConference : AppCompatActivity() {
             Toast.makeText(applicationContext, "Permissions was not granted", Toast.LENGTH_SHORT)
                 .show()
         }
-        findViewById<FloatingActionButton>(R.id.LeaveButton).isEnabled=true
-        findViewById<FloatingActionButton>(R.id.JoinButton).isEnabled=false
+        findViewById<FloatingActionButton>(R.id.LeaveButton).isEnabled = true
+        findViewById<FloatingActionButton>(R.id.JoinButton).isEnabled = false
     }
 
     private lateinit var mdbref: DatabaseReference
@@ -170,8 +170,8 @@ class DoctorSideOnlineConference : AppCompatActivity() {
             isJoined = false
         }
         mdbref.child("meeting_rooms").child(patient_ID).removeValue()
-        findViewById<FloatingActionButton>(R.id.LeaveButton).isEnabled=false
-        findViewById<FloatingActionButton>(R.id.JoinButton).isEnabled=true
+        findViewById<FloatingActionButton>(R.id.LeaveButton).isEnabled = false
+        findViewById<FloatingActionButton>(R.id.JoinButton).isEnabled = true
     }
 
     private val mRtcEventHandler: IRtcEngineEventHandler = object : IRtcEngineEventHandler() {
@@ -199,8 +199,9 @@ class DoctorSideOnlineConference : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_doctor_side_online_conference)
 
-        window.statusBarColor= Color.WHITE
-        WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars = true
+        window.statusBarColor = Color.WHITE
+        WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars =
+            true
 
         patient_ID = intent.getStringExtra("patient_id") as String
         if (!checkSelfPermission()) {

@@ -3,15 +3,10 @@ package com.mypackage.it314_health_center.fragments.profile
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.FrameLayout
-import android.widget.LinearLayout
-import android.widget.ProgressBar
+import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -86,8 +81,8 @@ class ProfileFragment : Fragment() {
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
 
         val user_details = FirebaseDatabase.getInstance().getReference(dbPaths.USERS).child(userId)
-            .child(dbPaths.USER_DETAILS).get().addOnSuccessListener{
-                val aptcurr= it.getValue(User_Details::class.java)
+            .child(dbPaths.USER_DETAILS).get().addOnSuccessListener {
+                val aptcurr = it.getValue(User_Details::class.java)
 
                 editName.setText(aptcurr?.userName.toString())
                 editDate.setText(aptcurr?.date_of_birth.toString())
@@ -106,7 +101,7 @@ class ProfileFragment : Fragment() {
 
         button.setOnClickListener {
 
-            if(button.text=="UPDATE"){
+            if (button.text == "UPDATE") {
                 button.text = "SAVE"
                 editName.isEnabled = true
                 editAddress1.isEnabled = true
@@ -118,43 +113,36 @@ class ProfileFragment : Fragment() {
                 editPinCode.isEnabled = true
                 editCountry.isEnabled = true
                 editCity.isEnabled = true
-            }
-            else{
+            } else {
 
                 // verify details first
                 if (editName.text.toString().isEmpty()) {
                     editName.error = "Enter a valid name"
                     return@setOnClickListener
-                }
-                else if (checkAge(editAge.text.toString().toInt())){
+                } else if (checkAge(editAge.text.toString().toInt())) {
                     editAge.error = "Enter a valid age"
                     return@setOnClickListener
-                }
-                else if(editAddress1.text.toString().isEmpty() && editAddress2.text.toString().isEmpty()){
+                } else if (editAddress1.text.toString().isEmpty() && editAddress2.text.toString()
+                        .isEmpty()
+                ) {
                     editAddress1.error = "Enter a valid address"
                     return@setOnClickListener
-                }
-                else if(editDate.text.toString().isEmpty()){
+                } else if (editDate.text.toString().isEmpty()) {
                     editDate.error = "Enter a valid date"
                     return@setOnClickListener
-                }
-                else if(editState.toString().isEmpty()){
+                } else if (editState.toString().isEmpty()) {
                     editState.error = "Enter a valid state"
                     return@setOnClickListener
-                }
-                else if(editPinCode.toString().isEmpty()){
+                } else if (editPinCode.toString().isEmpty()) {
                     editPinCode.error = "Enter a valid pin code"
                     return@setOnClickListener
-                }
-                else if(editCity.toString().isEmpty()){
+                } else if (editCity.toString().isEmpty()) {
                     editCity.error = "Enter a valid city"
                     return@setOnClickListener
-                }
-                else if(editCountry.text.toString().isEmpty()){
+                } else if (editCountry.text.toString().isEmpty()) {
                     editCountry.error = "Enter a valid country"
                     return@setOnClickListener
-                }
-                else{
+                } else {
                     // save details
                     val new_details = User_Details(
                         editName.text.toString(),
@@ -211,8 +199,7 @@ class ProfileFragment : Fragment() {
     }
 
 
-
-    private fun checkAge(age: Int) : Boolean {
+    private fun checkAge(age: Int): Boolean {
         return age.toString().length != 2
     }
 

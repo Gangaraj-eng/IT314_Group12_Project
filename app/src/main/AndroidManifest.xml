@@ -12,7 +12,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- The Agora SDK requires Bluetooth permissions in case users are using Bluetooth devices. -->
@@ -29,6 +29,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IT314_Health_Center"
         tools:targetApi="31">
+        <activity
+            android:name=".NotificationsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ContactActivity"
+            android:exported="false" />
         <activity
             android:name=".ConfirmOrder"
             android:exported="false" />
@@ -65,13 +71,13 @@
             android:name=".Doctor_Homepage"
             android:exported="false" />
         <activity
-            android:name=".startups.videocalling.DoctorSideOnlineConference"
+            android:name=".videocalling.DoctorSideOnlineConference"
             android:exported="false" />
         <activity
             android:name=".patient_side.my_prescriptions"
             android:exported="false" />
         <activity
-            android:name=".startups.videocalling.PatientOnlineConsultation"
+            android:name=".videocalling.PatientOnlineConsultation"
             android:exported="false" />
         <activity
             android:name=".patient_side.ActivityDownloadReports"
@@ -111,8 +117,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".MyBroadcastReceiver"/>
-
+        <receiver android:name=".MyBroadcastReceiver" />
     </application>
 
 </manifest>

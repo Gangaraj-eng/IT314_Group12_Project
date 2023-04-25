@@ -1,36 +1,21 @@
 package com.mypackage.it314_health_center
 
-import android.app.AlarmManager
-import android.app.DatePickerDialog
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.app.TimePickerDialog
+import android.app.*
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.Button
-import android.widget.DatePicker
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.ProgressBar
-import android.widget.RadioGroup
-import android.widget.TextView
-import android.widget.TimePicker
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.mypackage.it314_health_center.helpers.dbPaths
-import com.mypackage.it314_health_center.startups.videocalling.PatientOnlineConsultation
+import com.mypackage.it314_health_center.videocalling.PatientOnlineConsultation
 import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.UUID
+import java.util.*
 
 
 class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
@@ -52,7 +37,7 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
     private lateinit var ifNotBooked: ConstraintLayout
     private lateinit var showDetails: TextView
     private lateinit var doctorTypeView: AutoCompleteTextView
-    private lateinit var joinButton : Button
+    private lateinit var joinButton: Button
 
 
     var day = 0
@@ -70,8 +55,7 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_book_appointment1)
-
+        setContentView(R.layout.activity_book_appointment)
         mAuth = FirebaseAuth.getInstance()
         mDatabase = FirebaseDatabase.getInstance()
         edtDate = findViewById(R.id.edtDate)
@@ -90,13 +74,17 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
         joinButton = findViewById(R.id.joinButton)
         progressBar = findViewById(R.id.progressBar)
 
+        findViewById<ImageButton>(R.id.back_btn).setOnClickListener {
+            finish()
+        }
+
         Log.d("TAG", mAuth.currentUser.toString())
 
         patientId = mAuth.currentUser!!.uid
         mDatabase?.reference?.child("users")?.child(patientId)?.child("user_details")
             ?.child("userName")?.get()?.addOnSuccessListener {
-            patientName = it.value.toString()
-        }
+                patientName = it.value.toString()
+            }
 
         ifNotBooked.visibility = View.GONE
         ifBooked.visibility = View.GONE
@@ -159,22 +147,23 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
 //                                Toast.LENGTH_SHORT
 //                            ).show()
 
-                            if(type=="online"){
+                            if (type == "online") {
                                 joinButton.visibility = View.VISIBLE
                                 joinButton.setOnClickListener {
                                     val intent = Intent(this, PatientOnlineConsultation::class.java)
                                     startActivity(intent)
                                 }
-                            }
-                            else{
+                            } else {
                                 joinButton.visibility = View.GONE
                             }
 
 
-                            if(problemDescription.isEmpty())
-                                showDetails.text =  "Date: $date \nTime: $time \n\nAppointment mode: $type \n\nDoctor type: $doctorType"
+                            if (problemDescription.isEmpty())
+                                showDetails.text =
+                                    "Date: $date \nTime: $time \n\nAppointment mode: $type \n\nDoctor type: $doctorType"
                             else
-                                showDetails.text =  "Date: $date\nTime: $time\n\nProblem Description: $problemDescription\n\nAppointment mode: $type \n\nDoctor type: $doctorType"
+                                showDetails.text =
+                                    "Date: $date\nTime: $time\n\nProblem Description: $problemDescription\n\nAppointment mode: $type \n\nDoctor type: $doctorType"
 
                             progressBar.visibility = View.GONE
                             ifNotBooked.visibility = View.GONE
@@ -211,11 +200,12 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
 //                    ).show()
 
 
-
-                    if(problemDescription.isEmpty())
-                        showDetails.text =  "Date: $date \nTime: $time \n\nAppointment mode: $type \n\nDoctor type: $doctorType"
+                    if (problemDescription.isEmpty())
+                        showDetails.text =
+                            "Date: $date \nTime: $time \n\nAppointment mode: $type \n\nDoctor type: $doctorType"
                     else
-                        showDetails.text =  "Date: $date\nTime: $time\n\nProblem Description: $problemDescription\n\nAppointment mode: $type \n\nDoctor type: $doctorType"
+                        showDetails.text =
+                            "Date: $date\nTime: $time\n\nProblem Description: $problemDescription\n\nAppointment mode: $type \n\nDoctor type: $doctorType"
 
                     progressBar.visibility = View.GONE
                     ifNotBooked.visibility = View.GONE
@@ -271,15 +261,16 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
             val date = "$savedDay/$savedMonth/$savedYear"
             val type = type
             val doctorType = doctorTypeView.text.toString()
+            Log.d("123", doctorType)
             val appointmentId = UUID.randomUUID().toString()
 
-            if(edtDate.text.toString().isEmpty()){
+            if (edtDate.text.toString().isEmpty()) {
                 Toast.makeText(this, "Please select a valid date", Toast.LENGTH_SHORT).show()
                 edtDate.error = "Please select a valid date"
                 return@setOnClickListener
             }
 
-            if(edtTime.text.toString().isEmpty()){
+            if (edtTime.text.toString().isEmpty()) {
                 Toast.makeText(this, "Please select a valid time", Toast.LENGTH_SHORT).show()
                 edtTime.error = "Please select a valid time"
                 return@setOnClickListener
@@ -289,16 +280,18 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
             val cmillis = System.currentTimeMillis()
             val difference = fmillis - cmillis
 
-            if(difference<0){
-                Toast.makeText(this, "Please select a valid date and time", Toast.LENGTH_SHORT).show()
-                showDateTime.error = "Please select a valid date and time"
+            if (difference < 0) {
+                Toast.makeText(this, "Please select a valid date and time", Toast.LENGTH_SHORT)
+                    .show()
+//                showDateTime.error = "Please select a valid date and time"
                 return@setOnClickListener
             }
 
-            if(type==""){
-                Toast.makeText(this, "Please select the appointment mode", Toast.LENGTH_SHORT).show()
-                val textView6 = findViewById<TextView>(R.id.textView6)
-                textView6.error =  "Please select the appointment mode"
+            if (type == "") {
+                Toast.makeText(this, "Please select the appointment mode", Toast.LENGTH_SHORT)
+                    .show()
+                val textView6 = findViewById<TextView>(R.id.textView12)
+                textView6.error = "Please select the appointment mode"
                 return@setOnClickListener
             }
 
@@ -364,8 +357,7 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
                             }
                         }
 //                        Log.d("123",doctorId)
-                    }
-                    else{
+                    } else {
                         Toast.makeText(this, "No doctor available", Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -399,6 +391,7 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
         FirebaseDatabase.getInstance().reference.child("appointments").child("upcoming")
             .child(patientId).child(id).setValue(appointment)
             .addOnCompleteListener {
+//                Snackbar.make(window.decorView.rootView, "Click the pin for more options", Snackbar.LENGTH_LONG).show();
                 Toast.makeText(this, "Appointment booked successfully", Toast.LENGTH_LONG).show()
             }
             .addOnFailureListener {

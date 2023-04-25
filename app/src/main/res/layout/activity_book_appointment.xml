@@ -3,78 +3,106 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".BookAppointment">
+    android:layout_height="match_parent">
 
-    <ImageButton
-        android:id="@+id/back_btn"
+    <ProgressBar
+        android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/white"
-        android:src="@drawable/back_button"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ifNotBooked"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible"
-        app:layout_constraintTop_toBottomOf="@id/back_btn">
+        android:visibility="visible">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnDateTime"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/tp"
+            android:layout_width="match_parent"
+            android:layout_height="178dp"
+            android:background="@color/blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="175dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/book_image_vector"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:padding="5dp"
+                android:text="Book\nAppointment"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="35sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:id="@+id/edtDate"
+            android:layout_width="160dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/back_with_border"
+            android:gravity="center"
+            android:hint="Date"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.100"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tp" />
+
+        <TextView
+            android:id="@+id/edtTime"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/back_with_border"
+            android:gravity="center"
+            android:hint="Time"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.850"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tp" />
+
+        <TextView
+            android:id="@+id/textView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/blue"
-            android:text="Select date and time"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.516"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.096" />
-
-        <TextView
-            android:id="@+id/showDateTime"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            android:text="Date, time"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnDateTime"
-            app:layout_constraintVertical_bias="0.041" />
-
-        <EditText
-            android:id="@+id/problemDescription"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:paddingLeft="15dp"
-            android:layout_marginHorizontal="20dp"
-            android:hint="Problem Description (Optional)"
-            android:inputType="textMultiLine"
-            android:background="@drawable/back_with_border"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/showDateTime"
-            app:layout_constraintVertical_bias="0.088"
-            tools:layout_editor_absoluteX="20dp" />
-
-        <TextView
-            android:id="@+id/doctor_type_label"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:text="select doctor type"
-            app:layout_constraintBottom_toTopOf="@+id/doctor_type_dropdown"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="115dp"
+            android:text="Doctor type: "
             android:textColor="@color/black"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.100"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/doctor_type_dropdown"
@@ -83,44 +111,76 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="10dp"
+            android:layout_marginTop="80dp"
             app:boxStrokeColor="@color/blue"
             app:endIconTint="@color/blue"
-            app:layout_constraintBottom_toTopOf="@+id/radio_grp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/problemDescription">
+            app:layout_constraintHorizontal_bias="0.090"
+            app:layout_constraintStart_toEndOf="@id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/tp"
+            app:layout_constraintVertical_bias="0.180">
+
 
             <AutoCompleteTextView
                 android:id="@+id/doctor_type_selector"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="General physician" />
+                android:text="General Physician"
+                android:textColor="@color/black" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <EditText
+            android:id="@+id/problemDescription"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginHorizontal="24dp"
+            android:background="@drawable/back_with_border"
+            android:hint="Problem Description (Optional)"
+            android:inputType="textMultiLine"
+            android:paddingLeft="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView11"
+            app:layout_constraintVertical_bias="0.13"
+            tools:layout_editor_absoluteX="20dp" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Appointment Mode"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/problemDescription"
+            app:layout_constraintVertical_bias="0.12" />
 
         <RadioGroup
             android:id="@+id/radio_grp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:layout_gravity="center"
             android:checkedButton="@id/radio_mobile_login"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/problemDescription"
-            app:layout_constraintVertical_bias="0.513">
+            app:layout_constraintTop_toBottomOf="@+id/textView12"
+            app:layout_constraintVertical_bias="0.03">
 
             <RadioButton
                 android:id="@+id/radio_online"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:buttonTint="@color/blue"
+                android:layout_marginHorizontal="15dp"
+                android:buttonTint="@color/black"
                 android:layoutDirection="rtl"
                 android:text="Online"
-                android:textColor="@color/blue"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
 
             <RadioButton
@@ -128,56 +188,57 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:buttonTint="@color/blue"
+                android:buttonTint="@color/black"
                 android:layoutDirection="rtl"
                 android:text="Offline"
-                android:textColor="@color/blue"
                 android:textSize="20sp" />
-
         </RadioGroup>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnBookAppointment"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/blue"
-            android:text="Book Appointment"
+            android:backgroundTint="@color/black"
+            android:padding="20dp"
+            android:text="Book"
+            android:textColor="@color/white"
+            app:cornerRadius="30dp"
+            app:elevation="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/radio_grp"
-            app:layout_constraintVertical_bias="0.482" />
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="Select appointment mode"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/radio_grp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintVertical_bias="0.385" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ifBooked"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/back_btn">
+        android:visibility="gone">
 
+        <ImageButton
+            android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/white"
+            android:src="@drawable/back_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/black" />
         <TextView
             android:id="@+id/textView4"
             android:layout_width="400dp"
             android:layout_height="76dp"
+            android:layout_marginTop="10dp"
             android:text="You have booked an appointment"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="23sp"
             android:textStyle="bold"
-            android:textColor="@color/blue"
             app:layout_constraintBottom_toTopOf="@+id/showDetails"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
@@ -189,13 +250,13 @@
             android:id="@+id/showDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:elevation="7dp"
+            android:background="@drawable/back_with_border"
+            android:padding="10dp"
             android:text="TextView"
             android:textAlignment="center"
+            android:textColor="@color/text_view_2"
             android:textSize="22sp"
-            android:padding="10dp"
-            android:textColor="@color/white"
-            android:elevation="7dp"
-            android:background="@drawable/edit_text_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -210,9 +271,9 @@
             android:backgroundTint="@color/blue"
             android:text="JOIN"
             android:textAllCaps="false"
+            android:visibility="gone"
             app:cornerRadius="10dp"
             app:iconPadding="10dp"
-            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -220,5 +281,6 @@
             app:layout_constraintVertical_bias="0.473" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
