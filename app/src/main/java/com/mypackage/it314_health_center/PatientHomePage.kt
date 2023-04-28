@@ -26,7 +26,7 @@ class PatientHomePage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        LatencyCheck.checkConcurrentRequests()
+//        LatencyCheck.checkConcurrentRequests()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

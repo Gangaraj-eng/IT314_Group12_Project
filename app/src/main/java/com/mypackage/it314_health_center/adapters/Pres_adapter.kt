@@ -2,6 +2,7 @@ package com.mypackage.it314_health_center.patient_side
 
 import android.app.Activity
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,7 +30,7 @@ class pres_adapter(private val pres_list: List<prescription_class>) :
         val pres_img = pres_list[position].image_url
         val issued_by = pres_list[position].issued_by
         val date = pres_list[position].date
-
+        Log.d("123",pres_img)
         ImageManager.loadImageIntoView(holder.pres_image_id, pres_img)
         holder.date_id.text = convertDateInMillisToString(date)
         holder.issue_id.text = issued_by
