@@ -87,11 +87,11 @@
 
                         <AutoCompleteTextView
                             android:id="@+id/day_selector"
-                            android:textSize="14dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:editable="false"
-                            android:text="01" />
+                            android:text="01"
+                            android:textSize="14dp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -110,10 +110,10 @@
                         <AutoCompleteTextView
                             android:id="@+id/month_selector"
                             android:layout_width="wrap_content"
-                            android:textSize="14dp"
                             android:layout_height="wrap_content"
                             android:editable="false"
-                            android:text="01" />
+                            android:text="01"
+                            android:textSize="14dp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -133,9 +133,9 @@
                             android:id="@+id/year_selector"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14dp"
                             android:editable="false"
-                            android:text="2000" />
+                            android:text="2000"
+                            android:textSize="14dp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
                     <!--             -->

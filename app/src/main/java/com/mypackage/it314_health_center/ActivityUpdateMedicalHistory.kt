@@ -154,7 +154,7 @@ class ActivityUpdateMedicalHistory : AppCompatActivity() {
         val report = MedicalReport(
             reportname,
             ValidationFunctions.convertDateInMillisToString(System.currentTimeMillis()),
-            ValidationFunctions.convertDateInMillisToString(System.currentTimeMillis()),
+            ValidationFunctions.convertTimeInMillisToString(System.currentTimeMillis()),
             fileType,
             ""
         )

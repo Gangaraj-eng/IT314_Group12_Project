@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ContactActivity">
 
 
     <TextView
@@ -66,22 +67,39 @@
         app:layout_constraintVertical_bias="0.5"
         app:tint="#8596a0" />
 
-    <TextView
+
+    <LinearLayout
         android:id="@+id/editTextTextPersonName"
-        android:layout_width="422dp"
-        android:layout_height="49dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="               C O N T A C T   U S"
-        android:textColor="#4799FA"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/appbar"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/pinFieldLibraryTransparent"
+            android:src="@drawable/arrow_1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:text="Contact us"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/textView6"
@@ -224,8 +242,9 @@
     <EditText
 
         android:id="@+id/editText"
-        android:layout_width="385dp"
+        android:layout_width="match_parent"
         android:layout_height="138dp"
+        android:layout_margin="20dp"
         android:layout_marginHorizontal="15dp"
         android:background="@drawable/background"
         android:elevation="4dp"
@@ -243,11 +262,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.817" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button3"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Submit"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

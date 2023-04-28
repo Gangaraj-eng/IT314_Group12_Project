@@ -1,13 +1,13 @@
 package com.mypackage.it314_health_center.patient_side
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
+import com.mypackage.it314_health_center.ActivityHelp
 import com.mypackage.it314_health_center.ContactActivity
 import com.mypackage.it314_health_center.R
 import com.mypackage.it314_health_center.helpers.dbPaths
@@ -53,6 +53,11 @@ class ActivitySettings : AppCompatActivity() {
                     .putInt(dbPaths.Current_Mode, AppCompatDelegate.MODE_NIGHT_NO).apply()
             }
         }
+
+        findViewById<LinearLayout>(R.id.help_view_text)
+            .setOnClickListener {
+                startActivity(Intent(this, ActivityHelp::class.java))
+            }
 
         val notification_currmode = getSharedPreferences(
             dbPaths.SharedPreference,

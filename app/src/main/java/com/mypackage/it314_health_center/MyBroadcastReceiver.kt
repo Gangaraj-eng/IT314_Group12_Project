@@ -47,7 +47,7 @@ class MyBroadcastReceiver : BroadcastReceiver() {
         val builder = NotificationCompat.Builder(context, "my_channel_id")
             .setSmallIcon(R.drawable.ic_app_icon)
             .setContentTitle("Appointment Reminder")
-            .setContentText("Your appointment starts in 10 minutes.")
+            .setContentText("Your appointment starts now.")
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setContentIntent(contentIntent)
 

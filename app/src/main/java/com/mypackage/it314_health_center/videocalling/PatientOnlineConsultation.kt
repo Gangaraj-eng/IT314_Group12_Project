@@ -158,10 +158,10 @@ class PatientOnlineConsultation : AppCompatActivity() {
 
     fun leaveChannel(view: View?) {
         if (!isJoined) {
-            showMessage("Join a channel first")
+//            showMessage("Join a channel first")
         } else {
             agoraEngine!!.leaveChannel()
-            showMessage("You left the channel")
+//            showMessage("You left the channel")
             // Stop remote video rendering.
             if (remoteSurfaceView != null) remoteSurfaceView!!.visibility = View.GONE
             // Stop local video rendering.
@@ -175,7 +175,7 @@ class PatientOnlineConsultation : AppCompatActivity() {
     private val mRtcEventHandler: IRtcEngineEventHandler = object : IRtcEngineEventHandler() {
         // Listen for the remote host joining the channel to get the uid of the host.
         override fun onUserJoined(uid: Int, elapsed: Int) {
-            showMessage("Remote user joined $uid")
+//            showMessage("Remote user joined $uid")
 
             // Set the remote video view
             runOnUiThread { setupRemoteVideo(uid) }
@@ -183,11 +183,11 @@ class PatientOnlineConsultation : AppCompatActivity() {
 
         override fun onJoinChannelSuccess(channel: String, uid: Int, elapsed: Int) {
             isJoined = true
-            showMessage("Joined Channel $channel")
+//            showMessage("Joined Channel $channel")
         }
 
         override fun onUserOffline(uid: Int, reason: Int) {
-            showMessage("Remote user offline $uid $reason")
+//            showMessage("Remote user offline $uid $reason")
             runOnUiThread { remoteSurfaceView!!.visibility = View.GONE }
         }
     }

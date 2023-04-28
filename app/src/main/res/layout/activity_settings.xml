@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-     android:background="@color/background"
+    android:background="@color/background"
     tools:context=".patient_side.ActivitySettings">
 
     <LinearLayout
@@ -84,10 +84,10 @@
                 android:id="@+id/notifications_switch"
                 android:layout_width="76dp"
                 android:layout_height="41dp"
-            app:trackTint="#8596a0"
                 android:layout_gravity="center"
                 android:layout_marginRight="10dp"
-                android:text="" />
+                android:text=""
+                app:trackTint="#8596a0" />
         </LinearLayout>
 
         <LinearLayout
@@ -130,10 +130,10 @@
                 android:id="@+id/mode_switch"
                 android:layout_width="76dp"
                 android:layout_height="41dp"
-                app:trackTint="#8596a0"
                 android:layout_gravity="center"
                 android:layout_marginRight="10dp"
-                android:text="" />
+                android:text=""
+                app:trackTint="#8596a0" />
         </LinearLayout>
 
         <LinearLayout
@@ -151,6 +151,7 @@
                 app:tint="#8596a0" />
 
             <LinearLayout
+                android:id="@+id/help_view_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"

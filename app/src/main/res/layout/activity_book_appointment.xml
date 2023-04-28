@@ -229,6 +229,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/black" />
+
         <TextView
             android:id="@+id/textView4"
             android:layout_width="400dp"
@@ -250,8 +251,8 @@
             android:id="@+id/showDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:elevation="7dp"
             android:background="@drawable/back_with_border"
+            android:elevation="7dp"
             android:padding="10dp"
             android:text="TextView"
             android:textAlignment="center"
@@ -265,21 +266,37 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/joinButton"
-            android:layout_width="wrap_content"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:backgroundTint="@color/blue"
             android:text="JOIN"
             android:textAllCaps="false"
+            android:textColor="@color/green_1"
+            android:textSize="20dp"
             android:visibility="gone"
-            app:cornerRadius="10dp"
             app:iconPadding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/showDetails"
-            app:layout_constraintVertical_bias="0.473" />
+            app:layout_constraintVertical_bias="0.473"
+            app:strokeColor="@color/green_1" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancel_booking"
+            style="@style/Widget.Material3.Button.IconButton.Outlined"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="cancel booking"
+            android:textColor="#ff0000"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/joinButton"
+            app:strokeColor="#ff0000" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

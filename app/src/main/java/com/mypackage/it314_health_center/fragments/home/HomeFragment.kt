@@ -77,7 +77,13 @@ class HomeFragment : Fragment() {
             startActivity(Intent(context, ActivityOrderMedicines::class.java))
         }
 //        addDoctors()
+        addPrescriptions()
         return root
+    }
+
+    private fun addPrescriptions() {
+        val uid = ""
+
     }
 
     private fun addDoctors() {

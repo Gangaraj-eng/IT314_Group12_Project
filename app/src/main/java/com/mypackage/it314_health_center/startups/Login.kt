@@ -64,12 +64,12 @@ class Login : AppCompatActivity() {
         mdbRef = FirebaseDatabase.getInstance().reference
 
         // check if already a user is logged in
-        if (mAuth.currentUser != null) {
-
-            startActivity(Intent(this, PatientHomePage::class.java))
-            finish() // close this activity
-
-        }
+//        if (mAuth.currentUser != null) {
+//
+//            startActivity(Intent(this, PatientHomePage::class.java))
+//            finish() // close this activity
+//
+//        }
 
         // initialize views
         emailLayout = findViewById(R.id.email_login_layout)
@@ -228,6 +228,20 @@ class Login : AppCompatActivity() {
             val m: Matcher = p.matcher(phone)
 
             return m.matches()
+        }
+
+        fun isValidPassword(pswd:String):Boolean
+        {
+            return pswd.trim().length>=5
+        }
+        fun validate_emailLogin(email:String,password:String):Boolean
+        {
+            return isValidMail(email) && isValidPassword(password)
+        }
+
+        fun validate_mobileLogin(mobile:String,otp:String):Boolean
+        {
+            return isValidMobile(mobile) && otp.trim().length==6
         }
     }
 
@@ -404,6 +418,7 @@ class Login : AppCompatActivity() {
             .build()
         PhoneAuthProvider.verifyPhoneNumber(options)
     }
+
 
     private fun verifyCode(code: String) {
 

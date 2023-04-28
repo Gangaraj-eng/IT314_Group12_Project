@@ -23,6 +23,9 @@ import com.mypackage.it314_health_center.adapters.relative_detail_adapter
 import com.mypackage.it314_health_center.helpers.dbPaths
 import com.mypackage.it314_health_center.models.Relative_detail
 import com.mypackage.it314_health_center.models.User_Details
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class UserDetailsActivity : AppCompatActivity() {
 
@@ -169,6 +172,36 @@ class UserDetailsActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    companion object
+    {
+        fun validateProfile(
+            name: String,
+            dob: String,
+            gender: String,
+            addr: String,
+            city: String,
+            state: String,
+            country: String,
+            pincode: String
+        ):Boolean{
+
+            if(name.trim().isEmpty()) return false
+            val formatter= SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
+            val dbDate=formatter.parse(dob)
+            val cdate=formatter.parse("27/04/2023:")
+            if(dbDate>=cdate) return false
+            if(gender!="male"  && gender!="female")
+                return false
+            if(addr.trim().length<20) return false
+            if(city.isEmpty()) return false
+            if(state.isEmpty()) return false
+            if(country.isEmpty()) return false
+            if(pincode.length!=6) return  false
+            return true
+
+        }
     }
 
     private fun setUPDropdowns() {

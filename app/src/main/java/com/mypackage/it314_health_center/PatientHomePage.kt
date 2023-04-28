@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.mypackage.it314_health_center.databinding.ActivityMainBinding
 import com.mypackage.it314_health_center.patient_side.ActivitySettings
 import com.mypackage.it314_health_center.startups.Login
+import com.mypackage.it314_health_center.startups.Testing.LatencyCheck
 
 class PatientHomePage : AppCompatActivity() {
 
@@ -25,6 +26,7 @@ class PatientHomePage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        LatencyCheck.checkConcurrentRequests()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -68,9 +70,8 @@ class PatientHomePage : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId==R.id.notifications)
-        {
-                startActivity(Intent(this,NotificationsActivity::class.java))
+        if (item.itemId == R.id.notifications) {
+            startActivity(Intent(this, NotificationsActivity::class.java))
         }
         return super.onOptionsItemSelected(item)
     }

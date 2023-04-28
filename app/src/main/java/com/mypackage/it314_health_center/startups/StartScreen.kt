@@ -10,7 +10,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.mypackage.it314_health_center.Doctor_Homepage
 import com.mypackage.it314_health_center.PatientHomePage
-import com.mypackage.it314_health_center.R
 import com.mypackage.it314_health_center.helpers.dbPaths
 
 class StartScreen : AppCompatActivity() {

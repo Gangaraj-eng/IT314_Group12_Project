@@ -70,14 +70,29 @@ class my_prescriptions : AppCompatActivity() {
         adapter.notifyDataSetChanged()
 
 //        val temp_list=ArrayList<prescription_class>()
-//        temp_list.add(prescription_class(mAuth.currentUser!!.uid,"1","gs://healthcenter-70246.appspot.com/prescription1.jpg", issued_by = "Dr. Reddy"))
-//        temp_list.add(prescription_class(mAuth.currentUser!!.uid,"2","gs://healthcenter-70246.appspot.com/prescription2.jpg", issued_by = "Dr. Reddy"))
-//        temp_list.add(prescription_class(mAuth.currentUser!!.uid,"3","gs://healthcenter-70246.appspot.com/prescription3.jpg", issued_by = "Dr. Reddy"))
-//        for(i in 0..2)
+//        val uid="Hmq5nKTNfoTcyLLSGPN5CPxfzvG3"
+//        temp_list.add(prescription_class(uid,"1","gs://healthcenter-70246.appspot.com/prescription1.jpg", issued_by = "Dr. Reddy"))
+//        temp_list.add(prescription_class(uid,"2","gs://healthcenter-70246.appspot.com/prescription2.jpg", issued_by = "Dr. Raju"))
+//        temp_list.add(prescription_class(uid,"3","gs://healthcenter-70246.appspot.com/prescription3.jpg", issued_by = "Dr. Rahul"))
+//        temp_list.add(prescription_class(uid,"4","gs://healthcenter-70246.appspot.com/prescription3.jpg", issued_by = "Dr. Rahul"))
+//        for(i in 0..3)
 //        {
-//            mdbref.child("prescriptions").child(mAuth.currentUser!!.uid)
+//            mdbref.child("prescriptions").child(uid)
 //                .child(temp_list[i].appointment_id)
 //                .setValue(temp_list[i])
+//        }
+//        val reportList=ArrayList<LabReport>()
+//        reportList.add(LabReport("Blood test","Dr. Ravi","21-04-23","23-04-23"))
+//        reportList.add(LabReport("X-ray","Dr. Rahul","22-04-23","24-04-23"))
+//        reportList.add(LabReport("Insulin test","Dr. Reddy","23-04-23","25-04-23"))
+//        reportList.add(LabReport("X-ray","Dr. Raju","20-04-23","22-04-23"))
+//        reportList.add(LabReport("Blood test","Dr. Ram","19-04-23","23-04-23"))
+//        for(i in 0..4)
+//        {
+//            reportList[i].ReportURL="https://firebasestorage.googleapis.com/v0/b/healthcenter-70246.appspot.com/o/PDFs%2Fraw%3A%2Fstorage%2Femulated%2F0%2FDownload%2F15-Hedglin-Phillips-Reilley%20(1).pdf?alt=media&token=20c2a7f5-8ebd-4315-b927-5482c59fad58"
+//            reportList[i].id=UUID.randomUUID().toString()
+//        mdbref.child(dbPaths.LabReports).child(uid).child(reportList[i].id)
+//            .setValue(reportList[i])
 //        }
     }
 }

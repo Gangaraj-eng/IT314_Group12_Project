@@ -9,7 +9,6 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.mypackage.it314_health_center.helpers.dbPaths
@@ -38,7 +37,7 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
     private lateinit var showDetails: TextView
     private lateinit var doctorTypeView: AutoCompleteTextView
     private lateinit var joinButton: Button
-
+    private lateinit var cancelButton: Button
 
     var day = 0
     var month = 0
@@ -52,6 +51,8 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
     var savedYear = 0
     var savedHour = 0
     var savedMinute = 0
+    var appointmentId = ""
+    var doctorId = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,6 +74,7 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
         doctorTypeView.isEnabled = false
         joinButton = findViewById(R.id.joinButton)
         progressBar = findViewById(R.id.progressBar)
+        cancelButton = findViewById(R.id.cancel_booking)
 
         findViewById<ImageButton>(R.id.back_btn).setOnClickListener {
             finish()
@@ -90,6 +92,15 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
         ifBooked.visibility = View.GONE
         progressBar.visibility = View.VISIBLE
 
+        cancelButton.setOnClickListener {
+            mDatabase?.reference?.child("appointments")?.child("upcoming")
+                ?.child(patientId)?.child(appointmentId)?.removeValue()
+            mDatabase?.reference!!.child("doctor_appointments")
+                .child(doctorId).child("upcoming")
+                .child(appointmentId).removeValue()
+            finish()
+            Toast.makeText(this, "Appointment cancelled !!", Toast.LENGTH_SHORT).show()
+        }
 
         //creating doctors with different types:
 //        for(i in 0..6){
@@ -118,8 +129,8 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
                         val date = aptcurr?.date.toString()
                         val problemDescription = aptcurr?.problemDescription.toString()
                         val type = aptcurr?.type.toString()
-                        val doctorId = aptcurr?.doctorId.toString()
-                        val appointmentId = apt.key
+                        doctorId = aptcurr?.doctorId.toString()
+                        appointmentId = apt.key.toString()
                         val doctorType = aptcurr?.doctorType.toString()
 
                         val fmillis =
@@ -281,6 +292,7 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
             val difference = fmillis - cmillis
 
             if (difference < 0) {
+
                 Toast.makeText(this, "Please select a valid date and time", Toast.LENGTH_SHORT)
                     .show()
 //                showDateTime.error = "Please select a valid date and time"
@@ -449,6 +461,15 @@ class BookAppointment : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
 //        showDateTime.text = "$savedDay/$savedMonth/$savedYear,  $showtime"
 
     }
-
+    companion object
+    {
+         fun validateAppointmentDetails(date:String,time:String,type:String):Boolean
+         {
+             val formatter=SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.ENGLISH)
+                val aptDate=formatter.parse("$date $time")
+                 val cdate=formatter.parse("27/04/2023 17:30")
+             return cdate<aptDate && (type=="offline" || type=="online")
+         }
+    }
 
 }

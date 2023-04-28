@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 
-class NotificationsActivity : AppCompatActivity() {
+class ActivityHelp : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_notifications)
+        setContentView(R.layout.help_center)
 
         findViewById<ImageButton>(R.id.back_btn).setOnClickListener {
             finish()
